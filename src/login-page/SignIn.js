@@ -14,11 +14,12 @@ function SignIn(props) {
     <div className='SignIn-Container'>
       <h2 className='signIn-Header'>SIGN IN</h2>
       <form className='SignIn-Form' onSubmit={submit}>
-          <label>Enter Your Email</label>
+          <label>Enter Your Email</label> <br/>
           <input placeholder='example@email.com' className='Email-Input'>
           </input>
           <br/>
           <label>Enter Password:</label>
+          <br></br>
           <input placeholder='Password...' className='Password-Input'  type="password"> 
           </input>
           <br/>
