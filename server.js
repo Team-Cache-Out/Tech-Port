@@ -302,7 +302,7 @@ app.get("/university/:id", async (req,res) => {
          /* Connecting to the database. */
         let client = await pool.connect();
 
-        const data = await client.query("SELECT * FROM university WHERE university_id=$1", [req.params.id]);
+        const data = await client.query("SELECT * FROM universities WHERE university_id=$1", [req.params.id]);
         res.json(data.rows[0]);
 
         /* Releasing the client from the database. */
