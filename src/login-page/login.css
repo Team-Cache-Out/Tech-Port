@@ -11,6 +11,8 @@
     height: 500px;
     border: 10px solid rgb(156, 192, 208);
     background-color: rgb(255, 255, 255);
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
 }
 
 .logInBody{
@@ -28,4 +30,5 @@
 
 .Password-Input{
     border: solid rgba(106, 106, 247, 0.941);
+    
 }
