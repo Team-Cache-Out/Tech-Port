@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 
 /* This is requiring the connection.js file in the backend folder. */
-const pool = require(".backend/connection");
+const pool = require("./backend/connection");
 
 const PORT = process.env.PORT || 4000
 
@@ -279,12 +279,12 @@ app.delete("tickets/:id", async (req,res) => {
 
 /* The above code is connecting to the database and then querying the database for all the data in the
 university table. */
-app.get("/university", async (req,res) => {
+app.get("/universities", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
 
-        const data = await client.query('SELECT * FROM university;');
+        const data = await client.query('SELECT * FROM universities;');
         res.send(data.rows);
 
         /* Releasing the client from the database. */
@@ -302,7 +302,7 @@ app.get("/university/:id", async (req,res) => {
          /* Connecting to the database. */
         let client = await pool.connect();
 
-        const data = await client.query("SELECT * FROM university WHERE university_id=$1", [req.params.id]);
+        const data = await client.query("SELECT * FROM universities WHERE university_id=$1", [req.params.id]);
         res.json(data.rows[0]);
 
         /* Releasing the client from the database. */
