@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS techPort_db;
+DROP DATABASE IF EXISTS techport;
 
-CREATE DATABASE techPort_db;
+CREATE DATABASE techport;
 \l
-\c techPort_db;
+\c techport;
  
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS tickets CASCADE;
