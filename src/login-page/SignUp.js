@@ -39,7 +39,7 @@ function SignUp(props) {
               <input className='signUp-email' id='signUp-email'></input>
               <br/>
               <br/>
-              <label className='signUp-Labels'><center>Enter New Password</center></label>
+              <label className='signUp-Labels'><center>Enter Password</center></label>
               <input className='signUp-password' id='signUp-password'></input>
               <br/>
               <br/>

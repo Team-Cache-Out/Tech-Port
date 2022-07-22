@@ -28,7 +28,7 @@ function SignIn(props) {
           <button className='SignIn-Button' id="SignIn-Button" form="SignIn-Form" type='Submit'>Sign In
           </button>
           <br/>
-          <p className='NoAccount-Info'>Dont have an account? Click <Link to="/signup" onClick={handleSignUp} className="SignUp-Link">Here</Link> </p>
+          <p className='NoAccount-Info'>Don't have an account? Click <Link to="/signup" onClick={handleSignUp} className="SignUp-Link">Here</Link> </p>
       </form>
       
     </div>
