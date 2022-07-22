@@ -38,10 +38,6 @@
     font-family: Helvetica, sans-serif;
 }
 
-.signUp-Labels{
-    margin-bottom: 10px;
-}
-
 .signUp-name {
     width: 250px;
     height: 24px;
@@ -135,3 +131,17 @@ color: #2EB394;
     font-family: Helvetica, sans-serif;
 }
 
+.signUp-name{
+margin-top: 5px;
+}
+.signUp-email{
+margin-top: 5px;    
+}
+
+.signUp-password{
+margin-top: 5px;    
+}
+
+.signUp-passConfirm{
+margin-top: 5px;  
+}
