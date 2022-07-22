@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import logo from './logo.png';
+
 
 function Logo() {
   return (
-    <div>Logo</div>
+   <img className="Logo-Img" src={logo} alt="Logo" />
   )
 }
 

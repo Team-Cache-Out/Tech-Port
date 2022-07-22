@@ -6,22 +6,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     width: 500px;
     height: 500px;
     border: 10px solid rgb(156, 192, 208);
     background-color: rgb(255, 255, 255);
     border-bottom-left-radius: 3%;
     border-bottom-right-radius: 3%;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
 }
 
 .logInBody{
-    position: absolute;
-    top: 10%;
-    left: 15%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: auto;
 }
 
 .SignIn-Form{
@@ -31,4 +34,13 @@
 .Password-Input{
     border: solid rgba(106, 106, 247, 0.941);
     
+}
+
+.Logo-Img {
+    position: absolute;
+    height: 570px;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 50px;
 }
