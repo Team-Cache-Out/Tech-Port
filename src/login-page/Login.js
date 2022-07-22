@@ -8,6 +8,7 @@ function LogIn() {
     
   return (
     <div className='logInBody'>
+            <Logo />
             <SignIn />
     </div>
   )

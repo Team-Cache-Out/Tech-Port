@@ -13,22 +13,24 @@ function SignIn(props) {
   return (
     <div className='SignIn-Container'>
       <h2 className='signIn-Header'>SIGN IN</h2>
-      <form className='SignIn-Form' onSubmit={submit}>
-          <label>Enter Your Email</label> <br/>
+      <form className='SignIn-Form' onSubmit={submit} id='SignIn-Form'>
+          <label>EMAIL</label> <br/>
           <input placeholder='example@email.com' className='Email-Input'>
           </input>
           <br/>
-          <label>Enter Password:</label>
+          <br/>
+          <label>PASSWORD</label>
           <br></br>
           <input placeholder='Password...' className='Password-Input'  type="password"> 
           </input>
           <br/>
           <br></br>
-          <input className='SignIn-Button' id="SignIn-Button" type='Submit'>
-          </input>
+          <button className='SignIn-Button' id="SignIn-Button" form="SignIn-Form" type='Submit'>Sign In
+          </button>
           <br/>
-          <small>Dont have an account? Click <Link to="/signup" onClick={handleSignUp} className="SignUp-Link">Here</Link> </small>
+          <p className='NoAccount-Info'>Dont have an account? Click <Link to="/signup" onClick={handleSignUp} className="SignUp-Link">Here</Link> </p>
       </form>
+      
     </div>
     
   )

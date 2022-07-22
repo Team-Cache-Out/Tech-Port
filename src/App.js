@@ -12,13 +12,11 @@ function App() {
     <Routes>
       <Route exact path='/' element={
         <>
-        <Logo></Logo>
         <LogIn></LogIn>
         </>
       }></Route>
       <Route exact path='/signup' element={
         <>
-        <Logo></Logo>
         <LogIn></LogIn>
         <SignUp modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignUp>
         </>
@@ -26,7 +24,6 @@ function App() {
       }></Route>
       <Route exact path='/signin' element={
         <>
-        <Logo></Logo>
         <SignIn modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignIn>
         </>
       }></Route>
