@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 
 /* This is requiring the connection.js file in the backend folder. */
-const pool = require("./backend/connection");
+const pool = require("./db/connection");
 
 const PORT = process.env.PORT || 4000
 
