@@ -1,0 +1,6 @@
+INSERT INTO universities(name,logo_url,background_url) VAlUES ('University of Houston','https://d7vte2v9l4dqd.cloudfront.net/University of Houston.jpg');
+INSERT INTO universities(name,logo_url,background_url) VAlUES ('University of Arizona,','https://www.pinpng.com/pngs/m/248-2486431_university-of-arizona-seal-and-logos-png-u.png','https://d7vte2v9l4dqd.cloudfront.net/University of Arizona.jpeg');
+INSERT INTO universities(name,logo_url,background_url) VAlUES ('Oregon State University','https://c7.uihere.com/files/182/980/51/oregon-state-university-oregon-state-beavers-football-oregon-state-beavers-men-s-basketball-oregon-ducks-football-university-of-oregon-american-football.jpg','https://d7vte2v9l4dqd.cloudfront.net/Oregon');
+INSERT INTO universities(name,logo_url,background_url) VAlUES ('Pepperdine University','https://clipground.com/images/pepperdine-university-logo-clipart-3.jpg','https://d7vte2v9l4dqd.cloudfront.net/Pepperdine');
+INSERT INTO users(name,password,email,role,university_id) VALUES ('Jonathon Wazney','password@1','5jwazney@gmail.com',1,1);
+INSERT INTO tickets(problem,description,note,point_of_contact,location,priority,status,university_id,assigned_tech) VALUES ('projector','Fix projector light','need to order new light','miss.jackson ex#','room 213',2,1,1,1);
