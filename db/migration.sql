@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS techport;
 
 CREATE DATABASE techport;
-\l
+-- \l
 \c techport;
  
 DROP TABLE IF EXISTS users CASCADE;
