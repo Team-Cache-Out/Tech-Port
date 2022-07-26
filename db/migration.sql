@@ -20,7 +20,7 @@ CREATE TABLE users(
     name VARCHAR(64),
     password TEXT,
     email VARCHAR,
-    role INT,
+    role TEXT,
     university_id INT REFERENCES universities(university_id) 
 );
 
@@ -33,8 +33,8 @@ CREATE TABLE tickets(
     note TEXT,
     point_of_contact VARCHAR(64),
     location TEXT,
-    priority INT,
-    status INT,
+    priority TEXT,
+    status TEXT,
     university_id INT REFERENCES universities(university_id),
     assigned_tech INT REFERENCES users(user_id)
 );
@@ -42,12 +42,12 @@ CREATE TABLE tickets(
 
 \i src/db/seed.sql
 
-SELECT * FROM users;
-SELECT * FROM tickets;
-SELECT * FROM universities;
+-- SELECT * FROM users;
+-- SELECT * FROM tickets;
+-- SELECT * FROM universities;
 
-\d
-\dt 
-\d users
-\d tickets
-\d universities
+-- \d
+-- \dt 
+-- \d users
+-- \d tickets
+-- \d universities
