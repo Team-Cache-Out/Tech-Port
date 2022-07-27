@@ -58,14 +58,16 @@ app.get("/users/:id", async (req,res) => {
 });
 
 // Checks login form input and compares users data to match 
-app.post("/users/login", async (req,res) => {
+app.post("/users/login", async (req, res) => {
     try {
          /* Connecting to the database. */
         let email = req.body.email
         let password = req.body.password
+        console.log(`${email} and ${password}`)
         let client = await pool.connect();
         
-        const data = client.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+        const data = await client.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+        console.log(data.rows)
         res.json(data.rows);
 
         /* Releasing the client from the database. */
@@ -77,13 +79,18 @@ app.post("/users/login", async (req,res) => {
 
 /* This is a post request to the users table. It is using the name, password, university_id, email, and
 role as parameters to insert a new user. */
-app.post("/users", async (req,res) => {
+app.post("/users/signup", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
         
-        const data = client.query("INSERT INTO users(name, password, university_id, email, role) VALUES($1, $2, $3, $4, $5)", [req.body.name, req.body.password, req.body.university_id, req.body.email, req.body.role]);
-        res.send(req.body);
+        await client.query(`
+            INSERT INTO users (
+            name, password, university_id, email, role
+            )
+            VALUES ($1, $2, $3, $4, $5)
+            `, [req.body.name, req.body.password, req.body.university_id, req.body.email, req.body.role]);
+        res.json(`Signed Up`);
 
         /* Releasing the client from the database. */
         client.release();
