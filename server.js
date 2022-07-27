@@ -7,7 +7,7 @@ const cors = require("cors");
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
@@ -57,18 +57,23 @@ app.get("/users/:id", async (req,res) => {
     }
 });
 
-app.post('/users/login', async (req, res) => {
+// Checks login form input and compares users data to match 
+app.post("/users/login", async (req,res) => {
     try {
+         /* Connecting to the database. */
         let email = req.body.email
         let password = req.body.password
-        let data = await pool.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password])
-        res.json(data.rows)
+        let client = await pool.connect();
         
+        const data = client.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+        res.json(data.rows);
+
+        /* Releasing the client from the database. */
+        client.release();
     } catch (error) {
-        console.log(error.message)
-        res.send(error.message)
+        console.log(error)
     }
-})
+});
 
 /* This is a post request to the users table. It is using the name, password, university_id, email, and
 role as parameters to insert a new user. */
