@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from "./login-page/SignUp";
 import Logo from "./login-page/Logo";
 import SignIn from "./login-page/SignIn";
+import AdminLandingPage from "./adminLandingPage/adminLandingPage";
 
 function App() {
   const [modalIsOpen, setmodalIsOpen] = useState(true);
@@ -26,6 +27,9 @@ function App() {
         <>
         <SignIn modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignIn>
         </>
+      }></Route>
+      <Route exact path="/admin" element={
+        <AdminLandingPage/>
       }></Route>
     </Routes>
    </Router>

@@ -9,6 +9,9 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "nodemon": "^2.0.19",
     "pg": "^8.7.3",
     "react": "^18.2.0",
@@ -23,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev":"nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "eslintConfig": {
     "extends": [
