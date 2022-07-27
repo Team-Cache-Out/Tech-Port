@@ -20,6 +20,7 @@ will log the error. If there is no error, it will log the port number. */
 app.listen(PORT, (err) => {
     if (err) return console.log(err);
     console.log(`Listening on port: ${PORT}`);
+    console.log(`${process.env.DATABASE_URL}`)
 })
 
 //! USERS TABLE ROUTES ------------------------------------------------------------------------------------
@@ -35,8 +36,8 @@ app.get("/users", async (req,res) => {
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
-        console.error(error);
-        res.send(error);
+        console.error(error.message);
+        res.send(error.message);
     }
 });
 
@@ -55,6 +56,19 @@ app.get("/users/:id", async (req,res) => {
         console.error(error)
     }
 });
+
+app.post('/users/login', async (req, res) => {
+    try {
+        let email = req.body.email
+        let password = req.body.password
+        let data = await pool.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password])
+        res.json(data.rows)
+        
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
 
 /* This is a post request to the users table. It is using the name, password, university_id, email, and
 role as parameters to insert a new user. */
