@@ -313,3 +313,23 @@ app.get("/university/:id", async (req,res) => {
 });
 
 //!--------------------------------------------------------------------------------------------------------
+
+//! CAMPUS INFORMATION ROUTES -----------------------------------------------------------------------------
+
+/* The above code is connecting to the database and then querying the database for the data. */
+app.get("/campus/:id", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+         let client = await pool.connect();
+
+         const data = await client.query("SELECT * FROM users, tickets WHERE users.university_id = $1 AND tickets.university_id = $1;", [req.params.id]);
+         res.json(data.rows[0])
+
+         /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+//!--------------------------------------------------------------------------------------------------------
