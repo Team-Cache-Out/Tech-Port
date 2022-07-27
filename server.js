@@ -7,7 +7,7 @@ const cors = require("cors");
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
@@ -53,6 +53,24 @@ app.get("/users/:id", async (req,res) => {
         client.release();
     } catch (error) {
         console.error(error)
+    }
+});
+
+// Checks login form input and compares users data to match 
+app.post("/users/login", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let email = req.body.email
+        let password = req.body.password
+        let client = await pool.connect();
+        
+        const data = client.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+        res.json(data.rows);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.log(error)
     }
 });
 
