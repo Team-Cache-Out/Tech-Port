@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 
 const poolConfig = {
-    connectionString: process.env.DATABASE_URL + 'ssl=no-verify',
+    connectionString: process.env.DATABASE_URL,
 }
 
 const pool = new Pool(poolConfig);
