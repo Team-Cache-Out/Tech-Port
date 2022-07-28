@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 
 
 function SignIn(props) {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState([])
   const [loading, setLoading] = useState(true)
   const [enteredEmail, setEmail] = useState('')
   const [enteredPassword, setPassword] = useState('')
@@ -18,10 +18,10 @@ function SignIn(props) {
     setEmail(e.target.value)
   }
 
+
   const submit = (event) => {
     event.preventDefault()
-    console.log(enteredPassword)
-    fetch(`http://localhost:4500/users/login`, {
+      fetch(`http://localhost:4500/users/login`, {
       method: 'POST',
       body: JSON.stringify({
           'password': `${enteredPassword}`,
@@ -31,9 +31,35 @@ function SignIn(props) {
           'Content-type' : 'application/json'
       }
     })
+    // const data = await res.json();
+    // await setUser(data);
+    // await setLoading(false);
+    // await userVerification();
+    // console.log(user);
+
+
     .then (res => res.json())
-    .then (data => setUser(data))
+    .then (data => {
+      setUser(data) 
+      setLoading(false)
+      // if (loading === false) {
+      // }
+    }) 
+    .then (() => {
+      console.log(user)
+      if (user.length === 0) {
+        window.alert("User was not found!")
+      }
+      else {
+        window.alert("You have logged in!")
+      }
+    })
+   
+    // .then (() =>  {setLoading(false)})
   }
+
+
+
   const handleSignUp = () => {
     props.setmodalIsOpen(true);
   }
