@@ -277,7 +277,7 @@ app.delete("tickets/:id", async (req,res) => {
 
 //! UNIVERSITY TABLE ROUTES -------------------------------------------------------------------------------
 
-/* The above code is connecting to the database and then querying the database for all the data in the
+/* The below code is connecting to the database and then querying the database for all the data in the
 university table. */
 app.get("/universities", async (req,res) => {
     try {
@@ -296,7 +296,7 @@ app.get("/universities", async (req,res) => {
 });
 
 
-/* The above code is a GET request that is retrieving data from the database. */
+/* The below code is a GET request that is retrieving data from the database. */
 app.get("/university/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
@@ -316,7 +316,7 @@ app.get("/university/:id", async (req,res) => {
 
 //! CAMPUS INFORMATION ROUTES -----------------------------------------------------------------------------
 
-/* The above code is connecting to the database and then querying the database for the data. */
+/* The below code is connecting to the database and then querying the database for the data. */
 app.get("/campus/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
