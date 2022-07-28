@@ -1,5 +1,5 @@
 
-![Logo](https://d7vte2v9l4dqd.cloudfront.net/wwtfLogo.png)
+![Logo](https://d7vte2v9l4dqd.cloudfront.net/TechPortLogo.png)
 
 
 # Tech Port
