@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+
+.ticketBoard {
+  background-color: rgba(1, 41, 83, 0.92);
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  border-bottom: solid white 3px;
+}
+
+.myCampus {
+  font-size: 45px;
+  margin-left: 30px;
+}
+
+.ticketBoard2 {
+  color: white;
+  margin-left: 15px;
+  font-size: 25px;
+}
+
+.myName {
+  color: white;
+  margin-right: -750px;
+  margin-left: -150px;
+  font-size: 20px;
+}
+
+.ticketBoard3 {
+  color: rgba(1, 41, 83, 0.92);
+  margin-right: 25px;
+  font-size: 15px;
+  border: 2px solid whitesmoke;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+}
+
+.nav2 {
+  background-color: rgba(3, 56, 112, 0.92);
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: 15px;
+  margin-top: 0;
+  align-items: center;
+  border-bottom: solid white 3px;
+}
+
+.myTicketBoard {
+  color: white;
+  margin-left: 810px;
+  font-size: 20px;
+}
+
+.myTicket1 {
+  color: white;
+  margin-right: 820px;
+  font-size: 20px;
+}
+
+.ticketBoardContainer {
+  border: 1px solid gray;
+  padding-bottom: 55px;
+  margin-top: 55px;
+  margin-left: 45px;
+  margin-right: 45px;
+  background-color: rgba(201, 205, 210, 0.92);
+}
+
+.ticketBoard-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
