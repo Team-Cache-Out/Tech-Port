@@ -285,7 +285,7 @@ app.get("/universities", async (req,res) => {
         let client = await pool.connect();
 
         const data = await client.query('SELECT * FROM universities;');
-        res.send(data.rows);
+        res.json(data.rows);
 
         /* Releasing the client from the database. */
         client.release();
