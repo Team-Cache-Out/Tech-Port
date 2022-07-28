@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS techport;
 CREATE DATABASE techport;
 -- \l
 \c techport;
- 
+
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS tickets CASCADE;
 DROP TABLE IF EXISTS universities CASCADE;
@@ -41,6 +41,7 @@ CREATE TABLE tickets(
 
 
 \i db/seed.sql
+
 
 -- SELECT * FROM users;
 -- SELECT * FROM tickets;
