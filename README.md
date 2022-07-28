@@ -8,7 +8,7 @@ Tech Port is a ticket management system that provides the ability to serve multi
 ### Purpose
 This technology gives  the admin team the oversight to control each campus and to track their progress through maintenance issues.
 
-It also gives each technician that is hired at a given campus a portal in which they can see the campus tickets that have been opened by the admin team. They can track their progress through the tickets they are assigned as well as provide feeback throughout the process in completing their assigned tickets.
+It also gives each technician a portal in which they can see the campus tickets that have been opened by the admin team. They can track their progress through the tickets they are assigned, as well as provide feeback throughout the process.
 
 
 ## Screenshots
