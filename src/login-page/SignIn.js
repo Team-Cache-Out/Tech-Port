@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 
 function SignIn(props) {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [enteredEmail, setEmail] = useState('')
   const [enteredPassword, setPassword] = useState('')
@@ -18,8 +18,9 @@ function SignIn(props) {
     setEmail(e.target.value)
   }
 
+  const navigate = useNavigate()
 
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault()
       fetch(`http://localhost:4500/users/login`, {
       method: 'POST',
@@ -31,34 +32,29 @@ function SignIn(props) {
           'Content-type' : 'application/json'
       }
     })
-    // const data = await res.json();
-    // await setUser(data);
-    // await setLoading(false);
-    // await userVerification();
-    // console.log(user);
-
-
+   
     .then (res => res.json())
     .then (data => {
-      setUser(data) 
-      setLoading(false)
-      // if (loading === false) {
-      // }
-    }) 
-    .then (() => {
-      console.log(user)
-      if (user.length === 0) {
-        window.alert("User was not found!")
-      }
-      else {
+
+      if(data.length !== 0) {
+        setUser(data[0]) 
         window.alert("You have logged in!")
+        setLoading(false)
+        if (data[0].role === 'admin') {
+          navigate('/admin')
+        }
+        else {
+          navigate('/tech')
+        }
+      } else {
+        window.alert("User not found!")
+        setUser(null)
       }
-    })
-   
-    // .then (() =>  {setLoading(false)})
+    }) 
+    
   }
 
-
+  
 
   const handleSignUp = () => {
     props.setmodalIsOpen(true);

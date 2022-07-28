@@ -27,6 +27,16 @@ function App() {
         <SignIn modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignIn>
         </>
       }></Route>
+      <Route exact path='/admin' element={
+        <>
+        <div>Admin Page goes here</div>
+        </>
+      }></Route>
+      <Route exact path='/tech' element={
+        <>
+        <div>Tech Page goes here</div>
+        </>
+      }></Route>
     </Routes>
    </Router>
    

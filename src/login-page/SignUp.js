@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import Modal from 'react-modal';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignIn from './SignIn';
 import LogIn from "./Login";
 import './signUp.css'
 
 Modal.setAppElement('#root');
 
+
 function SignUp(props) {
+  const navigate = useNavigate();
   const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -34,7 +36,7 @@ function SignUp(props) {
       body: JSON.stringify({
           'password': `${password}`,
           'university_id': 1,
-          'role': 1,
+          'role': "tech",
           'email': `${email}`,
           'name': `${name}`
       }),
@@ -45,6 +47,8 @@ function SignUp(props) {
       .then (res => res.json())
       .then (data => console.log(data))
         // props.setmodalIsOpen(false);
+        window.alert("Account has been created!")
+        navigate('/')
     } else {
         window.alert(`Please verify your inputted information`)
     }
