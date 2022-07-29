@@ -1,81 +1,239 @@
-* {
-  box-sizing: border-box;
-}
-
-.ticketBoard {
-  background-color: rgba(1, 41, 83, 0.92);
+.boardRowPosition {
   display: flex;
-  color: white;
-  justify-content: space-between;
-  padding: 0;
-  margin: 0;
+  flex-direction: row;
   align-items: center;
-  border-bottom: solid white 3px;
+  justify-content: space-around;
 }
 
-.myCampus {
-  font-size: 45px;
-  margin-left: 30px;
+.boardColumnHeader {
+  border: solid black 1px;
+  margin: 0;
+  width: 100%;
+  text-align: center;  
 }
 
-.ticketBoard2 {
-  color: white;
-  margin-left: 15px;
-  font-size: 25px;
+.boardColumnH2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
 }
 
-.myName {
-  color: white;
-  margin-right: -750px;
-  margin-left: -150px;
-  font-size: 20px;
+.boardColumn {
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: solid rgba(0,0,0,0.2) 1px;
+  margin: 0;
+  height: 65vh;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  
 }
 
-.ticketBoard3 {
+.boardColumnContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.centerPosition {
+  width: 60vw;
+  text-align: center;
+}
+
+.columnPosition {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+}
+
+.innerTicketContainer {
+  display:flex;
+  width: 200px;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.innerTicketContainerLeft {
+  display:flex;
+  justify-content: left;
+  flex-direction: column;
+  height: 100%;
+}
+
+.innerTicketContainerRight {
+  display:flex;
+  justify-content: end;
+  flex-direction: column;
+  height: 100%;
+}
+.leftPosition {
+  width:20vw;
+  position:absolute;
+  left: 50px;
+}
+
+.location, .contact {
+  text-align: left;
+}
+
+.logout {
   color: rgba(1, 41, 83, 0.92);
-  margin-right: 25px;
   font-size: 15px;
-  border: 2px solid whitesmoke;
+  /* border: 2px dashed black; */
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 15px;
   padding-right: 15px;
+  margin-right: 15px;
   background-color: white;
+  border-radius: 5px;
+}
+
+.myCampus {
+  font-family: 'Lucida Sans' ;
+  font-weight: 100;
+  text-shadow: 3px 3px black;
+  font-size: 45px;
+  /* margin-left: 30px; */
+}
+
+.myName {
+  color: white;
+  font-family: 'Lucida Sans' ;
+  font-weight: 100;
+  text-shadow: 3px 3px black;
+  font-size: 25px;
+}
+
+.nav1 {
+  background-color: rgba(1, 41, 83, 0.92);
+  display: flex;
+  color: white;
+  justify-content:center;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  border-bottom: solid white 1px;
 }
 
 .nav2 {
-  background-color: rgba(3, 56, 112, 0.92);
+  background-color:  rgba(1, 26, 52, 0.94);
   display: flex;
   color: white;
-  justify-content: space-between;
+  justify-content: center;
   padding: 15px;
   margin-top: 0;
   align-items: center;
-  border-bottom: solid white 3px;
+  /* border-bottom: solid white 1px; */
 }
 
-.myTicketBoard {
-  color: white;
-  margin-left: 810px;
-  font-size: 20px;
+.nav2Center { 
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
 
-.myTicket1 {
+.navLinks {
+  width: 150px;
   color: white;
-  margin-right: 820px;
-  font-size: 20px;
+  font-size: 25px;
+  font-family: 'Oswald', sans-serif;
 }
+
+.priorityCircleRed {
+  background-color: Red;
+  color: red;
+  border-radius: 25px;
+  width: 45px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.priorityCircleYellow {
+  background-color: Yellow;
+  color: Yellow;
+  border-radius: 25px;
+  width: 45px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.priorityCircleGreen {
+  background-color: green;
+  color: green;
+  border-radius: 25px;
+  width: 45px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.rightPosition {
+  width: 20vw;
+  position:absolute;
+  right: 50px;
+}
+
+.startTicket {
+  border: 0;
+  border-radius: 8px;
+  background-color: #D9D9D9;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 5px;
+}
+.startTicketDiv {
+  margin-bottom: 5px;
+}
+
+.subject {
+  text-align: center;
+}
+
+.tech {
+  color: white;
+  font-family: 'Lucida Sans' ;
+  font-weight: 100;
+  text-shadow: 3px 3px black;
+  font-size: 25px;
+}
+
+.ticket {
+  display: flex;
+  justify-content: space-around;
+  height: 60px;
+  width: 80%;
+  background-color: #FFFFFF;
+  /* border: solid .7px grey; */
+  border-radius: 10px;
+  box-shadow:3px 3px 3px gray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  
+}
+
+
 
 .ticketBoardContainer {
   border: 1px solid gray;
-  padding-bottom: 55px;
+  min-height: 75vh;
+  /* padding-bottom: 55px; */
   margin-top: 55px;
   margin-left: 45px;
   margin-right: 45px;
-  background-color: rgba(201, 205, 210, 0.92);
+  background-color: rgb(255, 255, 255, .9); /* rgba(201, 205, 210, 0.92); */
+  /* opacity: 90%; */
 }
 
 .ticketBoard-header {
   text-align: center;
   margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font: weight 100px;
 }
