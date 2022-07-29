@@ -1,31 +1,80 @@
-import React, {useState} from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 
 function SignIn(props) {
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [enteredEmail, setEmail] = useState('')
+  const [enteredPassword, setPassword] = useState('')
+
+  // let password = document.querySelector("#signIn-password")
+  // let email = document.querySelector("#sigIn-email")
     
-  const submit = () => {
-    console.log(`Submit!`)
+  const handlePassChange = (e) => {
+    setPassword(e.target.value)
   }
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const navigate = useNavigate()
+
+  const submit = async (event) => {
+    event.preventDefault()
+      fetch(`http://localhost:4500/users/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+          'password': `${enteredPassword}`,
+          'email': `${enteredEmail}`
+      }),
+      headers: {
+          'Content-type' : 'application/json'
+      }
+    })
+   
+    .then (res => res.json())
+    .then (data => {
+
+      if(data.length !== 0) {
+        setUser(data[0]) 
+        window.alert("You have logged in!")
+        setLoading(false)
+        if (data[0].role === 'admin') {
+          navigate('/admin')
+        }
+        else {
+          navigate('/ticketBoard')
+        }
+      } else {
+        window.alert("User not found!")
+        setUser(null)
+      }
+    }) 
+    
+  }
+
+  
+
   const handleSignUp = () => {
     props.setmodalIsOpen(true);
   }
   return (
     <div className='SignIn-Container'>
       <h2 className='signIn-Header'>SIGN IN</h2>
-      <form className='SignIn-Form' onSubmit={submit} id='SignIn-Form'>
+      <form className='SignIn-Form' id='SignIn-Form'>
           <label>EMAIL</label> <br/>
-          <input placeholder='example@email.com' className='Email-Input'>
+          <input placeholder='example@email.com' className='Email-Input' id='sigIn-email'onChange={handleEmailChange} value={enteredEmail} >
           </input>
           <br/>
           <br/>
           <label>PASSWORD</label>
           <br></br>
-          <input placeholder='Password...' className='Password-Input'  type="password"> 
+          <input placeholder='Password...' className='Password-Input'  type="password" id='signIn-password' onChange={handlePassChange} value={enteredPassword} > 
           </input>
           <br/>
           <br></br>
-          <button className='SignIn-Button' id="SignIn-Button" form="SignIn-Form" type='Submit'>Sign In
+          <button className='SignIn-Button' id="SignIn-Button" form="SignIn-Form" type='submit' onClick={submit}>Sign In
           </button>
           <br/>
           <p className='NoAccount-Info'>Don't have an account? Click <Link to="/signup" onClick={handleSignUp} className="SignUp-Link">Here</Link> </p>

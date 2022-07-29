@@ -42,6 +42,7 @@ CREATE TABLE tickets(
 
 \i db/seed.sql
 
+
 -- SELECT * FROM users;
 -- SELECT * FROM tickets;
 -- SELECT * FROM universities;
