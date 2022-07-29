@@ -1,5 +1,5 @@
 require("dotenv").config()
-
+const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -311,7 +311,7 @@ app.get("/universities", async (req,res) => {
         let client = await pool.connect();
 
         const data = await client.query('SELECT * FROM universities;');
-        res.send(data.rows);
+        res.json(data.rows);
 
         /* Releasing the client from the database. */
         client.release();
@@ -359,3 +359,7 @@ app.get("/campus/:id", async (req,res) => {
 })
 
 //!--------------------------------------------------------------------------------------------------------
+
+app.get("*", (_, res) => {
+    res.sendFile(path.join(__dirname, "/build/index.html"));
+});
