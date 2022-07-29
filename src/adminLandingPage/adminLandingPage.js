@@ -6,7 +6,7 @@ import "./adminlandingPage.css"
 export default function AdminLandingPage() {
   const [university, setUniversity] = useState([])
   const [loadState , setLoadState] = useState(false)
-  const {data,fetchError,loading} = Axiosfetch('http://localhost:4000/universities')
+  const {data,fetchError,loading} = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/universities')
   
   useEffect(() => {
       setUniversity(data);
