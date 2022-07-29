@@ -44,7 +44,7 @@ function SignIn(props) {
           navigate('/admin')
         }
         else {
-          navigate('/tech')
+          navigate('/ticketBoard')
         }
       } else {
         window.alert("User not found!")
