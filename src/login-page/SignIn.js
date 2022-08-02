@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
+import SignInContext from './SignInContext'
 import { Link, useNavigate } from "react-router-dom";
 
 
 function SignIn(props) {
-  const [user, setUser] = useState(null)
+  const { user, setUser } = useContext(SignInContext)
+  // const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [enteredEmail, setEmail] = useState('')
   const [enteredPassword, setPassword] = useState('')
