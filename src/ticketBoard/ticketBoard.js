@@ -169,11 +169,6 @@ export default function ticketBoard() {
               </div></div>
           </div>
       </div>
-      <Route exact path='/createticket' element={
-        <>
-        <TicketCreatePage />
-        </>
-      }></Route>
     </>
   );
 }
