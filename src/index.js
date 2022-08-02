@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { CampusProvider } from './Context/CampusContext'
+import { CampusProvider } from './Context/CampusContext.js'
+import { SignInProvider } from './login-page/SignInContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <CampusProvider>
-      <App />
+      <SignInProvider>
+        <App />
+      </SignInProvider>
     </CampusProvider>
   </React.StrictMode>
 );
