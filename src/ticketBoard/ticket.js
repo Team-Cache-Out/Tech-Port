@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import "./ticketBoard.css";
+import CampusContext from '../Context/CampusContext'
 
 export default function ticket(prop) {
-    const [singleTicket, setSingleTicket] = useState(null)
-    const [ticketModal, setTicketModal] = useState(false)
+
+    const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
 
     const priorityCircle = document.querySelector('.priorityCircle')
     
