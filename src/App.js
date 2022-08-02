@@ -5,7 +5,6 @@ import SignUp from "./login-page/SignUp";
 import SignIn from "./login-page/SignIn";
 import AdminLandingPage from "./adminLandingPage/adminLandingPage";
 import TicketBoard from "./ticketBoard/ticketBoard";
-import TicketCreatePage from "./ticketCreatePage/ticketCreate";
 
 function App() {
   const [modalIsOpen, setmodalIsOpen] = useState(true);
