@@ -1,5 +1,5 @@
 require("dotenv").config()
-
+const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -7,7 +7,7 @@ const path = require('path')
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
@@ -20,6 +20,7 @@ will log the error. If there is no error, it will log the port number. */
 app.listen(PORT, (err) => {
     if (err) return console.log(err);
     console.log(`Listening on port: ${PORT}`);
+    console.log(`${process.env.DATABASE_URL}`)
 })
 
 //! USERS TABLE ROUTES ------------------------------------------------------------------------------------
@@ -35,8 +36,8 @@ app.get("/users", async (req,res) => {
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
-        console.error(error);
-        res.send(error);
+        console.error(error.message);
+        res.send(error.message);
     }
 });
 
@@ -71,15 +72,40 @@ app.get("/techs/:id", async (req,res) => {
     }
 });
 
+// Checks login form input and compares users data to match 
+app.post("/users/login", async (req, res) => {
+    try {
+         /* Connecting to the database. */
+        let email = req.body.email
+        let password = req.body.password
+        console.log(`${email} and ${password}`)
+        let client = await pool.connect();
+        
+        const data = await client.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+        console.log(data.rows)
+        res.json(data.rows);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.log(error)
+    }
+});
+
 /* This is a post request to the users table. It is using the name, password, university_id, email, and
 role as parameters to insert a new user. */
-app.post("/users", async (req,res) => {
+app.post("/users/signup", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
         
-        const data = client.query("INSERT INTO users(name, password, university_id, email, role) VALUES($1, $2, $3, $4, $5)", [req.body.name, req.body.password, req.body.university_id, req.body.email, req.body.role]);
-        res.send(req.body);
+        await client.query(`
+            INSERT INTO users (
+            name, password, university_id, email, role
+            )
+            VALUES ($1, $2, $3, $4, $5)
+            `, [req.body.name, req.body.password, req.body.university_id, req.body.email, req.body.role]);
+        res.json(`Signed Up`);
 
         /* Releasing the client from the database. */
         client.release();
@@ -307,7 +333,7 @@ app.delete("tickets/:id", async (req,res) => {
 
 //! UNIVERSITY TABLE ROUTES -------------------------------------------------------------------------------
 
-/* The above code is connecting to the database and then querying the database for all the data in the
+/* The below code is connecting to the database and then querying the database for all the data in the
 university table. */
 app.get("/universities", async (req,res) => {
     try {
@@ -315,7 +341,7 @@ app.get("/universities", async (req,res) => {
         let client = await pool.connect();
 
         const data = await client.query('SELECT * FROM universities;');
-        res.send(data.rows);
+        res.json(data.rows);
 
         /* Releasing the client from the database. */
         client.release();
@@ -326,7 +352,7 @@ app.get("/universities", async (req,res) => {
 });
 
 
-/* The above code is a GET request that is retrieving data from the database. */
+/* The below code is a GET request that is retrieving data from the database. */
 app.get("/university/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
@@ -367,11 +393,32 @@ let uni = {
     }
 });
 
+/* The below code is a GET request that is retrieving data from the database. It should return an array of 
+University objects with a count of tickets and techs pre sorted by the number of open tickets */
+app.get("/universities/ticketstechs", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query(`SELECT universities.name, universities.logo_url, 
+        COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
+        GROUP BY universities.name, universities.logo_url ORDER BY ticket_num DESC;`)
+        console.log(data.rows)        
+        res.json(data.rows[0]);
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
+
+
 //!--------------------------------------------------------------------------------------------------------
 
 //! CAMPUS INFORMATION ROUTES -----------------------------------------------------------------------------
 
-/* The above code is connecting to the database and then querying the database for the data. */
+/* The below code is connecting to the database and then querying the database for the data. */
 app.get("/campus/:id", async (req,res) => {
     try {
          /* Connecting to the database. */

@@ -13,7 +13,8 @@ VALUES
   ('Daniel Lane','PPT61Q','semper@techport.com','admin',2),
   ('Linda Dudley','XUO12Q','mauris.eu@techport.com','admin',2),
   ('Ian Camacho','GTV54K','ullamcorper@techport.com','admin',1),
-  ('Damian Cash','YJT15Y','euismod.est.arcu@techport.com','admin',4);
+  ('Damian Cash','YJT15Y','euismod.est.arcu@techport.com','admin',4),
+  ('Jeremy Smith', 'HDO56DF','jeremy.smith@techport.com', 'admin',null);
 
 INSERT INTO users (name,password,email,role,university_id)
 VALUES
@@ -137,7 +138,7 @@ VALUES
   ('projector','fix problem','working','Mrs.Tolli Ext:748','room 213','Routine','working',1,21),
   ('projector','fix problem','working','Mrs.Tolli Ext:748','room 213','Routine','working',1,15),
   ('toilet','fix problem','ordering part','Miss.Wong Ext:783','room 356','Routine','working',1,30),
-  ('toilet','fix problem','ordering part','Miss.Wong Ext:783','room 356','severe','complete',1,9),
+  ('toilet','fix problem','ordering part','Miss.Wong Ext:783','room 356','severe','working',1,9),
   ('toilet','fix problem','ordering part','Miss.Wong Ext:783','room 356','severe','complete',1,14),
   ('toilet','fix problem','ordering part','Miss.Wong Ext:783','room 356','severe','complete',1,19),
   ('toilet','fix problem','ordering part','Miss.Wong Ext:783','room 356','Urgent','open',1,15),
@@ -237,7 +238,7 @@ INSERT INTO tickets (problem,description,note,point_of_contact,location,priority
 VALUES
 
   ('projector','fix problem','working','Mr.Wellington Ext:921','room 419','Routine','working',3,68),
-  ('projector','fix problem','working','Mr.Wellington Ext:921','room 419','Routine','working',3,75),
+  ('projector','fix problem','working','Mr.Wellington Ext:921','room 419','Routine','complete',3,75),
   ('toilet','fix problem','ordering part','Mr.Downing Ext:648','room 357','Routine','working',3,69),
   ('toilet','fix problem','ordering part','Mr.Downing Ext:648','room 357','severe','complete',3,66),
   ('toilet','fix problem','ordering part','Mr.Downing Ext:648','room 357','severe','complete',3,59),
@@ -246,7 +247,7 @@ VALUES
   ('whiteboard','fix problem','need more information','Miss.Plainfield Ext:654','room 315','Urgent','open',3,66),
   ('whiteboard','fix problem','need more information','Miss.Plainfield Ext:654','room 315','Urgent','open',3,69),
   ('whiteboard','fix problem','need more information','Miss.Plainfield Ext:654','room 315','Routine','working',3,81),
-  ('whiteboard','fix problem','need more information','Miss.Plainfield Ext:654','room 315','Routine','working',3,82),
+  ('whiteboard','fix problem','need more information','Miss.Plainfield Ext:654','room 315','Routine','complete',3,82),
   ('whiteboard','fix problem','need more information','Miss.Plainfield Ext:654','room 315','Routine','working',3,70),
   ('computer','fix problem','needs third party work','Mrs.Golindo Ext:315','room 584','severe','complete',3,74),
   ('computer','fix problem','needs third party work','Mrs.Golindo Ext:315','room 584','severe','complete',3,72),
