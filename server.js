@@ -338,6 +338,27 @@ app.get("/university/:id", async (req,res) => {
     }
 });
 
+/* The below code is a GET request that is retrieving data from the database. It should return an array of 
+University objects with a count of tickets and techs pre sorted by the number of open tickets */
+app.get("/universities/ticketstechs", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query(`SELECT universities.name, universities.logo_url, 
+        COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
+        GROUP BY universities.name, universities.logo_url ORDER BY ticket_num DESC;`)
+        console.log(data.rows)        
+        res.json(data.rows[0]);
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
+
+
 //!--------------------------------------------------------------------------------------------------------
 
 //! CAMPUS INFORMATION ROUTES -----------------------------------------------------------------------------
