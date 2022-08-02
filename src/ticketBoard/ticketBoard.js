@@ -1,5 +1,7 @@
 import React from "react";
 import "./ticketBoard.css";
+import { Route } from "react-router-dom";
+import TicketCreatePage from "../ticketCreatePage/ticketCreate";
 
 export default function ticketBoard() {
   return (
@@ -167,6 +169,11 @@ export default function ticketBoard() {
               </div></div>
           </div>
       </div>
+      <Route exact path='/createticket' element={
+        <>
+        <TicketCreatePage />
+        </>
+      }></Route>
     </>
   );
 }
