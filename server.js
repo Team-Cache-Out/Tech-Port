@@ -3,7 +3,7 @@ const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
+const path = require('path')
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 
@@ -48,7 +48,22 @@ app.get("/users/:id", async (req,res) => {
         let client = await pool.connect();
 
         const data = await client.query("SELECT * FROM users WHERE user_id=$1", [req.params.id]);
-        res.json(data.rows[0]);
+        res.json(data.rows);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
+app.get("/techs/:id", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query("SELECT * FROM users WHERE university_id=$1 AND role=$2", [req.params.id,'tech']);
+        res.json(data.rows);
 
         /* Releasing the client from the database. */
         client.release();
@@ -196,6 +211,21 @@ app.get("/tickets/:id", async (req,res) => {
     }
 });
 
+app.get("/university/tickets/:id", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query("SELECT * FROM tickets WHERE university_id=$1 AND status=$2", [req.params.id,'open']);
+        res.json(data.rows);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
 /* This is a post request to the tickets table. It is using the close_date, open_date, problem,
 description, notes, point_of_contact, location, priority, status, assigned_tech, and university_id
 as parameters to insert a new ticket. */
@@ -327,9 +357,34 @@ app.get("/university/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
-
-        const data = await client.query("SELECT * FROM universities WHERE university_id=$1", [req.params.id]);
-        res.json(data.rows[0]);
+        let id = req.params.id
+let university = await client.query(`
+    SELECT *
+    FROM universities
+    WHERE university_id = $1
+    `, [id]
+)
+let tickets = await client.query(`
+    SELECT COUNT (*) 
+    FROM tickets
+    WHERE university_id = $1
+    AND status = 'open'
+    `, [id]
+)
+let techs = await client.query(`
+    SELECT COUNT (*) 
+    FROM users
+    WHERE university_id = $1
+    AND role = 'tech'
+    `, [id]
+)
+let uni = {
+    name: university.rows[0].name,
+    logo: university.rows[0].logo_url,
+    tickets: tickets.rows[0].count,
+    techs: techs.rows[0].count,
+}
+        res.json(uni)
 
         /* Releasing the client from the database. */
         client.release();
@@ -379,8 +434,8 @@ app.get("/campus/:id", async (req,res) => {
     }
 })
 
-//!--------------------------------------------------------------------------------------------------------
-
 app.get("*", (_, res) => {
     res.sendFile(path.join(__dirname, "/build/index.html"));
 });
+
+//!--------------------------------------------------------------------------------------------------------

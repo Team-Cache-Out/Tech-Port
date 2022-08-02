@@ -3,16 +3,38 @@ import Axiosfetch from '../axiosRequest/axiosfetch'
 import "./adminlandingPage.css"
 
 
+
 export default function AdminLandingPage() {
-  const [university, setUniversity] = useState([])
-  const [loadState , setLoadState] = useState(false)
-  const {data,fetchError,loading} = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/universities')
   
+  const [houstonTickets , setHoustonTickets] = useState([])
+  const [azTickets , setazTickets] = useState([])
+  const [osTickets , setosTickets] = useState([])
+  const [penTickets , setpenTickets] = useState([])              
+  const [loadState , setLoadState] = useState(false)
+  const houston = Axiosfetch('http://localhost:4000/university/1',{ loading: true ,data: null})
+  const az = Axiosfetch('http://localhost:4000/university/2',{ loading: true ,data: null})                                                    
+  const os = Axiosfetch('http://localhost:4000/university/3',{ loading: true ,data: null})
+  const pen = Axiosfetch('http://localhost:4000/university/4',{ loading: true ,data: null})
+  const arruni = [houstonTickets,azTickets,osTickets,penTickets]
+
+
+
   useEffect(() => {
-      setUniversity(data);
+      setHoustonTickets(houston.data)           
+      setazTickets(az.data)
+      setosTickets(os.data)
+      setpenTickets(pen.data)                      
       setLoadState(true);
-      console.log(data)
-  },[data])
+      console.log(arruni)
+    },[houston.data,az.data,os.data,pen.data])
+    
+    // useEffect(() =>{
+    //     setHoustonTickets(houston.data)
+    //     setazTickets(az.data)
+    //     setosTickets(os.data)
+    //     setpenTickets(pen.data)
+    // },[houston.data,az.data,os.data,pen.data])
+    
 
 
   return (
@@ -23,20 +45,22 @@ export default function AdminLandingPage() {
         </ul>
         <h2>WorldWide Technical Foundation</h2>
         <ul>
-            <li><a href='/'>name</a></li>
+            <li><a href='/'>name  </a><button>Logout</button></li>
         </ul>
     </nav>
-    {university.length > 0 &&
+    {arruni.length > 3 &&                  
     <section className='universities'>
-        <div><p>{university[0].name}</p> <img src={university[0].logo_url} alt='logo'/><p>Tickets: 10</p><p>Techs: 4</p></div>
-        <div><p>{university[1].name}</p><img src={university[1].logo_url} alt='logo'/><p>Tickets: 20</p><p>Techs: 5</p></div>
-        <div><p>{university[2].name}</p><img src={university[2].logo_url} alt='logo'/><p>Tickets: 30</p><p>Techs: 7</p></div>
-        <div><p>{university[3].name}</p><img src={university[3].logo_url} alt='logo'/><p>Tickets: 23</p><p>Techs: 4</p></div>
+        {arruni.sort((a,b) => {return b.tickets - a.tickets}).map((uni) => { 
+      return (<div><p>{uni.name}</p> <img src={uni.logo} alt='logo'/><p>Open Tickets: {uni.tickets} </p><p>Techs: {uni.techs}</p></div>)
+  })}
+  {/* <p>{uni.name}</p> <img src={uni.logo} alt='logo'/><p>Open Tickets: {uni.tickets} </p><p>Techs: {uni.techs}</p> */}
+          {/* <div><p>{universities[0].name}</p> <img src={university[0].logo_url} alt='logo'/><p>Open Tickets: {houstonTickets.length}</p><p>Techs: {huTechs.length}</p></div>
+          <div><p>{university[1].name}</p><img src={university[1].logo_url} alt='logo'/><p>Open Tickets: {azTickets.length}</p><p>Techs: {azTechs.length}</p></div>
+          <div><p>{university[2].name}</p><img src={university[2].logo_url} alt='logo'/><p>Open Tickets: {osTickets.length}</p><p>Techs: {osTechs.length}</p></div>
+          <div><p>{university[3].name}</p><img src={university[3].logo_url} alt='logo'/><p>0pen Tickets: {penTickets.length}</p><p>Techs: {penTechs.length}</p></div> */}
     </section>
     
 }
     </>
   )
  }
-
-
