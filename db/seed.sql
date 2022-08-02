@@ -13,8 +13,8 @@ VALUES
   ('Daniel Lane','PPT61Q','semper@techport.com','admin',2),
   ('Linda Dudley','XUO12Q','mauris.eu@techport.com','admin',2),
   ('Ian Camacho','GTV54K','ullamcorper@techport.com','admin',1),
-  ('Damian Cash','YJT15Y','euismod.est.arcu@techport.com','admin',4);
-  ('Jeremy Smith', 'HDO56DF','jeremy.smith@techport.com', 'admin',null)
+  ('Damian Cash','YJT15Y','euismod.est.arcu@techport.com','admin',4),
+  ('Jeremy Smith', 'HDO56DF','jeremy.smith@techport.com', 'admin',null);
 
 INSERT INTO users (name,password,email,role,university_id)
 VALUES
