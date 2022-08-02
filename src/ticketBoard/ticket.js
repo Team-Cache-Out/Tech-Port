@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react"
 import "./ticketBoard.css";
 import CampusContext from '../Context/CampusContext'
 
-export default function ticket(prop) {
+export default function Ticket(prop) {
 
     const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
 
@@ -18,7 +18,7 @@ export default function ticket(prop) {
     }
 
     if(prop.element.priority === 'routine') {
-        priorityCircle.className="priorityCircleGreen"
+        priorityCircle.className='priorityCircleGreen'
     }
     if(prop.element.priority === 'urgent') {
         priorityCircle.className='priorityCircleYellow'
@@ -32,9 +32,9 @@ export default function ticket(prop) {
                   <div className='priorityCircle'>.</div>
                 </div>
                 <div className="innerTicketContainer">
-                  <div className="subject">Subject: its broke</div>                
-                  <div className="location">Location: my desk</div>
-                  <div className="contact">Contact: me</div>
+                  <div className="subject">Subject: {prop.element.subject}</div>                
+                  <div className="location">Location: {prop.element.location}</div>
+                  <div className="contact">Contact: {prop.element.contact}</div>
                 </div>
               </div>
     )
