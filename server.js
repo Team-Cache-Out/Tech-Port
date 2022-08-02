@@ -3,7 +3,6 @@ const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const path = require('path')
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 
