@@ -3,9 +3,13 @@ import "./ticketBoard.css";
 
 export default function Navbar() {
 
-    const [user, setUser] = useState('null')
+    const [user, setUser] = useState(null)
 
-    if(user.role === 'admin') {
+    // <Route exact path='/createticket' element={
+    //   <TicketCreatePage />
+    // }></Route>
+
+    if(user === 'admin') {
         return (
             <nav className="nav2">
             <div className="nav2Center">
