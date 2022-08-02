@@ -2,38 +2,14 @@ import React from "react";
 import "./ticketBoard.css";
 import { Route } from "react-router-dom";
 import TicketCreatePage from "../ticketCreatePage/ticketCreate";
+import Header from './header'
+import Navbar from './navbar'
 
 export default function ticketBoard() {
   return (
     <>
-      <nav className="nav1">
-        <div className="leftPosition">
-          <a className="tech">Tech</a>
-        </div>
-        <div className="centerPosition">
-        <h2 className="myCampus">Campus</h2>
-        </div>
-        <div className="rightPosition">
-          <div className="columnPosition">
-            <a className="myName">Welcome Name</a>
-            <a className="logout" href="/">Logout</a>
-          </div>
-        </div>
-        
-      </nav>
-      <nav className="nav2">
-        <div className="nav2Center">
-        <a className="navLinks" href="/ticketboard">
-          Ticket Board
-        </a>
-        <a className="navLinks" href="/myticket">
-          My Tickets
-        </a>        
-        <a className="navLinks" href="/newticket">
-          Create Ticket
-        </a>   
-        </div>
-      </nav>
+      <Header />
+      <Navbar />
       <div className="ticketBoardContainer">
         <h1 className="ticketBoard-header">Ticket Board</h1>        
           <div className="boardRowPosition">
