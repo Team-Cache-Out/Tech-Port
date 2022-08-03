@@ -17,14 +17,14 @@ export default function Ticket(prop) {
         }
     }
 
-    // if(prop.element.priority === 'routine') {
-    //     priorityCircle.className='priorityCircleGreen'
-    // }
-    // if(prop.element.priority === 'urgent') {
-    //     priorityCircle.className='priorityCircleYellow'
-    // } else {
-    //     priorityCircle.classname='priorityCircleRed'
-    // }
+    if(prop.element.priority === 'routine') {
+        priorityCircle.className='priorityCircleGreen'
+    }
+    if(prop.element.priority === 'urgent') {
+        priorityCircle.className='priorityCircleYellow'
+    } else {
+        priorityCircle.classname='priorityCircleRed'
+    }
 
     return (
         <div id={prop.elem.ticket_id} onClick={handleClick} className="ticket">
