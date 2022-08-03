@@ -53,6 +53,11 @@ function App() {
         <TicketBoard />
         </>
       }></Route>
+        <Route exact path='/createticket' element={
+        <>
+        <TicketCreatePage />
+        </>
+      }></Route>
     </Routes>
   </Router>   
   );
