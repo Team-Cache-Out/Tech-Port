@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import Modal from 'react-modal';
 import { Link, useNavigate } from "react-router-dom";
-import SignIn from './SignIn';
-import LogIn from "./Login";
+// import SignIn from './SignIn';
+// import LogIn from "./Login";
 import './signUp.css'
 
 Modal.setAppElement('#root');
