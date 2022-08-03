@@ -7,6 +7,7 @@ import Navbar from "./navbar";
 import { useContext } from "react";
 import CampusContext from "../Context/CampusContext";
 import Ticket from "./ticket";
+import TicketCreatePage from "../ticketCreatePage/ticketCreate";
 
 export default function TicketBoard() {
   const { HoustonOpenTickets, HoustonWorkingTickets, HoustonCompleteTickets } =
