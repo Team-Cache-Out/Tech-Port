@@ -4,19 +4,10 @@ import TicketModal from "./TicketModal"
 
 export default function TicketCreatePage() {
     return (
-    <>
+    <div>
 
-        <nav className='adminLPage'>
-            <ul>
-                <li><a href='/'>admin</a></li>
-            </ul>
-            <h2>WorldWide Technical Foundation</h2>
-            <ul>
-                <li><a href='/'>name</a></li>
-            </ul>
-        </nav>
         <TicketModal />
         
-    </>
+    </div>
     )
 };

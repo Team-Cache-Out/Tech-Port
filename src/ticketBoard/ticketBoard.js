@@ -4,10 +4,14 @@ import Header from './header'
 import Navbar from './navbar'
 import { useContext } from "react"
 import CampusContext from "../Context/CampusContext";
-import Ticket from "./ticket";
+// import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
+import SignInContext from "../login-page/SignInContext";
+import TicketModal from "./ticketModal";
 
 export default function TicketBoard() {
+  const { currentUni } = useContext(SignInContext)
+
   const { HoustonOpenTickets, HoustonWorkingTickets, HoustonCompleteTickets } =
     useContext(CampusContext);
   const { ArizonaOpenTickets, ArizonaWorkingTickets, ArizonaCompleteTickets } =
@@ -20,7 +24,7 @@ export default function TicketBoard() {
     PepperdineCompleteTickets,
   } = useContext(CampusContext);
 
-  const { activeComp } = useContext(CampusContext)
+  const { activeComp, ticketModal } = useContext(CampusContext)
 
 
 
@@ -60,29 +64,37 @@ if(activeComp === 'createTicket') {
 } else {
     return (
         <div>
-        <Header />
-        <Navbar />
+          <Header />
+          <Navbar />
   
-      <div className="ticketBoardContainer">
-        <h1 className="ticketBoard-header">Ticket Board</h1>
-        <div className="boardRowPosition">
-          <div className="boardColumnHeader">
-            <h2 className="boardColumnH2">Open</h2>
+          <div className="ticketBoardContainer">
+            <h1 className="ticketBoard-header">Ticket Board</h1>
+            <div className="boardRowPosition">
+              <div className="boardColumnHeader">
+                <h2 className="boardColumnH2">Open</h2>
+              </div>
+              <div className="boardColumnHeader">
+                <h2 className="boardColumnH2">Working</h2>
+              </div>
+              <div className="boardColumnHeader">
+                <h2 className="boardColumnH2">Completed</h2>
+              </div>
+            </div>
+            <div className="boardColumnContainer">
+              <div className="boardColumn">
+              {/* <Ticket />*/}
+              <div>Hello</div>
+              </div>
+              <div className="boardColumn">
+              {/* <Ticket />*/}
+              </div>
+              <div className="boardColumn">
+              {/* <Ticket />*/}
+              </div>
+            </div>
           </div>
-          <div className="boardColumnHeader">
-            <h2 className="boardColumnH2">Working</h2>
-          </div>
-          <div className="boardColumnHeader">
-            <h2 className="boardColumnH2">Completed</h2>
-          </div>
+          <TicketModal show={ticketModal} />
         </div>
-        <div className="boardColumnContainer">
-          <div className="boardColumn">
-            <Ticket />
-          </div>
-        </div>
-      </div>
-    </div>
     );
   }
 }

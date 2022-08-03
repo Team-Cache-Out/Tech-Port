@@ -5,13 +5,16 @@ const SignInContext = createContext()
 export const SignInProvider = ({children}) => {
     //state
     const [user, setUser] = useState(null)
+    const [currentUni, setCurrentUni] = useState(null)
 
     // functionality / functions
 
 
     return <SignInContext.Provider value={{
         user,
-        setUser
+        setUser,
+        currentUni,
+        setCurrentUni
     }}>
         {children}
     </SignInContext.Provider>
