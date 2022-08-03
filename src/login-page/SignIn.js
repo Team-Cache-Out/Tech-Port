@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import SignInContext from './SignInContext'
+import SignInContext from '../Context/SignInContext'
 import { Link, useNavigate } from "react-router-dom";
-
 
 function SignIn(props) {
   const { user, setUser, setCurrentUni } = useContext(SignInContext)
-  // const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [enteredEmail, setEmail] = useState('')
   const [enteredPassword, setPassword] = useState('')
 
-  // let password = document.querySelector("#signIn-password")
-  // let email = document.querySelector("#sigIn-email")
-    
   const handlePassChange = (e) => {
     setPassword(e.target.value)
   }
@@ -25,20 +20,18 @@ function SignIn(props) {
 
   const submit = async (event) => {
     event.preventDefault()
-      fetch(`https://worldwide-technical-foundation.herokuapp.com/users/login`, {
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/users/login`, {
       method: 'POST',
       body: JSON.stringify({
-          'password': `${enteredPassword}`,
-          'email': `${enteredEmail}`
+        'password': `${enteredPassword}`,
+        'email': `${enteredEmail}`
       }),
       headers: {
-          'Content-type' : 'application/json'
+        'Content-type' : 'application/json'
       }
-    })
-   
+    })   
     .then (res => res.json())
     .then (data => {
-
       if(data.length !== 0) {
         setUser(data[0])
         setCurrentUni(data[0].university_id)
@@ -54,15 +47,13 @@ function SignIn(props) {
         window.alert("User not found!")
         setUser(null)
       }
-    }) 
-    
+    })     
   }
-
-  
 
   const handleSignUp = () => {
     props.setmodalIsOpen(true);
   }
+
   return (
     <div className='SignIn-Container'>
       <h2 className='signIn-Header'>SIGN IN</h2>
@@ -82,10 +73,8 @@ function SignIn(props) {
           </button>
           <br/>
           <p className='NoAccount-Info'>Don't have an account? Click <Link to="/signup" onClick={handleSignUp} className="SignUp-Link">Here</Link> </p>
-      </form>
-      
-    </div>
-    
+      </form>      
+    </div>    
   )
 }
 

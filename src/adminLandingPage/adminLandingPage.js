@@ -1,11 +1,12 @@
-import {useState,useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Axiosfetch from '../axiosRequest/axiosfetch'
 import "./adminlandingPage.css"
+import SignInContext from '../Context/SignInContext'
 
 
 
 export default function AdminLandingPage() {
-  
+  const { user } = useContext(SignInContext)
   const [houstonTickets , setHoustonTickets] = useState([])
   const [azTickets , setazTickets] = useState([])
   const [osTickets , setosTickets] = useState([])

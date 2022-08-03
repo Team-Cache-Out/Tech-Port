@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import "./ticketBoard.css";
-import SignInContext from '../login-page/SignInContext';
+import SignInContext from '../Context/SignInContext';
 
 export default function Header() {
 

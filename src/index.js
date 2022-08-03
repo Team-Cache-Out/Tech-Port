@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { CampusProvider } from './Context/CampusContext.js'
-import { SignInProvider } from './login-page/SignInContext';
+import { SignInProvider } from './Context/SignInContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

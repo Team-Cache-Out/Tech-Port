@@ -8,8 +8,6 @@ export const SignInProvider = ({children}) => {
     const [currentUni, setCurrentUni] = useState(null)
 
     // functionality / functions
-
-
     return <SignInContext.Provider value={{
         user,
         setUser,
