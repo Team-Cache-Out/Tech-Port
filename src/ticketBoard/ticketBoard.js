@@ -4,7 +4,7 @@ import Header from './header'
 import Navbar from './navbar'
 import { useContext } from "react"
 import CampusContext from "../Context/CampusContext";
-import Ticket from "./ticket";
+// import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
 
 export default function TicketBoard() {
@@ -78,7 +78,7 @@ if(activeComp === 'createTicket') {
         </div>
         <div className="boardColumnContainer">
           <div className="boardColumn">
-            <Ticket />
+    {/* <Ticket />*/}
           </div>
         </div>
       </div>
