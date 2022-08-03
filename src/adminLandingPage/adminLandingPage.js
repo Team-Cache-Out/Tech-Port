@@ -11,10 +11,10 @@ export default function AdminLandingPage() {
   const [osTickets , setosTickets] = useState([])
   const [penTickets , setpenTickets] = useState([])              
   const [loadState , setLoadState] = useState(false)
-  const houston = Axiosfetch('http://localhost:4000/university/1',{ loading: true ,data: null})
-  const az = Axiosfetch('http://localhost:4000/university/2',{ loading: true ,data: null})                                                    
-  const os = Axiosfetch('http://localhost:4000/university/3',{ loading: true ,data: null})
-  const pen = Axiosfetch('http://localhost:4000/university/4',{ loading: true ,data: null})
+  const houston = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/university/1',{ loading: true ,data: null})
+  const az = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/university/2',{ loading: true ,data: null})                                                    
+  const os = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/university/3',{ loading: true ,data: null})
+  const pen = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/university/4',{ loading: true ,data: null})
   const arruni = [houstonTickets,azTickets,osTickets,penTickets]
 
 
