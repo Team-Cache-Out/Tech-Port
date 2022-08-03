@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 function SignIn(props) {
-  const { user, setUser } = useContext(SignInContext)
+  const { user, setUser, setCurrentUni } = useContext(SignInContext)
   // const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [enteredEmail, setEmail] = useState('')
@@ -40,7 +40,8 @@ function SignIn(props) {
     .then (data => {
 
       if(data.length !== 0) {
-        setUser(data[0]) 
+        setUser(data[0])
+        setCurrentUni(data[0].university_id)
         window.alert("You have logged in!")
         setLoading(false)
         if (data[0].role === 'admin') {
