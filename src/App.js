@@ -11,7 +11,11 @@ function App() {
   const [modalIsOpen, setmodalIsOpen] = useState(true);
 
   const { setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets } = useContext(CampusContext)
+  const { setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets } = useContext(CampusContext)
+  const { setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets } = useContext(CampusContext)
+  const { setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets } = useContext(CampusContext)
 
+  // University of Houston Tickets
   useEffect(() => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/open`)
     .then(response => response.json())
@@ -21,11 +25,57 @@ function App() {
     .then(response => response.json())
     .then(data => setHoustonWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/closed`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/complete`)
     .then(response => response.json())
     .then(data => setHoustonCompleteTickets(data))
   }, [setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets])
-  
+
+  // University of Arizona Tickets
+  useEffect(() => {
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/open`)
+    .then(response => response.json())
+    .then(data => setArizonaOpenTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/working`)
+    .then(response => response.json())
+    .then(data => setArizonaWorkingTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/complete`)
+    .then(response => response.json())
+    .then(data => setArizonaCompleteTickets(data))
+  }, [setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets])
+
+
+  // University of Oregon Tickets
+  useEffect(() => {
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/open`)
+    .then(response => response.json())
+    .then(data => setOregonOpentTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/working`)
+    .then(response => response.json())
+    .then(data => setOregonWorkingTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/complete`)
+    .then(response => response.json())
+    .then(data => setOregonCompleteTickets(data))
+  }, [setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets])
+
+  // Pepperdine University Tickets
+  useEffect(() => {
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/open`)
+    .then(response => response.json())
+    .then(data => setPepperdineOpenTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/working`)
+    .then(response => response.json())
+    .then(data => setPepperdineWorkingTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/complete`)
+    .then(response => response.json())
+    .then(data => setPepperCompleteTickets(data))
+  }, [setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets])
+
   return (
   <Router>
     <Routes>
