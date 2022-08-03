@@ -6,7 +6,7 @@
 }
 
 .boardColumnHeader {
-  border: solid black 1px;
+  border: solid lightgray 1px;
   margin: 0;
   width: 100%;
   text-align: center;  
@@ -44,7 +44,7 @@
 
 .columnPosition {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items:flex-end;
 }
 
@@ -141,6 +141,10 @@
   color: white;
   font-size: 25px;
   font-family: 'Oswald', sans-serif;
+  cursor: pointer;
+}
+.navLinks:hover {
+  text-decoration: underline;
 }
 
 .priorityCircleRed {
