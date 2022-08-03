@@ -20,7 +20,7 @@ export default function Navbar() {
     }
 
    /* Checking the user role and then rendering the appropriate navbar. */
-    if(user.role === 'admin') {
+    if(user === 'admin') {
         return (
             <nav className="nav2">
                 <div className="nav2Center">
