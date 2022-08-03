@@ -3,7 +3,6 @@ const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const path = require('path')
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 
@@ -193,6 +192,22 @@ app.get("/tickets", async (req,res) => {
         res.send(error);
     }
 });
+
+/* This is a get all request to the tickets table that uses the university_id and the status of each ticket. */
+app.get("/tickets/:id/:status", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query("SELECT * FROM tickets WHERE university_id=$1 and status=$2", [req.params.id, req.params.status]);
+        res.json(data.rows[0]);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 /* This is a get request to the tickets table. It is using the ticket_id as a parameter to get one
 select ticket. */
