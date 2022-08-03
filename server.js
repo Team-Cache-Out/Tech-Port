@@ -424,7 +424,7 @@ app.get("/campusTickets/:id/:status", async (req,res) => {
         let client = await pool.connect();
 
         const data = await client.query("SELECT * FROM tickets WHERE university_id=$1 and status=$2", [req.params.id, req.params.status]);
-        res.json(data.rows[0]);
+        res.json(data.rows);
 
         /* Releasing the client from the database. */
         client.release();
