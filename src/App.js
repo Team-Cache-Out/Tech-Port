@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import LogIn from "./login-page/Login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./login-page/SignUp";
 import SignIn from "./login-page/SignIn";
 import AdminLandingPage from "./adminLandingPage/adminLandingPage";
 import TicketBoard from "./ticketBoard/ticketBoard";
+import CampusContext from './Context/CampusContext'
 
 function App() {
   const [modalIsOpen, setmodalIsOpen] = useState(true);
+
+  const { setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets } = useContext(CampusContext)
+
+  useEffect(() => {
+    fetch(`https://worldwide-technical-foundation.herokuapp.com//tickets/1/"open"`)
+    .then(response => response.json())
+    .then(data => setHoustonOpenTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com//tickets/1/"working"`)
+    .then(response => response.json())
+    .then(data => setHoustonWorkingTickets(data))
+
+    fetch(`https://worldwide-technical-foundation.herokuapp.com//tickets/1/"closed"`)
+    .then(response => response.json())
+    .then(data => setHoustonCompleteTickets(data))
+  }, [setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets])
+  
   return (
   <Router>
     <Routes>
