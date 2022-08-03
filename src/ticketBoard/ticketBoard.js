@@ -7,7 +7,7 @@ import CampusContext from "../Context/CampusContext";
 // import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
 import SignInContext from "../login-page/SignInContext";
-import TicketModal from "./ticketModal";
+import SingleTicketModal from "./singleTicketModal";
 
 export default function TicketBoard() {
   const { currentUni } = useContext(SignInContext)
@@ -25,7 +25,6 @@ export default function TicketBoard() {
   } = useContext(CampusContext);
 
   const { activeComp, ticketModal } = useContext(CampusContext)
-
 
 
 // <TicketCreatePage />
@@ -93,7 +92,7 @@ if(activeComp === 'createTicket') {
               </div>
             </div>
           </div>
-          <TicketModal show={ticketModal} />
+          <SingleTicketModal show={ticketModal} />
         </div>
     );
   }
