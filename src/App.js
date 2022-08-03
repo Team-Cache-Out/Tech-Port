@@ -13,15 +13,15 @@ function App() {
   const { setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets } = useContext(CampusContext)
 
   useEffect(() => {
-    fetch(`https://worldwide-technical-foundation.herokuapp.com//tickets/1/"open"`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/tickets/1/"open"`)
     .then(response => response.json())
     .then(data => setHoustonOpenTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com//tickets/1/"working"`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/tickets/1/"working"`)
     .then(response => response.json())
     .then(data => setHoustonWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com//tickets/1/"closed"`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/tickets/1/"closed"`)
     .then(response => response.json())
     .then(data => setHoustonCompleteTickets(data))
   }, [setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets])
