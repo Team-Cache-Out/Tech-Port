@@ -1,0 +1,22 @@
+.singleTicketContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  
+    display: grid;
+    align-items: center;
+    text-align: center;
+  
+    background-color: rgba(255, 253, 253, 0.772);
+    padding: 40px;
+  }
+
+  .singleTicketModal {
+    border: 1px solid #555;
+    box-shadow: 3px 3px 3px 3px #333;
+    border-radius: 25px;
+    background: -webkit-linear-gradient(#88c9e3, #b3bee7);
+    padding: 10px;
+  }
