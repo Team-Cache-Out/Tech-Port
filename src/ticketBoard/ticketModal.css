@@ -13,14 +13,14 @@
     padding: 40px;
   }
 
-  .singleTicketModal {
+  .Ticket-Container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
-    height: 500px;
-    border: 10px solid #CAD6E2;
+    width: 800px;
+    height: 800px;
+    border: 10px solid #9ebddf;
     background-color: rgb(255, 255, 255);
     border-bottom-left-radius: 3%;
     border-bottom-right-radius: 3%;
@@ -30,14 +30,6 @@
     transform: translate(-50%, -50%);
   }
 
-  .logInBody{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-}
-
 .Ticket-Form{
     display: flex;
     flex-direction: column;
@@ -45,17 +37,8 @@
     font-family: Helvetica, sans-serif;
 }
 
-.Logo-Img {
-    position: absolute;
-    height: 570px;
-    left: 50%;
-    top: 15%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 50px;
-}
-
 .Ticket-Header{
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     border-bottom: solid 10px #003169;
     border-radius: 20%;
     padding-right: 10px;
@@ -66,11 +49,19 @@
 
 }
 
+h3,
+p {
+    margin: 20px;
+    margin-bottom: 10px;
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
 .SubmitTicket-Button{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-background: #2EB394;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #2EB394;
   border: 1px solid #2EB394;
   border-radius: 15px;
   box-shadow: rgba(0, 5, 5, 0.4) 1px 2px 4px;
@@ -129,12 +120,29 @@ background: #2EB394;
 }
 
 .closeButton {
-  color: rgba(1, 41, 83, 0.92);
-  font-size: 15px;
-  background-color: white;
-  border-radius: 5px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
+    background: #2EB394;
+    border: 1px solid #2EB394;
+    border-radius: 15px;
+    box-shadow: rgba(0, 5, 5, 0.4) 1px 2px 4px;
+    color: #000000;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    width: 40px;
+}
+
+.closeButton:hover {
+    background-color: initial;
+    background-position: 0 0;
+    color: #2EB394;
 }
