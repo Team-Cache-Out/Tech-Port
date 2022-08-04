@@ -7,8 +7,14 @@ export default function Header() {
   /* Destructuring the user object from the SignInContext. */
   const { user } = useContext(SignInContext)
 
+  /**
+   * If the user's university_id is 1, return 'University of Houston'. 
+   * If the user's university_id is 2, return 'University of Arizona'. 
+   * If the user's university_id is 3, return 'Oregon State University'. 
+   * Otherwise, return 'Pepperdine University'.
+   * @returns the name of the university based on the user's university_id.
+   */
   const currentUni = () => {
-
     if(user.university_id === 1) {
       return 'University of Houston'
     } else if(user.university_id === 2) {
