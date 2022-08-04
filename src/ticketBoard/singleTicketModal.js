@@ -4,16 +4,24 @@ import './ticketModal.css'
 
 export default function SingleTicketModal({show}) {
 
+    /* Destructuring the CampusContext object */
     const { setTicketModal, singleTicket } = useContext(CampusContext)
 
+    /**
+     * When the user clicks the close button, the ticket modal will close.
+     */
     const handleClose = () => {
         setTicketModal(false)
     }
 
     return (
         <>
+        {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
         {show ?
+            /* The div container that gives the page a transparent look. */
             <div className='singleTicketContainer'>
+
+                {/* A div that contains the ticket information. This is the actual modal that is being rendered on the screen. */}
                 <div className='Ticket-Container'>
                     <button className='closeButton' onClick={handleClose}>X</button>
                     <h2 className='Ticket-Header'>Ticket Information</h2>
@@ -26,7 +34,7 @@ export default function SingleTicketModal({show}) {
                             <textarea rows = "5" cols = "50" name = "note" placeholder="Enter details here...">
                             </textarea>
                             </form>
-                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit'>Submit Note</button>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit'>Submit Changes</button>
                             
                 </div>
             </div>

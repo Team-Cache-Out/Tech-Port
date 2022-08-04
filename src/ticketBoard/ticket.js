@@ -4,8 +4,14 @@ import CampusContext from '../Context/CampusContext'
 
 export default function Ticket(prop) {
 
+    /* Destructuring the CampusContext object and assigning the values to the variables. */
     const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
     
+    /**
+     * When a user clicks on a ticket, the ticket's information is fetched from the database and stored
+     * in the state variable singleTicket. If singleTicket is not null, the ticketModal is set to true.
+     * @param e - the event object
+     */
     const handleClick = (e) => {
         fetch(`https://worldwide-technical-foundation.herokuapp.com/tickets/${e.target.id}`)
         .then(response => response.json())
@@ -15,8 +21,13 @@ export default function Ticket(prop) {
         }
     }
 
+    /**
+     * If the priority is Routine, return priorityCircleGreen,
+     *  if it's Urgent, return priorityCircleYellow,
+     *  otherwise return priorityCircleRed.
+     * @returns the className of the div.
+     */
     const priority = () => {
-
         if(prop.elem.priority === 'Routine') {
             return 'priorityCircleGreen'
         } else if(prop.elem.priority === 'Urgent') {
