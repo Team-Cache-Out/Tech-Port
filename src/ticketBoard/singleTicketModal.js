@@ -4,7 +4,7 @@ import './ticketModal.css'
 
 export default function SingleTicketModal({show}) {
 
-    const { setTicketModal } = useContext(CampusContext)
+    const { setTicketModal, singleTicket } = useContext(CampusContext)
 
     const handleClose = () => {
         setTicketModal(false)
@@ -14,42 +14,22 @@ export default function SingleTicketModal({show}) {
         <>
         {show ?
             <div className='singleTicketContainer'>
-            <div className='Ticket-Container'>
-            <button className='closeButton' onClick={handleClose}>X</button>
-            <h2 className='Ticket-Header'>Create a ticket</h2>
-            <form className='Ticket-Form' id='Ticket-Form'>
-          <label>Subject</label>
-          <div className='Subject-Input' id='Subject-email' >
-          </div>
-          
-          <label>Location</label>
-      
-          <input placeholder='Location...' className='Location-Input'> 
-          </input>
-         
-          <label>Contact Info</label>
-        
-          <input placeholder='Contact Info...' className='Contact-Input' > 
-          </input>
-          
-          <label>Priority</label>
-          <select>
-              <option>Urgent</option>
-              <option>Severe</option>
-              <option>Routine</option>
-              </select>
-              <label>Description</label>
-              <textarea rows = "5" cols = "50" name = "note" placeholder="Enter details here...">
-              
-              </textarea>
-          <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit'>Submit
-          </button>
-          <br/>
-          
-      </form>
-      
-      </div>
-      </div>
+                <div className='Ticket-Container'>
+                    <button className='closeButton' onClick={handleClose}>X</button>
+                    <h2 className='Ticket-Header'>Ticket Information</h2>
+                    <h3>Open Date: {singleTicket.open_date.split('T')[0]} | Complete Date: {singleTicket.close_date ? singleTicket.close_date : 'Not Complete'} | Status: {singleTicket.status.toUpperCase()}</h3>
+                    <h3>Tech Assigned: {singleTicket.assigned_tech ? 'Yes' : 'No'} | Location: {singleTicket.location} | POC: {singleTicket.point_of_contact}</h3>
+                    <h3>Problem: {singleTicket.problem} | Description: {singleTicket.description} | Priority: {singleTicket.priority} </h3>
+                    <p>Notes: {singleTicket.note}</p>
+                    <form className='Ticket-Form' id='Ticket-Form'>
+                            <label>Add Note</label>
+                            <textarea rows = "5" cols = "50" name = "note" placeholder="Enter details here...">
+                            </textarea>
+                            </form>
+                    <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit'>Submit</button>
+                            
+                </div>
+            </div>
       : null}
       </>
     )
