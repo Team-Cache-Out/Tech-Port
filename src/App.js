@@ -25,7 +25,7 @@ function App() {
     .then(response => response.json())
     .then(data => setHoustonWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/complete`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/1`)
     .then(response => response.json())
     .then(data => setHoustonCompleteTickets(data))
   }, [setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets])
@@ -40,7 +40,7 @@ function App() {
     .then(response => response.json())
     .then(data => setArizonaWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/complete`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/2`)
     .then(response => response.json())
     .then(data => setArizonaCompleteTickets(data))
   }, [setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets])
@@ -56,7 +56,7 @@ function App() {
     .then(response => response.json())
     .then(data => setOregonWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/complete`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/3`)
     .then(response => response.json())
     .then(data => setOregonCompleteTickets(data))
   }, [setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets])
@@ -71,7 +71,7 @@ function App() {
     .then(response => response.json())
     .then(data => setPepperdineWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/complete`)
+    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/4`)
     .then(response => response.json())
     .then(data => setPepperCompleteTickets(data))
   }, [setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets])
