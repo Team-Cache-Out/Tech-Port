@@ -127,3 +127,14 @@ background: #2EB394;
     border: solid #CAD6E2;
     font-size: 15px;
 }
+
+.closeButton {
+  color: rgba(1, 41, 83, 0.92);
+  font-size: 15px;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
