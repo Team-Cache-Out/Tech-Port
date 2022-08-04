@@ -6,7 +6,7 @@ import { useContext } from "react"
 import CampusContext from "../Context/CampusContext";
 // import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
-import SignInContext from "../login-page/SignInContext";
+import SignInContext from "../Context/SignInContext";
 import SingleTicketModal from "./singleTicketModal";
 
 export default function TicketBoard() {
