@@ -22,14 +22,14 @@ export default function SingleTicketModal({show}) {
             <div className='singleTicketContainer'>
 
                 {/* A div that contains the ticket information. This is the actual modal that is being rendered on the screen. */}
-                <div className='Ticket-Container'>
+                <div className='TicketContainer'>
                     <button className='closeButton' onClick={handleClose}>X</button>
-                    <h2 className='Ticket-Header'>Ticket Information</h2>
+                    <h2 className='TicketHeader'>Ticket Information</h2>
                     <h3>Open Date: {singleTicket.open_date.split('T')[0]} | Complete Date: {singleTicket.close_date ? singleTicket.close_date : 'Not Complete'} | Status: {singleTicket.status.toUpperCase()}</h3>
                     <h3>Tech Assigned: {singleTicket.assigned_tech ? 'Yes' : 'No'} | Location: {singleTicket.location} | POC: {singleTicket.point_of_contact}</h3>
                     <h3>Problem: {singleTicket.problem} | Description: {singleTicket.description} | Priority: {singleTicket.priority} </h3>
                     <p>Notes: {singleTicket.note}</p>
-                    <form className='Ticket-Form' id='Ticket-Form'>
+                    <form className='TicketForm' id='TicketForm'>
                             <label>Add Note</label>
                             <textarea rows = "5" cols = "50" name = "note" placeholder="Enter details here...">
                             </textarea>
