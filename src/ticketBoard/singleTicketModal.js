@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import CampusContext from '../Context/CampusContext'
 import './ticketModal.css'
 
 export default function SingleTicketModal({show}) {
+
+    const { setTicketModal } = useContext(CampusContext)
+
+    const handleClose = () => {
+        setTicketModal(false)
+    }
+
     return (
-        <div>
+        <>
         {show ?
+            <div className='singleTicketContainer'>
             <div className='Ticket-Container'>
+            <button className='closeButton' onClick={handleClose}>X</button>
             <h2 className='Ticket-Header'>Create a ticket</h2>
             <form className='Ticket-Form' id='Ticket-Form'>
           <label>Subject</label>
@@ -39,7 +49,8 @@ export default function SingleTicketModal({show}) {
       </form>
       
       </div>
-      : null}
       </div>
+      : null}
+      </>
     )
 }
