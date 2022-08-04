@@ -433,6 +433,22 @@ app.get("/campusTickets/:id/:status", async (req,res) => {
     }
 })
 
+/* This is a get all request to the tickets table that uses the university_id and the status of each ticket. This is pulling all of the */
+app.get("/campusLog/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query("SELECT * FROM tickets WHERE university_id=$1 and status='complete' ORDER BY ticket_id DESC LIMIT 20", [req.params.id]);
+        res.json(data.rows);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 /* The below code is connecting to the database and then querying the database for the data. */
 app.get("/campus/:id", async (req,res) => {
     try {
