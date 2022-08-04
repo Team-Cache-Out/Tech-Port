@@ -6,7 +6,7 @@ import SignInContext from '../Context/SignInContext'
 
 
 export default function AdminLandingPage() {
-  const { user } = useContext(SignInContext)
+  const { user, setCurrentUni } = useContext(SignInContext)
   const [houstonTickets , setHoustonTickets] = useState([])
   const [azTickets , setazTickets] = useState([])
   const [osTickets , setosTickets] = useState([])
@@ -35,8 +35,6 @@ export default function AdminLandingPage() {
     //     setosTickets(os.data)
     //     setpenTickets(pen.data)
     // },[houston.data,az.data,os.data,pen.data])
-    
-
 
   return (
     <>
@@ -46,7 +44,12 @@ export default function AdminLandingPage() {
         </ul>
         <h2>WorldWide Technical Foundation</h2>
         <ul>
-            <li><a href='/'>name  </a><button>Logout</button></li>
+            <li>
+              <h2>Welcome, {user.name.split(" ")[0]}</h2>
+              <a href="/">
+                <button className="adminLogout">Logout</button>
+              </a>
+            </li>
         </ul>
     </nav>
     {arruni.length > 3 &&                  
