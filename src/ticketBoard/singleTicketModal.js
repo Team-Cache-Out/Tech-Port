@@ -26,7 +26,7 @@ export default function SingleTicketModal({show}) {
                             <textarea rows = "5" cols = "50" name = "note" placeholder="Enter details here...">
                             </textarea>
                             </form>
-                    <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit'>Submit</button>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit'>Submit Note</button>
                             
                 </div>
             </div>

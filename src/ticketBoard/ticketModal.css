@@ -57,7 +57,7 @@ p {
     font-weight: bold;
 }
 
-.SubmitTicket-Button{
+.SubmitNote-Button{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -87,8 +87,8 @@ p {
   margin-top: 15px;
 }
 
-.SubmitTicket-Button:hover,
-.SubmitTicket-Button:active {
+.SubmitNote-Button:hover,
+.SubmitNote-Button:active {
     background-color: initial;
     background-position: 0 0;
     color: #2EB394;
