@@ -5,12 +5,13 @@ const app = express();
 const cors = require("cors");
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
+const bcrypt = require("bcrypt");
 
-const PORT = process.env.PORT || 4500
+const PORT = 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
-app.use(express.static("build"));
+app.use(express.static("public"));
 
 app.use(cors());
 
@@ -97,13 +98,15 @@ app.post("/users/signup", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        console.log(hashedPassword)
         
         await client.query(`
             INSERT INTO users (
             name, password, university_id, email, role
             )
             VALUES ($1, $2, $3, $4, $5)
-            `, [req.body.name, req.body.password, req.body.university_id, req.body.email, req.body.role]);
+            `, [req.body.name, hashedPassword, req.body.university_id, req.body.email, req.body.role]);
         res.json(`Signed Up`);
 
         /* Releasing the client from the database. */
