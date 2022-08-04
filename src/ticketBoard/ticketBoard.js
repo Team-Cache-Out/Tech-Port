@@ -6,7 +6,7 @@ import { useContext } from "react"
 import CampusContext from "../Context/CampusContext";
 import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
-import SignInContext from "../login-page/SignInContext";
+import SignInContext from "../Context/SignInContext";
 import SingleTicketModal from "./singleTicketModal";
 
 export default function TicketBoard() {
@@ -19,7 +19,7 @@ export default function TicketBoard() {
 
   const campus = [[HoustonOpenTickets, HoustonWorkingTickets, HoustonCompleteTickets],[ArizonaOpenTickets, ArizonaWorkingTickets, ArizonaCompleteTickets],[OregonOpenTickets, OregonWorkingTickets, OregonCompleteTickets],[PepperdineOpenTickets, PepperdineWorkingTickets, PepperdineCompleteTickets]]
 
-  const currentCampus = (currentUni) => {
+  const currentCampus = () => {
     if(currentUni === 1) {
       return campus[0];
     }
@@ -88,19 +88,25 @@ export default function TicketBoard() {
               </div>
               <div className="boardColumnContainer">
                 <div className="boardColumn">
-                {currentCampus[0].map((elem) => {
+                {currentCampus()[0].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 
                 })}
-                {/* <Ticket />*/}
-                <div>Hello</div>
                 </div>
                 <div className="boardColumn">
-                {/* <Ticket />*/}
+                {currentCampus()[1].map((elem) => {
+                  return (
+                    <Ticket elem={elem} key={elem.ticket_id} />
+                  ) 
+                })}
                 </div>
                 <div className="boardColumn">
-                {/* <Ticket />*/}
+                {currentCampus()[2].map((elem) => {
+                  return (
+                    <Ticket elem={elem} key={elem.ticket_id} />
+                  ) 
+                })}
                 </div>
               </div>
             </div>
