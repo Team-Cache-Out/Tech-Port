@@ -13,7 +13,7 @@
     padding: 40px;
   }
 
-  .Ticket-Container {
+  .TicketContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,14 +30,14 @@
     transform: translate(-50%, -50%);
   }
 
-.Ticket-Form{
+.TicketForm{
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Helvetica, sans-serif;
 }
 
-.Ticket-Header{
+.TicketHeader{
     margin-bottom: 10px;
     border-bottom: solid 10px #003169;
     border-radius: 20%;
@@ -92,31 +92,6 @@ p {
     background-color: initial;
     background-position: 0 0;
     color: #2EB394;
-}
-
-.Location-Input{
-    width: 250px;
-    height: 24px;
-    border-radius: 5px;
-    border: solid #CAD6E2;
-    font-size: 15px;
-}
-
-.Subject-Input{
-    width: 250px;
-    height: 24px;
-    border-radius: 5px;
-    font-size: 15px;
-    border: solid #CAD6E2;
-}
-
-
-.Contact-Input {
-    width: 250px;
-    height: 24px;
-    border-radius: 5px;
-    border: solid #CAD6E2;
-    font-size: 15px;
 }
 
 .closeButton {
