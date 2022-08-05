@@ -7,7 +7,7 @@ const cors = require("cors");
 const pool = require("./db/connection");
 const bcrypt = require("bcrypt");
 
-const PORT = 4500
+const PORT = process.env.PORT || 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
@@ -75,16 +75,17 @@ app.get("/techs/:id", async (req,res) => {
 // Checks login form input and compares users data to match 
 app.post("/users/login", async (req, res) => {
     try {
-         /* Connecting to the database. */
-        let email = req.body.email
-        let password = req.body.password
-        console.log(`${email} and ${password}`)
+         /* Connecting to the database. */        
         let client = await pool.connect();
-        
-        const data = await client.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
-        console.log(data.rows)
-        res.json(data.rows);
-
+        //select a user based on the entered email, then use bcrypt compare to see if the 
+        //password entered for that user is correct
+        const data = await client.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);        
+        //if db query returned a user and bcrypt compare says the passwords match then return the user
+        if(data.rowCount > 0 && await bcrypt.compare(req.body.password, data.rows[0].password)){
+            res.json(data.rows);
+        } else { //bcrypt compared password doesn't match stored password or no user returned from query due to no matching emails
+            res.status(400).send('Login Failed')
+        }
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
@@ -98,17 +99,21 @@ app.post("/users/signup", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        console.log(hashedPassword)
-        
-        await client.query(`
-            INSERT INTO users (
-            name, password, university_id, email, role
-            )
-            VALUES ($1, $2, $3, $4, $5)
-            `, [req.body.name, hashedPassword, req.body.university_id, req.body.email, req.body.role]);
-        res.json(`Signed Up`);
-
+        let emailUsedBefore = await client.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);
+        console.log(emailUsedBefore.rowCount)        
+        if (emailUsedBefore.rowCount !== 0){
+            res.status(400).send('User Email already in use')
+        } else {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
+            // console.log(hashedPassword)        
+            await client.query(`
+                INSERT INTO users (
+                name, password, university_id, email, role
+                )
+                VALUES ($1, $2, $3, $4, $5)
+                `, [req.body.name, hashedPassword, req.body.university_id, req.body.email, req.body.role]);
+            res.json(`Signed Up`);
+        }        
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
