@@ -32,20 +32,27 @@ export default function TicketBoard() {
    * If the currentUni is equal to 4, return the fourth element of the campus array
    * @returns the value of the array at the index of the currentUni variable.
    */
+  console.log(currentUni)
   const currentCampus = () => {
     if(currentUni === 1) {
+      console.log(campus[0])
       return campus[0];
     }
     if(currentUni === 2) {
+      console.log(campus[1])
       return campus[1];
     }
     if(currentUni === 3) {
+      console.log(campus[2])
       return campus[2];
     }
     if(currentUni === 4) {
+      console.log(campus[3])
       return campus[3]
     }
   }
+
+  let currentUniversity = currentCampus()
 
   /** Contional that checks what the active component is set to and returns the appropriate components based off of 
   * that active component variable. The activeComp variable is influenced by the user clicking on the different 
@@ -104,21 +111,21 @@ export default function TicketBoard() {
               </div>
               <div className="boardColumnContainer">
                 <div className="boardColumn">
-                {currentCampus()[0].map((elem) => {
+                {currentUniversity[0].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 
                 })}
                 </div>
                 <div className="boardColumn">
-                {currentCampus()[1].map((elem) => {
+                {currentUniversity[1].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 
                 })}
                 </div>
                 <div className="boardColumn">
-                {currentCampus()[2].map((elem) => {
+                {currentUniversity[2].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 

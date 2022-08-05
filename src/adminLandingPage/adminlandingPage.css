@@ -3,6 +3,8 @@
 }
 
 body {
+    background-attachment: fixed;
+    background-position: center center;
     background-image: URL("../../design/oregon_of_university.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -74,8 +76,4 @@ body {
 .universities img{
     width: 8rem;
     height: 8rem;
-}
-.universities a{
-    
-    
 }

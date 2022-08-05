@@ -18,7 +18,7 @@ export default function AdminLandingPage() {
   const os = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/university/3',{ loading: true ,data: null})
   const pen = Axiosfetch('https://worldwide-technical-foundation.herokuapp.com/university/4',{ loading: true ,data: null})
   const arruni = [houstonTickets,azTickets,osTickets,penTickets]
- console.log(currentUni)
+  
 
   useEffect(() => {
       setHoustonTickets(houston.data)           
@@ -28,10 +28,12 @@ export default function AdminLandingPage() {
       setLoadState(true);
     },[houston.data,az.data,os.data,pen.data])
     const nav = (e)=>{
-        console.log(e.target.id)
-        setCurrentUni(e.target.id)
-        console.log(currentUni)
-        navigate('/ticketBoard')
+        console.log(typeof e.target.id)
+        let id = e.target.id
+        setCurrentUni(parseInt(id))
+        // setUser(user.university_id = e.target.value)
+        console.log(typeof currentUni)
+     navigate('/ticketBoard')
     }
     // useEffect(() =>{
     //     setHoustonTickets(houston.data)
