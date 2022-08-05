@@ -29,6 +29,7 @@ body {
     font-weight: 100;
     
     
+    
 }
 .adminLPage ul{
     list-style: none;
@@ -75,6 +76,6 @@ body {
     height: 8rem;
 }
 .universities a{
-    border: solid red;
+    
     
 }

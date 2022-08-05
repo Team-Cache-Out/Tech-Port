@@ -378,6 +378,7 @@ let techs = await client.query(`
     `, [id]
 )
 let uni = {
+    id: university.rows[0].university_id,
     name: university.rows[0].name,
     logo: university.rows[0].logo_url,
     tickets: tickets.rows[0].count,
