@@ -5,21 +5,21 @@ import SignInContext from '../Context/SignInContext';
 export default function Header() {
 
   /* Destructuring the user object from the SignInContext. */
-  const { user } = useContext(SignInContext)
-
+  const { user, currentUni } = useContext(SignInContext)
+  
   /**
-   * If the user's university_id is 1, return 'University of Houston'. 
-   * If the user's university_id is 2, return 'University of Arizona'. 
-   * If the user's university_id is 3, return 'Oregon State University'. 
-   * Otherwise, return 'Pepperdine University'.
-   * @returns the name of the university based on the user's university_id.
+   * If the currentUni variable is equal to 1, return the string 'University of Houston'. 
+   * If the currentUni variable is equal to 2, return the string 'University of Arizona'. 
+   * If the currentUni variable is equal to 3, return the string 'Oregon State University'. 
+   * If the currentUni variable is equal to 4, return the string 'Pepperdine University'.
+   * @returns the name of the university that is currently selected.
    */
-  const currentUni = () => {
-    if(user.university_id === 1) {
+  const currentUniversity = () => {
+    if(currentUni === 1) {
       return 'University of Houston'
-    } else if(user.university_id === 2) {
+    } else if(currentUni === 2) {
       return 'University of Arizona'
-    } else if(user.university_id === 2) {
+    } else if(currentUni === 3) {
       return 'Oregon State University'
     } else {
       return 'Pepperdine University'
@@ -33,7 +33,7 @@ export default function Header() {
               <div className="role">{user.role}</div>
             </div>
             <div className="centerPosition">
-              <h2 className="myCampus">{currentUni()}</h2>
+              <h2 className="myCampus">{currentUniversity()}</h2>
             </div>
             <div className="rightPosition">
               <div className="columnPosition">
