@@ -29,6 +29,7 @@ It also gives each technician a portal in which they can see the campus tickets 
 
 Insert gif or link to demo
 
+demo password: password
 
 ## Run Locally
 
