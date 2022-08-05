@@ -7,7 +7,7 @@ const cors = require("cors");
 const pool = require("./db/connection");
 const bcrypt = require("bcrypt");
 
-const PORT = 4500
+const PORT = process.env.PORT || 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
