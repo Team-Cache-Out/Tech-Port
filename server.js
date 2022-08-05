@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
-app.use(express.static("public"));
+app.use(express.static("build"));
 
 app.use(cors());
 
