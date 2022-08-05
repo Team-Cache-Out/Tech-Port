@@ -32,22 +32,17 @@ export default function TicketBoard() {
    * If the currentUni is equal to 4, return the fourth element of the campus array
    * @returns the value of the array at the index of the currentUni variable.
    */
-  console.log(currentUni)
   const currentCampus = () => {
     if(currentUni === 1) {
-      console.log(campus[0])
       return campus[0];
     }
     if(currentUni === 2) {
-      console.log(campus[1])
       return campus[1];
     }
     if(currentUni === 3) {
-      console.log(campus[2])
       return campus[2];
     }
     if(currentUni === 4) {
-      console.log(campus[3])
       return campus[3]
     }
   }
