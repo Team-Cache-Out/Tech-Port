@@ -99,19 +99,19 @@ app.post("/users/signup", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
-        let emailUsedBefore = await client.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);
-        console.log(emailUsedBefore.rowCount)        
-        if (emailUsedBefore.rowCount !== 0){
+        //checks if email has been used previously
+        let emailUsedBefore = await client.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);       
+        if (emailUsedBefore.rowCount !== 0){//if email already in database returns an error
             res.status(400).send('User Email already in use')
-        } else {
-            const hashedPassword = await bcrypt.hash(req.body.password, 10)
-            // console.log(hashedPassword)        
+        } else {//if email has not been used, encrypts the users password and inserts the user
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)     
             await client.query(`
                 INSERT INTO users (
                 name, password, university_id, email, role
                 )
                 VALUES ($1, $2, $3, $4, $5)
                 `, [req.body.name, hashedPassword, req.body.university_id, req.body.email, req.body.role]);
+            //responds with a message saying the user has been added
             res.json(`Signed Up`);
         }        
         /* Releasing the client from the database. */
