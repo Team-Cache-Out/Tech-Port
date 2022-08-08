@@ -341,6 +341,28 @@ app.patch("notes/:id", async (req,res) => {
     }
 });
 
+app.patch("status/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        /* Destructuring the req.body. */
+        const {
+            status
+        } = req.body;
+
+        /* This is a get request to the users table. It is using the user_id as a parameter to get one
+        select user. */
+        const data = await client.query("UPDATE tickets SET status $1 WHERE ticket_id = $2", [`${status}`, req.params.id]);
+        res.json(data.rows[0]);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
 /* This is a delete request to the tickets table. It is using the ticket_id as a parameter to delete a
 ticket. */
 app.delete("tickets/:id", async (req,res) => {

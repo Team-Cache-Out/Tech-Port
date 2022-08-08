@@ -129,3 +129,11 @@ p {
 textarea {
     resize: none;
 }
+
+.update {
+    /* display: inline-flex; */
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 30px;
+    justify-content: center;
+}
