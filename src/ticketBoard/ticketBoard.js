@@ -12,7 +12,7 @@ import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
 
-export default function TicketBoard() {
+export default function TicketBoard(props) {
   /* Destructuring the currentUni from the SignInContext. */
   const { currentUni } = useContext(SignInContext)
 
