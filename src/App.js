@@ -15,8 +15,16 @@ function App() {
   const { setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets } = useContext(CampusContext)
   const { setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets } = useContext(CampusContext)
 
-  // University of Houston Tickets
+  
   useEffect(() => {
+      houston()
+      arizona()
+      oregon()
+      pepperdine()
+  }, [])
+
+  // University of Houston Tickets
+  const houston = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/open`)
     .then(response => response.json())
     .then(data => setHoustonOpenTickets(data))
@@ -28,10 +36,10 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/1`)
     .then(response => response.json())
     .then(data => setHoustonCompleteTickets(data))
-  }, [setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets])
+  }
 
   // University of Arizona Tickets
-  useEffect(() => {
+  const arizona = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/open`)
     .then(response => response.json())
     .then(data => setArizonaOpenTickets(data))
@@ -43,11 +51,11 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/2`)
     .then(response => response.json())
     .then(data => setArizonaCompleteTickets(data))
-  }, [setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets])
+  }
 
 
   // University of Oregon Tickets
-  useEffect(() => {
+  const oregon = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/open`)
     .then(response => response.json())
     .then(data => setOregonOpentTickets(data))
@@ -59,10 +67,10 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/3`)
     .then(response => response.json())
     .then(data => setOregonCompleteTickets(data))
-  }, [setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets])
+  }
 
   // Pepperdine University Tickets
-  useEffect(() => {
+  const pepperdine = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/open`)
     .then(response => response.json())
     .then(data => setPepperdineOpenTickets(data))
@@ -74,7 +82,7 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/4`)
     .then(response => response.json())
     .then(data => setPepperCompleteTickets(data))
-  }, [setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets])
+  }
 
   return (
   <Router>

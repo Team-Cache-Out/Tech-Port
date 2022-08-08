@@ -109,25 +109,25 @@ export default function TicketBoard() {
               </div>
               <div className="boardColumnContainer">
                 <div className="boardColumn">
-                {currentUniversity[0].map((elem) => {
+                {currentUniversity ? currentUniversity[0].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 
-                })}
+                }) : null}
                 </div>
                 <div className="boardColumn">
-                {currentUniversity[1].map((elem) => {
+                {currentUniversity ? currentUniversity[1].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 
-                })}
+                }) : null}
                 </div>
                 <div className="boardColumn">
-                {currentUniversity[2].map((elem) => {
+                {currentUniversity ? currentUniversity[2].map((elem) => {
                   return (
                     <Ticket elem={elem} key={elem.ticket_id} />
                   ) 
-                })}
+                }) : null}
                 </div>
               </div>
             </div>
