@@ -43,13 +43,10 @@ body {
   
 }
 .adminLPage a{
-    
     text-decoration: none;
     color: inherit;
-    
-    
-    
 }
+
 .adminLPage button{
     box-shadow: 3px 3px rgba(0, 0, 0, 0.6);
 }
@@ -76,4 +73,11 @@ body {
 .universities img{
     width: 8rem;
     height: 8rem;
+}
+
+.name,
+.image,
+.openTickets,
+.techs {
+    pointer-events: none;
 }
