@@ -108,7 +108,7 @@ function App() {
       }></Route>
       <Route exact path='/ticketBoard' element={
         <>
-        <TicketBoard />
+        <TicketBoard houston={houston} arizona={arizona} oregon={oregon} pepperdine={pepperdine} />
         </>
       }></Route>
     </Routes>
