@@ -6,8 +6,10 @@ const cors = require("cors");
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const { JsonWebTokenError } = require("jsonwebtoken");
 
-const PORT = process.env.PORT || 4500
+const PORT = 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
@@ -82,7 +84,9 @@ app.post("/users/login", async (req, res) => {
         const data = await client.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);        
         //if db query returned a user and bcrypt compare says the passwords match then return the user
         if(data.rowCount > 0 && await bcrypt.compare(req.body.password, data.rows[0].password)){
-            res.json(data.rows);
+            // res.json(data.rows);
+            const accessToken = jwt.sign(data.rows[0], process.env.ACCESS_TOKEN)
+            res.json({ accessToken: accessToken });
         } else { //bcrypt compared password doesn't match stored password or no user returned from query due to no matching emails
             res.status(400).send('Login Failed')
         }
