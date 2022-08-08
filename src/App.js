@@ -6,21 +6,39 @@ import SignIn from "./login-page/SignIn";
 import AdminLandingPage from "./adminLandingPage/adminLandingPage";
 import TicketBoard from "./ticketBoard/ticketBoard";
 import CampusContext from './Context/CampusContext'
+import SignInContext from "./Context/SignInContext";
 
 function App() {
+  /* This is a React Hook that is used to set the state of the modalIsOpen variable. The modalIsOpen
+  variable is used to determine if the modal is open or not. */
   const [modalIsOpen, setmodalIsOpen] = useState(true);
 
+  
+  const { currentUni } = useContext(SignInContext)
+
+  /* Destructuring the functions from the CampusContext.js file. */
   const { setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets } = useContext(CampusContext)
   const { setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets } = useContext(CampusContext)
   const { setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets } = useContext(CampusContext)
   const { setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets } = useContext(CampusContext)
 
-  
+  /* This is a React Hook that is called when the component is mounted. It is calling the functions
+  that are fetching the data from the API. */
   useEffect(() => {
+    if(currentUni === null) {
       houston()
       arizona()
       oregon()
       pepperdine()
+
+      const interval = setInterval(() => {
+        houston()
+        arizona()
+        oregon()
+        pepperdine()
+      }, 5000)
+      return () => clearInterval(interval)
+    }
   }, [])
 
   // University of Houston Tickets
@@ -108,7 +126,7 @@ function App() {
       }></Route>
       <Route exact path='/ticketBoard' element={
         <>
-        <TicketBoard houston={houston} arizona={arizona} oregon={oregon} pepperdine={pepperdine} />
+        <TicketBoard />
         </>
       }></Route>
     </Routes>

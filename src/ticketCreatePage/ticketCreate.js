@@ -14,7 +14,6 @@ export default function TicketCreatePage() {
     let status = 'open';
     let university_id = currentUni;
 
-    console.log(problem)
     const create = (e) => {
         e.preventDefault()
         const data = {
