@@ -58,7 +58,6 @@ export default function SingleTicketModal({show}) {
 
     let addNote = ''
     let status = singleTicket.status.toUpperCase()
-    console.log(status)
 
     return (
         <>
