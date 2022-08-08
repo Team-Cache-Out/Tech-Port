@@ -8,6 +8,9 @@ import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
 import SignInContext from "../Context/SignInContext";
 import SingleTicketModal from "./singleTicketModal";
+import MyTickets from "../myTickets/MyTickets";
+import CampusReport from "../campusReport/CampusReport";
+import CampusTechs from "../campusTechs/campusTechs";
 
 export default function TicketBoard() {
   /* Destructuring the currentUni from the SignInContext. */
@@ -66,7 +69,7 @@ export default function TicketBoard() {
           <div>
           <Header />
           <Navbar />
-          <h1>CampusTechs</h1>
+          <CampusTechs />
           </div>
       )
   } else if(activeComp === 'campusReport') {
@@ -74,7 +77,7 @@ export default function TicketBoard() {
           <div>
           <Header />
           <Navbar />
-          <h1>CampusReport</h1>
+          <CampusReport />
           </div>
       )
   } else if(activeComp === 'myTickets') {
@@ -82,7 +85,7 @@ export default function TicketBoard() {
           <div>
           <Header />
           <Navbar />
-          <h1>MyTickets</h1>
+          <MyTickets />
           </div>
       )
   } else {
