@@ -93,9 +93,9 @@ export default function SingleTicketModal({show}) {
                             <label>Update Status:</label>
                             <select defaultValue={status} onChange={(e) => status = e.target.value}>
                             <option value={null} disabled>Choose status</option>
-                            <option value="OPEN">Open</option>
-                            <option value="WORKING">Working</option>
-                            <option value="COMPLETE">Completed</option>
+                            <option value="open">Open</option>
+                            <option value="working">Working</option>
+                            <option value="complete">Completed</option>
                             </select>
                         </form>
                         <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
