@@ -28,22 +28,13 @@ export default function AdminLandingPage() {
       setLoadState(true);
     },[houston.data,az.data,os.data,pen.data])
     const nav = (e)=>{
-        console.log(typeof e.target.id)
         let id = e.target.id
         setCurrentUni(parseInt(id))
-        // setUser(user.university_id = e.target.value)
-        console.log(typeof currentUni)
-     navigate('/ticketBoard')
+      navigate('/ticketBoard')
     }
-    // useEffect(() =>{
-    //     setHoustonTickets(houston.data)
-    //     setazTickets(az.data)
-    //     setosTickets(os.data)
-    //     setpenTickets(pen.data)
-    // },[houston.data,az.data,os.data,pen.data])
 
   return (
-    <>
+    <div>
     <nav className='adminLPage'>
         <ul>
             <li><p>{user.role}</p></li>
@@ -59,16 +50,17 @@ export default function AdminLandingPage() {
     {arruni.length > 3 &&                  
     <section className='universities'>
         {arruni.sort((a,b) => {return b.tickets - a.tickets}).map((uni) => { 
-      return (<div onClick={nav} id={uni.id}><a >{uni.name}</a> <img src={uni.logo} alt='logo'/><p>Open Tickets: {uni.tickets} </p><p>Techs: {uni.techs}</p></div>)
+      return (
+        <div onClick={nav} id={uni.id}>
+            <a href='.' className='name'>{uni.name}</a> 
+            <img className='image' src={uni.logo} alt='logo'/>
+            <p className='openTickets'>Open Tickets: {uni.tickets} </p>
+            <p className='techs'>Techs: {uni.techs}</p>
+        </div>)
   })}
-  {/* <p>{uni.name}</p> <img src={uni.logo} alt='logo'/><p>Open Tickets: {uni.tickets} </p><p>Techs: {uni.techs}</p> */}
-          {/* <div><p>{universities[0].name}</p> <img src={university[0].logo_url} alt='logo'/><p>Open Tickets: {houstonTickets.length}</p><p>Techs: {huTechs.length}</p></div>
-          <div><p>{university[1].name}</p><img src={university[1].logo_url} alt='logo'/><p>Open Tickets: {azTickets.length}</p><p>Techs: {azTechs.length}</p></div>
-          <div><p>{university[2].name}</p><img src={university[2].logo_url} alt='logo'/><p>Open Tickets: {osTickets.length}</p><p>Techs: {osTechs.length}</p></div>
-          <div><p>{university[3].name}</p><img src={university[3].logo_url} alt='logo'/><p>0pen Tickets: {penTickets.length}</p><p>Techs: {penTechs.length}</p></div> */}
     </section>
     
 }
-    </>
+    </div>
   )
  }
