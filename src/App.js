@@ -6,7 +6,6 @@ import SignIn from "./login-page/SignIn";
 import AdminLandingPage from "./adminLandingPage/adminLandingPage";
 import TicketBoard from "./ticketBoard/ticketBoard";
 import CampusContext from "./Context/CampusContext";
-import MyTickets from "./myTickets/MyTickets";
 
 function App() {
   const [modalIsOpen, setmodalIsOpen] = useState(true);
@@ -168,15 +167,6 @@ function App() {
           element={
             <>
               <TicketBoard />
-            </>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/myTickets"
-          element={
-            <>
-              <MyTickets />
             </>
           }
         ></Route>
