@@ -31,7 +31,7 @@ function SignUp(props) {
   const submit = (event) => {
     event.preventDefault()
     if((password === confirmedPass) && (name.length > 0) && (email.includes('@'))){
-      fetch(`http://worldwide-technical-foundation.herokuapp.com/users/signup`, {
+      fetch(`https://worldwide-technical-foundation.herokuapp.com/users/signup`, {
       method: 'POST',
       body: JSON.stringify({
           'password': `${password}`,
