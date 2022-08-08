@@ -119,6 +119,7 @@ label {
     padding-right: 10px;
 }
 
-textarea {
+
+.descriptionText {
     resize: none;
 }
