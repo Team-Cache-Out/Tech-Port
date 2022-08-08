@@ -96,7 +96,12 @@ Start the application
 
 - Campus Portal
 
-- Tech Portal
+- BCrypt Authentication
+
+- JWT User Persistence
+
+- User Testing
+
 ## Authors
 
 - [@robertgordon](https://github.com/bobbygrdn)

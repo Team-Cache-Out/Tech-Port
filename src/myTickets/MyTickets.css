@@ -1,0 +1,20 @@
+.myTicketContainer {
+    border: 1px solid gray;
+    height: max-content;margin-top: 55px;
+    margin-left: 45px;
+    margin-right: 45px;
+    background-color: rgb(255, 255, 255, .9);
+}
+
+.myTicketHeader {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: solid lightgray 1px;
+}
