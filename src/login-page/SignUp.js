@@ -72,11 +72,11 @@ function SignUp(props) {
               <br/>
               <br/>
               <label className='signUp-Labels'><center>Enter Password</center></label>
-              <input className='signUp-password' id='signUp-password' onChange={handlePassword} value={password} ></input>
+              <input className='signUp-password' id='signUp-password' onChange={handlePassword} value={password} type='password' ></input>
               <br/>
               <br/>
               <label className='signUp-Labels'><center>Confirm Password</center></label>
-              <input className='signUp-passConfirm' id='signUp-passConfirm' onChange={handleConfirmedPass} value={confirmedPass} ></input>
+              <input className='signUp-passConfirm' id='signUp-passConfirm' onChange={handleConfirmedPass} value={confirmedPass} type='password'></input>
               <br/>
               <br/>
               <button className='signUp-button' type='submit' form='signUp-Form'>Sign Up</button>

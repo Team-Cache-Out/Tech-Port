@@ -35,7 +35,29 @@ export default function SingleTicketModal({show}) {
         })
     }
 
+    const statusUpdate = () => {
+        let data = {
+            status
+        }
+
+        let fetchData ={
+            method: "PATCH",
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(data)
+        }
+
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/status/${singleTicket.ticket_id}`, fetchData)
+        .then(response => response.json())
+        .then(data => setSingleTicket(data))
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
     let addNote = ''
+    let status = singleTicket.status.toUpperCase()
 
     return (
         <>
@@ -65,8 +87,21 @@ export default function SingleTicketModal({show}) {
                             </textarea>
                             </form>
                     <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
-                            
+                    
+                    <div className='update'>
+                        <form> 
+                            <label>Update Status:</label>
+                            <select defaultValue={status} onChange={(e) => status = e.target.value}>
+                            <option value={null} disabled>Choose status</option>
+                            <option value="OPEN">Open</option>
+                            <option value="WORKING">Working</option>
+                            <option value="COMPLETE">Completed</option>
+                            </select>
+                        </form>
+                        <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
+                    </div>
                 </div>
+
             </div>
       : null}
       </>

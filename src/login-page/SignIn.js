@@ -35,7 +35,7 @@ function SignIn(props) {
       if(data.length !== 0) {
         setUser(data[0])
         setCurrentUni(data[0].university_id)
-        window.alert("You have logged in!")
+        // window.alert("You have logged in!")
         setLoading(false)
         if (data[0].role === 'admin') {
           navigate('/admin')
