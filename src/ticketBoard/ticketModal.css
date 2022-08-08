@@ -17,7 +17,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 800px;
     height: 800px;
     border: 10px solid #9ebddf;
@@ -46,7 +45,6 @@
     font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 30px;
-
 }
 
 h3,
@@ -120,4 +118,10 @@ p {
     background-color: initial;
     background-position: 0 0;
     color: #2EB394;
+}
+
+.notes {
+    border: 2px solid black;
+    width: 61vw;
+    text-align: left;
 }
