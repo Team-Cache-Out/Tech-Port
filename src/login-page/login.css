@@ -1,4 +1,15 @@
-
+.WWTF {
+    background-color: aliceblue;
+    font-family: 'Lucida Sans' ;
+    font-weight: 100;    
+    font-size: 45px;
+    opacity: 85%;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
 
 .SignIn-Container{
     display: flex;
@@ -14,8 +25,7 @@
     position: absolute;
     top: 58%;
     left: 50%;
-    transform: translate(-50%, -50%);
-   
+    transform: translate(-50%, -50%);   
 }
 
 .logInBody{
@@ -32,15 +42,15 @@
     align-items: center;
     font-family: Helvetica, sans-serif;
 }
-
-.Logo-Img {
+/*
+.Logo-Img {    
     position: absolute;
     height: 570px;
     left: 50%;
     top: 15%;
     transform: translate(-50%, -50%);
     margin-bottom: 50px;
-}
+} */
 
 .signIn-Header{
     margin-bottom: 50px;
@@ -58,30 +68,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-background: #2EB394;
-  border: 1px solid #2EB394;
-  border-radius: 15px;
-  box-shadow: rgba(0, 5, 5, 0.4) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #000000;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 16px;
-  min-height: 35px;
-  max-height: 35px;
-  outline: 0;
-  padding: 12px 14px;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  margin-top: 15px;
+    background: #2EB394;
+    border: 1px solid #2EB394;
+    border-radius: 15px;
+    box-shadow: rgba(0, 5, 5, 0.4) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    min-height: 35px;
+    max-height: 35px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    margin-top: 15px;
 }
 
 .SignIn-Button:hover,

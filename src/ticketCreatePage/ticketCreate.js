@@ -83,7 +83,7 @@ export default function TicketCreatePage() {
                   </div>
                   </div>
               <label>Description</label>
-              <textarea rows = "10" cols = "60" name = "description" onChange={(e) => description = e.target.value} placeholder="Enter details here...">
+              <textarea className='descriptionText' rows = "10" cols = "60" name = "description" onChange={(e) => description = e.target.value} placeholder="Enter details here...">
                   
               </textarea>
               <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit' onClick={create}>Submit
