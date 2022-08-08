@@ -88,6 +88,14 @@ export default function TicketBoard(props) {
           <MyTickets />
           </div>
       )
+  } else if(activeComp === 'roles') {
+    return (
+        <div>
+        <Header />
+        <Navbar />
+        <h1>Roles Component Goes Here</h1>
+        </div>
+    )
   } else {
       return (
           <div>
