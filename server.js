@@ -333,8 +333,8 @@ app.patch("notes/:id", async (req,res) => {
             notes
         } = req.body;
 
-        /* This is a get request to the users table. It is using the user_id as a parameter to get one
-        select user. */
+        
+        /* Updating the notes column in the tickets table. */
         const data = await client.query("UPDATE tickets SET notes =concat('$1,', notes) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
         res.json(data.rows[0]);
 
@@ -355,10 +355,15 @@ app.patch("status/:id", async (req,res) => {
             status
         } = req.body;
 
-        /* This is a get request to the users table. It is using the user_id as a parameter to get one
-        select user. */
-        const data = await client.query("UPDATE tickets SET status $1 WHERE ticket_id = $2", [`${status}`, req.params.id]);
-        res.json(data.rows[0]);
+        if(status === 'COMPLETE') {
+            /* Updating the status of a ticket in the database. */
+            const data = await client.query("UPDATE tickets SET status = $1 && SET close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            res.json(data.rows[0]);
+        } else {
+            /* Updating the status of a ticket in the database. */
+            const data = await client.query("UPDATE tickets SET status = $1 WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            res.json(data.rows[0]);
+        }    
 
         /* Releasing the client from the database. */
         client.release();
