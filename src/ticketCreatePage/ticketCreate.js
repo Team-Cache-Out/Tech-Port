@@ -36,6 +36,9 @@ export default function TicketCreatePage() {
         }
 
         fetch('https://worldwide-technical-foundation.herokuapp.com/tickets', fetchData)
+        .then(() => {
+            window.alert('Ticket Created!')
+        })
         .catch(error => {
             console.error(error)
         })
