@@ -1,14 +1,12 @@
-.WWTF {
-    background-color: aliceblue;
-    font-family: 'Lucida Sans' ;
-    font-weight: 100;    
-    font-size: 45px;
-    opacity: 85%;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 10px;
+
+.title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    min-width: 600px;
+    height: 30vh;
 }
 
 .SignIn-Container{
@@ -16,24 +14,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
-    height: 500px;
+    min-height: 450px;
+    min-width: 600px;    
+    height: 50vh;
     border: 10px solid #CAD6E2;
     background-color: rgb(255, 255, 255);
     border-bottom-left-radius: 3%;
     border-bottom-right-radius: 3%;
-    position: absolute;
-    top: 58%;
-    left: 50%;
-    transform: translate(-50%, -50%);   
 }
 
 .logInBody{
     display: flex;
     flex-direction: column;
+    justify-items: start;
     justify-content: center;
     align-items: center;
     width: auto;
+}
+
+.login-title{   
+    background-color: rgb(255, 255, 255); 
+    font-family: 'Lucida Sans' ;
+    font-weight: 100;
+    font-size: 45px;
+    opacity: 75%;
+    border-radius: 10px;
 }
 
 .SignIn-Form{
@@ -42,15 +47,12 @@
     align-items: center;
     font-family: Helvetica, sans-serif;
 }
-/*
-.Logo-Img {    
-    position: absolute;
-    height: 570px;
-    left: 50%;
-    top: 15%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 50px;
-} */
+
+.Login-Logo-Img {
+    min-height: 90px;
+    min-width: 90px;
+}
+
 
 .signIn-Header{
     margin-bottom: 50px;
@@ -61,7 +63,6 @@
     font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 30px;
-
 }
 
 .SignIn-Button{

@@ -14,6 +14,7 @@ function SignUp(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmedPass, setConfirmedPass] = useState('')
+    const [uniId, setUniId] = useState(1)
 
     const handleName = (e) => {
       setName(e.target.value)
@@ -27,6 +28,9 @@ function SignUp(props) {
     const handleConfirmedPass = (e) => {
       setConfirmedPass(e.target.value)
     }
+    const handleUniSelector = (e) => {
+      setUniId(parseInt(e.target.value))
+    }
 
   const submit = (event) => {
     event.preventDefault()
@@ -35,7 +39,7 @@ function SignUp(props) {
       method: 'POST',
       body: JSON.stringify({
           'password': `${password}`,
-          'university_id': 1,
+          'university_id': uniId,
           'role': "tech",
           'email': `${email}`,
           'name': `${name}`
@@ -64,21 +68,30 @@ function SignUp(props) {
             <h2 className='signUp-Header'>SIGN UP</h2>
             <form onSubmit={submit} className='signUp-Form' id='signUp-Form'>
               <label className='signUp-Labels'><center>First and Last Name</center></label>
-              <input className='signUp-name' id='signUp-name' onChange={handleName} value={name} ></input>
+              <input className='signUp-name' id='signUp-name' onChange={handleName} value={name} placeholder='Doug Dimmadome' ></input>
               <br/>
               <br/>
               <label className='signUp-Labels'><center>Email</center></label>
-              <input className='signUp-email' id='signUp-email' onChange={handleEmail} value={email} ></input>
+              <input className='signUp-email' id='signUp-email' onChange={handleEmail} value={email} placeholder='example@email.com' ></input>
               <br/>
               <br/>
               <label className='signUp-Labels'><center>Enter Password</center></label>
-              <input className='signUp-password' id='signUp-password' onChange={handlePassword} value={password} type='password' ></input>
+              <input className='signUp-password' id='signUp-password' onChange={handlePassword} value={password} type='password' placeholder='Password...' ></input>
               <br/>
               <br/>
               <label className='signUp-Labels'><center>Confirm Password</center></label>
-              <input className='signUp-passConfirm' id='signUp-passConfirm' onChange={handleConfirmedPass} value={confirmedPass} type='password'></input>
+              <input className='signUp-passConfirm' id='signUp-passConfirm' onChange={handleConfirmedPass} value={confirmedPass} type='password' placeholder='Confirm password...' ></input>
               <br/>
               <br/>
+              <label className='uniSelect-Labels'><center>Select your university:</center></label>
+              <center>
+                <select className='uniSelect' onChange={handleUniSelector}>
+                  <option value='1'>University of Houston</option>
+                  <option value='2'>University of Arizona</option>
+                  <option value='3'>Oregon State University</option>
+                  <option value='4'>Pepperdine University</option>
+                </select>
+              </center>
               <button className='signUp-button' type='submit' form='signUp-Form'>Sign Up</button>
             </form>
           </div>

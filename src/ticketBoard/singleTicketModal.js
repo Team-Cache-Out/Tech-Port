@@ -56,8 +56,8 @@ export default function SingleTicketModal({show}) {
         })
     }
 
-    let addNote = ''
-    let status = singleTicket.status.toUpperCase()
+    let addNote = '';
+    let status = singleTicket.status;
 
     return (
         <>
@@ -70,7 +70,7 @@ export default function SingleTicketModal({show}) {
                 <div className='TicketContainer'>
                     <button className='closeButton' onClick={handleClose}>X</button>
                     <h2 className='TicketHeader'>Ticket Information</h2>
-                    <h3>Open Date: {singleTicket.open_date.split('T')[0]} | Complete Date: {singleTicket.close_date ? singleTicket.close_date : 'Not Complete'} | Status: {singleTicket.status.toUpperCase()}</h3>
+                    <h3>Open Date: {singleTicket.open_date.split('T')[0]} | Complete Date: {singleTicket.close_date ? singleTicket.close_date.split('T')[0] : 'Not Complete'} | Status: {singleTicket.status.toUpperCase()}</h3>
                     <h3>Tech Assigned: {singleTicket.assigned_tech ? 'Yes' : 'No'} | Location: {singleTicket.location} | POC: {singleTicket.point_of_contact}</h3>
                     <h3>Problem: {singleTicket.problem} | Description: {singleTicket.description} | Priority: {singleTicket.priority} </h3>
                     <p>Notes: </p>
@@ -91,8 +91,8 @@ export default function SingleTicketModal({show}) {
                     <div className='update'>
                         <form> 
                             <label>Update Status:</label>
-                            <select defaultValue={status} onChange={(e) => status = e.target.value}>
-                            <option value={null} disabled>Choose status</option>
+                            <select defaultValue={null} onChange={(e) => status = e.target.value}>
+                            <option value={null}>Choose status</option>
                             <option value="open">Open</option>
                             <option value="working">Working</option>
                             <option value="complete">Completed</option>

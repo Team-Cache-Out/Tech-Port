@@ -36,8 +36,11 @@ export default function Navbar() {
                     <div className="navLinks" id='campusReport' onClick={handleClick}>
                     Campus Report
                     </div>
+                    <div className="navLinks" id='roles' onClick={handleClick}>
+                    Admin Roles
+                    </div>
                 </div> 
-          </nav>
+            </nav>
         )
     } else {
         return (

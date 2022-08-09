@@ -1,13 +1,12 @@
-.campusReportContainer {
+.AccountApprovalContainer {
     border: 1px solid gray;
     height: max-content;margin-top: 55px;
     margin-left: 45px;
     margin-right: 45px;
     background-color: rgb(255, 255, 255, .9);
-   
 }
 
-.campusReportHeader {
+.AccountApprovalHeader {
     margin-top: 20px;
     margin-bottom: 30px;
     padding-right: 10px;
@@ -18,18 +17,4 @@
     font-size: 30px;
     text-align: center;
     border-bottom: solid lightgray 1px;
-}
-.campusReportContainer ul{
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-}
-
-
-.campusReportContainer img{
-    display: block;
-    margin: auto;
-    width: 70%;
-    
 }
