@@ -71,7 +71,25 @@ export default function SingleTicketModal({show}) {
     }
 
     const claim = () => {
-        console.log(user.user_id)
+        console.log(user.user_id, singleTicket.ticket_id)
+        let data = {
+            assigned_tech: user.user_id
+        }
+
+        let fetchData ={
+            method: "PATCH",
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(data)
+        }
+
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${singleTicket.ticket_id}`, fetchData)
+        .then(response => response.json())
+        .then(data => setSingleTicket(data))
+        .catch(error => {
+            console.error(error)
+        })
     }
 
     /* Setting the value of the variable addNote to an empty string. */
