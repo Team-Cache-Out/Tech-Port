@@ -7,7 +7,7 @@ import SingleTicketModal from "../ticketBoard/singleTicketModal";
 import Ticket from "../ticketBoard/ticket";
 
 export default function MyTickets() {
-  const { currentUni } = useContext(SignInContext);
+  const { user, currentUni } = useContext(SignInContext);
 
   const {
     HoustonOpenTickets,
@@ -43,8 +43,11 @@ export default function MyTickets() {
       return campus[3];
     }
   };
-
+  console.log(user.role);
   let currentUniversity = currentCampus();
+  console.log(currentUni);
+  const { singleTicket } = useContext(CampusContext);
+  console.log(tickets.university_id);
 
   if (activeComp === "myTickets") {
     return (
@@ -61,12 +64,12 @@ export default function MyTickets() {
           </div>
           <div className="myBoardColumnContainer">
             <div className="myBoardColumn">
-              {currentUniversity[1].map((elem) => {
-                return <Ticket elem={elem} key={elem.ticket_id} />;
+              {currentUniversity.map((elem) => {
+                return <Ticket elem={elem} key={elem.university_id} />;
               })}
             </div>
             <div className="myBoardColumn">
-              {currentUniversity[0].map((elem) => {
+              {currentUniversity.map((elem) => {
                 return <Ticket elem={elem} key={elem.ticket_id} />;
               })}
             </div>
