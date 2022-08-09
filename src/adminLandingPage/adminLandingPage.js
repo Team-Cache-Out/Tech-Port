@@ -33,6 +33,14 @@ export default function AdminLandingPage() {
       navigate('/ticketBoard')
     }
 
+function logout () {
+  window.localStorage.clear()
+}
+if (user.role === 'tech') {
+  navigate('/ticketBoard')
+}
+
+
   return (
     <div>
     <nav className='adminLPage'>
@@ -42,7 +50,7 @@ export default function AdminLandingPage() {
         <h2>WorldWide Technical Foundation</h2>
         <ul>
             <li>
-              <p>Welcome, {user.name.split(" ")[0]} <a href="/"> <button className="adminLogout">Logout</button>
+              <p>Welcome, {user.name.split(" ")[0]} <a href="/"> <button className="adminLogout" onClick={logout}>Logout</button>
               </a></p>
             </li>
         </ul>

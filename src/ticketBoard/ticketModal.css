@@ -130,8 +130,10 @@ textarea {
     resize: none;
 }
 
+
 .update,
 .assign {
+
     /* display: inline-flex; */
     font-weight: bold;
     font-size: 20px;
@@ -142,4 +144,5 @@ textarea {
 
 .selections {
     display: inline-flex;
+
 }

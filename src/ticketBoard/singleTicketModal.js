@@ -42,9 +42,11 @@ export default function SingleTicketModal({show}) {
         })
     }
 
+
    /**
     * It takes the status of the ticket and updates it in the database.
     */
+
     const statusUpdate = () => {
         let data = {
             status
@@ -65,6 +67,7 @@ export default function SingleTicketModal({show}) {
             console.error(error)
         })
     }
+
 
     const assign = () => {
 
@@ -123,6 +126,7 @@ export default function SingleTicketModal({show}) {
         }
     }
 
+
     return (
         <>
         {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
@@ -152,6 +156,7 @@ export default function SingleTicketModal({show}) {
                     </form>
                     <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
 
+
                     <div className='selections'>
                         <div className='assign'>
                             {roleRights()}
@@ -169,6 +174,7 @@ export default function SingleTicketModal({show}) {
                             </form>
                             <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
                         </div>
+
 
                     </div>
                 </div>

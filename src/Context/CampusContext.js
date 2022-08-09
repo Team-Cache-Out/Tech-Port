@@ -1,28 +1,29 @@
 import { useState, createContext } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const CampusContext = createContext()
 
 export const CampusProvider = ({children}) => {
     
     // University of Houston [unversity_id = 1]
-    const [HoustonOpenTickets, setHoustonOpenTickets] = useState(null)
-    const [HoustonWorkingTickets, setHoustonWorkingTickets] = useState(null)
-    const [HoustonCompleteTickets, setHoustonCompleteTickets] = useState(null)
+    const [HoustonOpenTickets, setHoustonOpenTickets] = useLocalStorage("HoustonOpenTickets", null)
+    const [HoustonWorkingTickets, setHoustonWorkingTickets] = useLocalStorage("HoustonWorkingTickets", null)
+    const [HoustonCompleteTickets, setHoustonCompleteTickets] = useLocalStorage("HoustonCompleteTickets", null)
 
     // University of Arizona [unversity_id = 2]
-    const [ArizonaOpenTickets, setArizonaOpenTickets] = useState(null)
-    const [ArizonaWorkingTickets, setArizonaWorkingTickets] = useState(null)
-    const [ArizonaCompleteTickets, setArizonaCompleteTickets] = useState(null)
+    const [ArizonaOpenTickets, setArizonaOpenTickets] = useLocalStorage("ArizonaOpenTickets", null)
+    const [ArizonaWorkingTickets, setArizonaWorkingTickets] = useLocalStorage("ArizonaWorkingTickets", null)
+    const [ArizonaCompleteTickets, setArizonaCompleteTickets] = useLocalStorage("ArizonaCompleteTickets", null)
 
     // Oregon State [unversity_id = 3]
-    const [OregonOpenTickets, setOregonOpentTickets] = useState(null)
-    const [OregonWorkingTickets, setOregonWorkingTickets] = useState(null)
-    const [OregonCompleteTickets, setOregonCompleteTickets] = useState(null)
+    const [OregonOpenTickets, setOregonOpentTickets] = useLocalStorage("OregonOpenTickets", null)
+    const [OregonWorkingTickets, setOregonWorkingTickets] = useLocalStorage("OregonWorkingTickets", null)
+    const [OregonCompleteTickets, setOregonCompleteTickets] = useLocalStorage("OregonCompleteTickets", null)
 
     // Pepperdine University [unversity_id = 4]
-    const [PepperdineOpenTickets, setPepperdineOpenTickets] = useState(null)
-    const [PepperdineWorkingTickets, setPepperdineWorkingTickets] = useState(null)
-    const [PepperdineCompleteTickets, setPepperCompleteTickets] = useState(null)
+    const [PepperdineOpenTickets, setPepperdineOpenTickets] = useLocalStorage("PepperdineOpenTickets", null)
+    const [PepperdineWorkingTickets, setPepperdineWorkingTickets] = useLocalStorage("PepperdineWorkingTickets", null)
+    const [PepperdineCompleteTickets, setPepperCompleteTickets] = useLocalStorage("PepperdineCompleteTickets", null)
 
     // Ticket modal State
     const [ticketModal, setTicketModal] = useState(false)
