@@ -11,6 +11,7 @@ import SingleTicketModal from "./singleTicketModal";
 import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
+import AdminRoles from "../adminRoles/AdminRoles";
 
 export default function TicketBoard(props) {
   /* Destructuring the currentUni from the SignInContext. */
@@ -93,7 +94,7 @@ export default function TicketBoard(props) {
         <div>
         <Header />
         <Navbar />
-        <h1>Roles Component Goes Here</h1>
+        <AdminRoles />
         </div>
     )
   } else {
