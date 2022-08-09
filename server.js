@@ -484,6 +484,7 @@ app.get("/universities/ticketstechs", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
+    
 
         const data = await client.query(`SELECT universities.name, universities.logo_url, 
         COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
