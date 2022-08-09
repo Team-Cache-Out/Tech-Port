@@ -241,7 +241,7 @@ app.post("/tickets", async (req,res) => {
          /* Connecting to the database. */
         let client = await pool.connect();
         
-        const data = client.query("INSERT INTO tickets(close_date, open_date, problem, description, notes, point_of_contact, location, priority, status, assigned_tech, university_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", [req.body.close_date, req.body.open_date, req.body.problem, req.body.description, req.body.notes, req.body.point_of_contact, req.body.location, req.body.priority, req.body.status, req.body.assigned_tech, req.body.university_id]);
+        const data = client.query("INSERT INTO tickets(problem, description, point_of_contact, location, priority, status, university_id) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.problem, req.body.description, req.body.notes, req.body.point_of_contact, req.body.location, req.body.priority, req.body.status, req.body.university_id]);
         res.send(req.body);
 
         /* Releasing the client from the database. */
@@ -329,10 +329,37 @@ app.patch("notes/:id", async (req,res) => {
             notes
         } = req.body;
 
-        /* This is a get request to the users table. It is using the user_id as a parameter to get one
-        select user. */
+        
+        /* Updating the notes column in the tickets table. */
         const data = await client.query("UPDATE tickets SET notes =concat('$1,', notes) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
         res.json(data.rows[0]);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
+app.patch("status/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        /* Destructuring the req.body. */
+        const {
+            status
+        } = req.body;
+
+        if(status === 'COMPLETE') {
+            /* Updating the status of a ticket in the database. */
+            const data = await client.query("UPDATE tickets SET status = $1 && SET close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            res.json(data.rows[0]);
+        } else {
+            /* Updating the status of a ticket in the database. */
+            const data = await client.query("UPDATE tickets SET status = $1 WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            res.json(data.rows[0]);
+        }    
 
         /* Releasing the client from the database. */
         client.release();

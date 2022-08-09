@@ -40,7 +40,7 @@ export default function Ticket(prop) {
     return (
         <div id={prop.elem.ticket_id} onClick={handleClick} className="ticket">
                <div className="innerTicketContainerLeft">
-                  <div className={priority()}>.</div>
+                  <div className={priority()}></div>
                 </div>
                 <div className="innerTicketContainer">
                   <div className="problem">Problem: {prop.elem.problem}</div>

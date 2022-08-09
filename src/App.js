@@ -6,17 +6,43 @@ import SignIn from "./login-page/SignIn";
 import AdminLandingPage from "./adminLandingPage/adminLandingPage";
 import TicketBoard from "./ticketBoard/ticketBoard";
 import CampusContext from './Context/CampusContext'
+import SignInContext from "./Context/SignInContext";
 
 function App() {
+  /* This is a React Hook that is used to set the state of the modalIsOpen variable. The modalIsOpen
+  variable is used to determine if the modal is open or not. */
   const [modalIsOpen, setmodalIsOpen] = useState(true);
 
+  
+  const { currentUni } = useContext(SignInContext)
+
+  /* Destructuring the functions from the CampusContext.js file. */
   const { setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets } = useContext(CampusContext)
   const { setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets } = useContext(CampusContext)
   const { setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets } = useContext(CampusContext)
   const { setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets } = useContext(CampusContext)
 
-  // University of Houston Tickets
+  /* This is a React Hook that is called when the component is mounted. It is calling the functions
+  that are fetching the data from the API. */
   useEffect(() => {
+    if(currentUni === null) {
+      houston()
+      arizona()
+      oregon()
+      pepperdine()
+
+      const interval = setInterval(() => {
+        houston()
+        arizona()
+        oregon()
+        pepperdine()
+      }, 5000)
+      return () => clearInterval(interval)
+    }
+  }, [])
+
+  // University of Houston Tickets
+  const houston = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/open`)
     .then(response => response.json())
     .then(data => setHoustonOpenTickets(data))
@@ -28,10 +54,10 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/1`)
     .then(response => response.json())
     .then(data => setHoustonCompleteTickets(data))
-  }, [setHoustonOpenTickets, setHoustonWorkingTickets, setHoustonCompleteTickets])
+  }
 
   // University of Arizona Tickets
-  useEffect(() => {
+  const arizona = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/open`)
     .then(response => response.json())
     .then(data => setArizonaOpenTickets(data))
@@ -43,11 +69,11 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/2`)
     .then(response => response.json())
     .then(data => setArizonaCompleteTickets(data))
-  }, [setArizonaOpenTickets, setArizonaWorkingTickets, setArizonaCompleteTickets])
+  }
 
 
   // University of Oregon Tickets
-  useEffect(() => {
+  const oregon = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/open`)
     .then(response => response.json())
     .then(data => setOregonOpentTickets(data))
@@ -59,10 +85,10 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/3`)
     .then(response => response.json())
     .then(data => setOregonCompleteTickets(data))
-  }, [setOregonOpentTickets, setOregonWorkingTickets, setOregonCompleteTickets])
+  }
 
   // Pepperdine University Tickets
-  useEffect(() => {
+  const pepperdine = () => {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/open`)
     .then(response => response.json())
     .then(data => setPepperdineOpenTickets(data))
@@ -74,7 +100,7 @@ function App() {
     fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/4`)
     .then(response => response.json())
     .then(data => setPepperCompleteTickets(data))
-  }, [setPepperdineOpenTickets, setPepperdineWorkingTickets, setPepperCompleteTickets])
+  }
 
   return (
   <Router>

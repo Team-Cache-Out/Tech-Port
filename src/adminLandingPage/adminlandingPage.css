@@ -43,13 +43,10 @@ body {
   
 }
 .adminLPage a{
-    
     text-decoration: none;
     color: inherit;
-    
-    
-    
 }
+
 .adminLPage button{
     color: rgba(1, 41, 83, 0.92);
     font-size: 15px;
@@ -85,4 +82,11 @@ body {
 .universities img{
     width: 8rem;
     height: 8rem;
+}
+
+.name,
+.image,
+.openTickets,
+.techs {
+    pointer-events: none;
 }

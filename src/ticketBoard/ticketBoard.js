@@ -11,8 +11,9 @@ import SingleTicketModal from "./singleTicketModal";
 import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
+import AdminRoles from "../adminRoles/AdminRoles";
 
-export default function TicketBoard() {
+export default function TicketBoard(props) {
   /* Destructuring the currentUni from the SignInContext. */
   const { currentUni } = useContext(SignInContext)
 
@@ -88,6 +89,14 @@ export default function TicketBoard() {
           <MyTickets />
           </div>
       )
+  } else if(activeComp === 'roles') {
+    return (
+        <div>
+        <Header />
+        <Navbar />
+        <AdminRoles />
+        </div>
+    )
   } else {
       return (
           <div>
