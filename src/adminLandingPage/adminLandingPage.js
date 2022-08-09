@@ -59,7 +59,7 @@ function logout () {
     <section className='universities'>
         {arruni.sort((a,b) => {return b.tickets - a.tickets}).map((uni) => { 
       return (
-        <div onClick={nav} id={uni.id}>
+        <div className='uni-card' onClick={nav} id={uni.id}>
             <a href='.' className='name'>{uni.name}</a> 
             <img className='image' src={uni.logo} alt='logo'/>
             <p className='openTickets'>Open Tickets: {uni.tickets} </p>
