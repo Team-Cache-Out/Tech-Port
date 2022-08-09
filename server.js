@@ -6,8 +6,10 @@ const cors = require("cors");
 /* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const { JsonWebTokenError } = require("jsonwebtoken");
 
-const PORT = process.env.PORT || 4500
+const PORT = 4500
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
@@ -83,6 +85,8 @@ app.post("/users/login", async (req, res) => {
         //if db query returned a user and bcrypt compare says the passwords match then return the user
         if(data.rowCount > 0 && await bcrypt.compare(req.body.password, data.rows[0].password)){
             res.json(data.rows);
+            // const accessToken = jwt.sign(data.rows[0], process.env.ACCESS_TOKEN)
+            // res.json({ accessToken: accessToken });
         } else { //bcrypt compared password doesn't match stored password or no user returned from query due to no matching emails
             res.status(400).send('Login Failed')
         }
@@ -90,7 +94,7 @@ app.post("/users/login", async (req, res) => {
         client.release();
     } catch (error) {
         console.log(error)
-    }
+    }``
 });
 
 /* This is a post request to the users table. It is using the name, password, university_id, email, and
@@ -367,6 +371,7 @@ app.patch("status/:id", async (req,res) => {
     }
 });
 
+
 /* The below code is updating the assigned_tech column in the tickets table. */
 app.patch("assign/:id", async (req,res) => {
     try {
@@ -387,6 +392,7 @@ app.patch("assign/:id", async (req,res) => {
         console.error(error)
     }
 })
+
 
 /* This is a delete request to the tickets table. It is using the ticket_id as a parameter to delete a
 ticket. */
@@ -501,6 +507,7 @@ app.get("/universities/ticketstechs", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
+    
 
         const data = await client.query(`SELECT universities.name, universities.logo_url, 
         COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
