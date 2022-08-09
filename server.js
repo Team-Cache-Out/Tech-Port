@@ -450,6 +450,31 @@ let uni = {
     }
 });
 
+
+
+app.get("/campus/tickets/:id", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let client = await pool.connect();
+        let university = await client.query(`SELECT * FROM universities WHERE university_id = $1`, [req.params.id])
+        let techs = await client.query(`SELECT COUNT (*) FROM users WHERE university_id = $1 AND role = 'tech'`, [req.params.id]);
+        const open = await client.query("SELECT COUNT (*) FROM tickets WHERE university_id=$1 AND status=$2", [req.params.id,'open']);
+        const working = await client.query("SELECT COUNT (*) FROM tickets WHERE university_id=$1 AND status=$2", [req.params.id,'working']);
+        let campus = {
+            logo: university.rows[0].logo_url,
+            techs: techs.rows[0].count,
+            open: open.rows[0].count,
+            working: working.rows[0].count
+        }
+        res.json(campus);
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
 /* The below code is a GET request that is retrieving data from the database. It should return an array of 
 University objects with a count of tickets and techs pre sorted by the number of open tickets */
 app.get("/universities/ticketstechs", async (req,res) => {
@@ -468,7 +493,6 @@ app.get("/universities/ticketstechs", async (req,res) => {
         console.error(error)
     }
 });
-
 
 
 //!--------------------------------------------------------------------------------------------------------
