@@ -368,6 +368,27 @@ app.patch("status/:id", async (req,res) => {
     }
 });
 
+/* The below code is updating the assigned_tech column in the tickets table. */
+app.patch("assign/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        /* Destructuring the req.body. */
+        const {
+            assigned_tech
+        } = req.body;
+
+        const data = await client.query("UPDATE tickets SET assigned_tech = $1 WHERE ticket_id = $2", [`${assigned_tech}`, req.params.id]);
+        res.json(data.rows[0])
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 /* This is a delete request to the tickets table. It is using the ticket_id as a parameter to delete a
 ticket. */
 app.delete("tickets/:id", async (req,res) => {
