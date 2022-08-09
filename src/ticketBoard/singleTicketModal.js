@@ -66,6 +66,14 @@ export default function SingleTicketModal({show}) {
         })
     }
 
+    const assign = () => {
+
+    }
+
+    const claim = () => {
+        console.log(user.user_id)
+    }
+
     /* Setting the value of the variable addNote to an empty string. */
     let addNote = ''
     /* Setting the value of the variable status to the value of the singleTicket.status property. */
@@ -82,7 +90,7 @@ export default function SingleTicketModal({show}) {
             
                     </select>
                 </form>
-                <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
+                <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={assign}>Update</button>
                 </div>
             )
         } else {
@@ -91,7 +99,7 @@ export default function SingleTicketModal({show}) {
                 <form>
                     <label>Claim Ticket</label>
                 </form>
-                <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Claim</button>
+                <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={claim}>Claim</button>
                 </div>
             )
         }
