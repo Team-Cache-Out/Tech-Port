@@ -32,18 +32,15 @@ export default function AdminLandingPage() {
         setCurrentUni(parseInt(id))
       navigate('/ticketBoard')
     }
-    // useEffect(() =>{
-    //     setHoustonTickets(houston.data)
-    //     setazTickets(az.data)
-    //     setosTickets(os.data)
-    //     setpenTickets(pen.data)
-    // },[houston.data,az.data,os.data,pen.data])
+
 function logout () {
   window.localStorage.clear()
 }
 if (user.role === 'tech') {
   navigate('/ticketBoard')
 }
+
+
   return (
     <div>
     <nav className='adminLPage'>
