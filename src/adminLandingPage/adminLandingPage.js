@@ -41,6 +41,9 @@ export default function AdminLandingPage() {
 function logout () {
   window.localStorage.clear()
 }
+if (user.role === 'tech') {
+  navigate('/ticketBoard')
+}
   return (
     <div>
     <nav className='adminLPage'>
