@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const { JsonWebTokenError } = require("jsonwebtoken");
 
-const PORT = 4500
+const PORT = 4500 || process.env.PORT
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
