@@ -329,9 +329,8 @@ app.patch("notes/:id", async (req,res) => {
             notes
         } = req.body;
 
-        
         /* Updating the notes column in the tickets table. */
-        const data = await client.query("UPDATE tickets SET notes =concat('$1,', notes) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
+        const data = await client.query("UPDATE tickets SET note =concat('$1,', note) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
         res.json(data.rows[0]);
 
         /* Releasing the client from the database. */
@@ -351,9 +350,9 @@ app.patch("status/:id", async (req,res) => {
             status
         } = req.body;
 
-        if(status === 'COMPLETE') {
+        if(status === 'complete') {
             /* Updating the status of a ticket in the database. */
-            const data = await client.query("UPDATE tickets SET status = $1 && SET close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            const data = await client.query("UPDATE tickets SET status = $1, close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [`${status}`, req.params.id]);
             res.json(data.rows[0]);
         } else {
             /* Updating the status of a ticket in the database. */

@@ -3,6 +3,7 @@ import "./ticketBoard.css";
 import Header from './header'
 import Navbar from './navbar'
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom";
 import CampusContext from "../Context/CampusContext";
 import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
@@ -11,12 +12,14 @@ import SingleTicketModal from "./singleTicketModal";
 import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
-import AdminRoles from "../adminRoles/AdminRoles";
+// import AdminRoles from "../adminRoles/AdminRoles";
+import AccountApproval from "../accountApproval/techAccounts";
 
-export default function TicketBoard(props) {
+
+export default function TicketBoard() {
   /* Destructuring the currentUni from the SignInContext. */
   const { currentUni } = useContext(SignInContext)
-
+  const navigate = useNavigate()
   /* Destructuring the CampusContext and assigning the values to the variables. */
   const { HoustonOpenTickets, HoustonWorkingTickets, HoustonCompleteTickets, ArizonaOpenTickets, ArizonaWorkingTickets, ArizonaCompleteTickets, OregonOpenTickets, OregonWorkingTickets, OregonCompleteTickets, PepperdineOpenTickets,
   PepperdineWorkingTickets, PepperdineCompleteTickets } = useContext(CampusContext);
@@ -94,15 +97,14 @@ export default function TicketBoard(props) {
         <div>
         <Header />
         <Navbar />
-        <AdminRoles />
+        <AccountApproval />
         </div>
     )
   } else {
       return (
           <div>
             <Header />
-            <Navbar />
-    
+            <Navbar />    
             <div className="ticketBoardContainer">
               <h1 className="ticketBoard-header">Ticket Board</h1>
               <div className="boardRowPosition">

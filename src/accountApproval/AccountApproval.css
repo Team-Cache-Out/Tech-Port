@@ -1,4 +1,4 @@
-.adminRolesContainer {
+.AccountApprovalContainer {
     border: 1px solid gray;
     height: max-content;margin-top: 55px;
     margin-left: 45px;
@@ -6,7 +6,7 @@
     background-color: rgb(255, 255, 255, .9);
 }
 
-.adminRolesHeader {
+.AccountApprovalHeader {
     margin-top: 20px;
     margin-bottom: 30px;
     padding-right: 10px;

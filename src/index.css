@@ -1,5 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    padding: 0;   
+    box-sizing: border-box;
+}
+
+.page-background-OU {
+  background-image: URL("../design/oregon_of_university.jpg");
+}
+
+.page-background-PU {  
+  background-image: URL("../design/pepperdine_university.jpg");
+}
+
+.page-background-UA {
+  background-image: URL("../design/university_of_arizona.jpeg");
+}
+
+.page-background-UH {
+  background-image: URL("../design/university_of_houston.jpg");
 }

@@ -151,7 +151,7 @@ export default function SingleTicketModal({show}) {
                             </textarea>
                     </form>
                     <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
-                    
+
                     <div className='selections'>
                         <div className='assign'>
                             {roleRights()}
@@ -169,6 +169,7 @@ export default function SingleTicketModal({show}) {
                             </form>
                             <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
                         </div>
+
                     </div>
                 </div>
 
