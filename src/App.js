@@ -128,7 +128,7 @@ function App() {
         <>
         <TicketBoard />
         </>
-      }></Route>
+      }></Route>      
     </Routes>
   </Router>   
   );
