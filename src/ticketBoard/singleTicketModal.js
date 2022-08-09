@@ -56,8 +56,8 @@ export default function SingleTicketModal({show}) {
         })
     }
 
-    let addNote = ''
-    let status = singleTicket.status.toUpperCase()
+    let addNote = '';
+    let status = singleTicket.status;
 
     return (
         <>
@@ -91,8 +91,8 @@ export default function SingleTicketModal({show}) {
                     <div className='update'>
                         <form> 
                             <label>Update Status:</label>
-                            <select defaultValue={status} onChange={(e) => status = e.target.value}>
-                            <option value={null} disabled>Choose status</option>
+                            <select defaultValue={null} onChange={(e) => status = e.target.value}>
+                            <option value={null}>Choose status</option>
                             <option value="open">Open</option>
                             <option value="working">Working</option>
                             <option value="complete">Completed</option>
