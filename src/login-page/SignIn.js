@@ -19,8 +19,9 @@ function SignIn(props) {
   const navigate = useNavigate()
 
   const submit = async (event) => {
+    window.localStorage.clear();
     event.preventDefault()
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/users/login`, {
+    fetch(`http://localhost:4500/users/login`, {
       method: 'POST',
       body: JSON.stringify({
         'password': `${enteredPassword}`,

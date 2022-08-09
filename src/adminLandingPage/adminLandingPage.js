@@ -41,7 +41,9 @@ export default function AdminLandingPage() {
     //     setosTickets(os.data)
     //     setpenTickets(pen.data)
     // },[houston.data,az.data,os.data,pen.data])
-
+function logout () {
+  window.localStorage.clear()
+}
   return (
     <>
     <nav className='adminLPage'>
@@ -51,7 +53,7 @@ export default function AdminLandingPage() {
         <h2>WorldWide Technical Foundation</h2>
         <ul>
             <li>
-              <p>Welcome, {user.name.split(" ")[0]} <a href="/"> <button className="adminLogout">Logout</button>
+              <p>Welcome, {user.name.split(" ")[0]} <a href="/"> <button className="adminLogout" onClick={logout}>Logout</button>
               </a></p>
             </li>
         </ul>

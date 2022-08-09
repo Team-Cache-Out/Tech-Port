@@ -84,9 +84,9 @@ app.post("/users/login", async (req, res) => {
         const data = await client.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);        
         //if db query returned a user and bcrypt compare says the passwords match then return the user
         if(data.rowCount > 0 && await bcrypt.compare(req.body.password, data.rows[0].password)){
-            // res.json(data.rows);
-            const accessToken = jwt.sign(data.rows[0], process.env.ACCESS_TOKEN)
-            res.json({ accessToken: accessToken });
+            res.json(data.rows);
+            // const accessToken = jwt.sign(data.rows[0], process.env.ACCESS_TOKEN)
+            // res.json({ accessToken: accessToken });
         } else { //bcrypt compared password doesn't match stored password or no user returned from query due to no matching emails
             res.status(400).send('Login Failed')
         }
@@ -94,7 +94,7 @@ app.post("/users/login", async (req, res) => {
         client.release();
     } catch (error) {
         console.log(error)
-    }
+    }``
 });
 
 /* This is a post request to the users table. It is using the name, password, university_id, email, and

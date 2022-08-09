@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./ticketBoard.css";
 import SignInContext from '../Context/SignInContext';
 
@@ -25,7 +25,9 @@ export default function Header() {
       return 'Pepperdine University'
     }
   }
-
+function logout () {
+  window.localStorage.clear()
+}
     return (
         <div>
           <nav className="nav1">
@@ -38,7 +40,7 @@ export default function Header() {
             <div className="rightPosition">
               <div className="columnPosition">
               <div className="myName">Welcome, {user.name.split(' ')[0]}</div>
-              <a className="logout" href="/">Logout</a>
+              <a className="logout" href="/" onClick={logout}>Logout</a>
               </div>
             </div>
           </nav>
