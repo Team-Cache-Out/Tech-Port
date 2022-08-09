@@ -48,7 +48,16 @@ body {
 }
 
 .adminLPage button{
-    box-shadow: 3px 3px rgba(0, 0, 0, 0.6);
+    color: rgba(1, 41, 83, 0.92);
+    font-size: 15px;
+    /* border: 2px dashed black; */
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 15px;
+    background-color: white;
+    border-radius: 5px;
 }
 .universities{
     display: flex;
