@@ -27,12 +27,14 @@ export default function CampusTechs() {
 
     return (
         <div className="campusTechsContainer">
-        <div className="campusTechsHeader">Campus Techs</div>
-        {/* {currentTechs().map((elem) => {
-            return (
-                <Tech />
-            )
-        })}*/}
+            <div className="campusTechsHeader">Campus Techs</div>
+            <div className="techsContainer">
+                {currentTechs().map((elem) => {
+                    return (
+                        <Tech elem={elem} key={elem.user_id} />
+                    )
+                })}
+            </div>
         </div>
     )
 }
