@@ -210,7 +210,7 @@ export default function SingleTicketModal({show}) {
     }
 
     const notes = () => {
-        if(singleTicket.note !== null) {
+        if(singleTicket.note !== '') {
             return (
 
                 singleTicket.note.split(',').map((elem) => {
