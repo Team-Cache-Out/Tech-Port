@@ -361,18 +361,20 @@ app.patch("/status/:id", async (req,res) => {
 
         if(status === 'complete') {
             /* Updating the status of a ticket in the database. */
-            const data = await client.query("UPDATE tickets SET status = $1, close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            await client.query("UPDATE tickets SET status = $1, close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [status, req.params.id]);
+            let data = await client.query(`SELECT * FROM tickets WHERE ticket_id = $1`, [req.params.id])
             res.json(data.rows[0]);
         } else {
             /* Updating the status of a ticket in the database. */
-            const data = await client.query("UPDATE tickets SET status = $1 WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            await client.query("UPDATE tickets SET status = $1 WHERE ticket_id = $2", [status, req.params.id]);
+            let data = await client.query(`SELECT * FROM tickets WHERE ticket_id = $1`, [req.params.id])
             res.json(data.rows[0]);
         }    
 
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
-        console.error(error)
+        console.error(error.message)
     }
 });
 
