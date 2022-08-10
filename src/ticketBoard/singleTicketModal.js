@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CampusContext from '../Context/CampusContext'
 import SignInContext from '../Context/SignInContext'
 import './ticketModal.css'
@@ -8,7 +8,11 @@ export default function SingleTicketModal({show}) {
     /* Destructuring the CampusContext object */
     const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
 
-    const { user } = useContext(SignInContext)
+    const { HoustonTechs, ArizonaTechs, OregonTechs, PepperdineTechs } = useContext(CampusContext)
+
+    const { user, currentUni } = useContext(SignInContext)
+
+    const [tech, setTech] = useState(null)
 
     /**
      * When the user clicks the close button, the ticket modal will close.
@@ -68,13 +72,45 @@ export default function SingleTicketModal({show}) {
         })
     }
 
+    const currentTechs = () => {
+        if(currentUni === 1) {
+            return HoustonTechs;
+        }
+        if(currentUni === 2) {
+            return ArizonaTechs;
+        }
+        if(currentUni === 3) {
+            return OregonTechs;
+        }
+        if(currentUni === 4) {
+            return PepperdineTechs;
+        }
+    }
 
     const assign = () => {
+        let data = {
+            assigned_tech: tech
+        }
 
+        let fetchData ={
+            method: "PATCH",
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(data)
+        }
+
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${singleTicket.ticket_id}`, fetchData)
+        .then(response => response.json())
+        .then(data => setSingleTicket(data))
+        .catch(error => {
+            console.error(error)
+        })
+
+        setTech('')
     }
 
     const claim = () => {
-        console.log(user.user_id, singleTicket.ticket_id)
         let data = {
             assigned_tech: user.user_id
         }
@@ -102,19 +138,24 @@ export default function SingleTicketModal({show}) {
 
     const roleRights = () => {
         
-        if(user.role === 'admin') {
+        if(user.role === 'admin' && singleTicket.status === 'open') {
             return (
                 <div>
                 <form>
                     <label>Assign Ticket:</label>
-                    <select defaultValue={null} >
-            
+                    <select value={tech} onChange={(e) => setTech(e.target.value)} >
+                    <option value={null}>Choose Technician</option>
+                        {currentTechs().map((elem) => {
+                            return (
+                                <option value={elem.user_id}>{elem.name}</option>
+                            )
+                        })}
                     </select>
                 </form>
                 <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={assign}>Update</button>
                 </div>
             )
-        } else {
+        } else if(user.role === 'tech' && singleTicket.status === 'open') {
             return  (
                 <div>
                 <form>
