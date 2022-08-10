@@ -6,7 +6,7 @@ export default function Tech(props) {
     const { setActiveComp } = useContext(CampusContext)    
     const handleAdminClick = (e) => {
         let id = parseInt(e.target.id)     
-        fetch(`http://localhost:4000/users/${id}`, {
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/users/${id}`, {
             method: 'PATCH',
             body: JSON.stringify({
             'role': 'admin'            
@@ -22,8 +22,7 @@ export default function Tech(props) {
         })
         .catch((error) => {
             console.error('Error:', error);
-        });  
-            
+        });              
     }
     //future functionality: there will be issues if tech has tickets assigned to them and changes campus
     // const handleCampusClick = (e) => {

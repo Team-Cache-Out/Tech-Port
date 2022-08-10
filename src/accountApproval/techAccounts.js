@@ -18,7 +18,7 @@ export default function TechAccounts() {
         campus = "Pepperdine University"    
     }
     useEffect(() => {        
-        fetch(`http://localhost:4000/techs/${currentUni}`, {
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/techs/${currentUni}`, {
             method: 'GET',
             headers: {
                 'Content-type' : 'application/json'
