@@ -473,8 +473,7 @@ let uni = {
     }
 });
 
-
-
+/* The below code is a route that is used to get the data for a specific campus. */
 app.get("/campus/tickets/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
@@ -566,6 +565,22 @@ app.get("/campus/:id", async (req,res) => {
 
          /* Releasing the client from the database. */
         client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+/* The below code is a route that is used to get all the techs from a specific university. */
+app.get("/techs/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query("SELECT * FROM users WHERE university_id = $1 AND role = $2;", [req.params.id, "tech"])
+        res.json(data.rows)
+
+         /* Releasing the client from the database. */
+         client.release();
     } catch (error) {
         console.error(error)
     }
