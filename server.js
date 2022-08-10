@@ -91,7 +91,7 @@ app.post("/users/login", async (req, res) => {
         client.release();
     } catch (error) {
         console.log(error)
-    }``
+    }
 });
 
 /* This is a post request to the users table. It is using the name, password, university_id, email, and
@@ -241,9 +241,9 @@ app.post("/tickets", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
-        
-        const data = client.query("INSERT INTO tickets(problem, description, point_of_contact, location, priority, status, university_id) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.problem, req.body.description, req.body.notes, req.body.point_of_contact, req.body.location, req.body.priority, req.body.status, req.body.university_id]);
-        res.send(data.rows[0]);
+        console.log(req.body)
+        // const data = client.query("INSERT INTO tickets (problem, description, point_of_contact, location, priority, status, university_id) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.problem, req.body.description, req.body.notes, req.body.point_of_contact, req.body.location, req.body.priority, req.body.status, req.body.university_id]);
+        // res.send(data.rows[0]);
 
         /* Releasing the client from the database. */
         client.release();
