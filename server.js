@@ -3,11 +3,8 @@ const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
-/* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
-const { JsonWebTokenError } = require("jsonwebtoken");
 
 const PORT = process.env.PORT
 
