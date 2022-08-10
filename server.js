@@ -166,7 +166,7 @@ app.patch("/users/:id", async (req,res) => {
 });
 
 /* This is a delete request to the users table. It is using the user_id as a parameter to delete a user. */
-app.delete("users/:id", async (req,res) => {
+app.delete("/users/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         const client = await pool.connect();
@@ -254,7 +254,7 @@ app.post("/tickets", async (req,res) => {
 
 /* This is a patch request to the tickets table. It is using the close date, open date, problem, description,
 notes, point of contact, location, priority, status, assigned tech, and university id as parameters to update a ticket. */
-app.patch("tickets/:id", async (req,res) => {
+app.patch("/tickets/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -320,7 +320,7 @@ app.patch("tickets/:id", async (req,res) => {
     }
 });
 
-app.patch("notes/:id", async (req,res) => {
+app.patch("/notes/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -341,7 +341,7 @@ app.patch("notes/:id", async (req,res) => {
     }
 });
 
-app.patch("status/:id", async (req,res) => {
+app.patch("/status/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -370,7 +370,7 @@ app.patch("status/:id", async (req,res) => {
 
 
 /* The below code is updating the assigned_tech column in the tickets table. */
-app.patch("assign/:id", async (req,res) => {
+app.patch("/assign/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -393,7 +393,7 @@ app.patch("assign/:id", async (req,res) => {
 
 /* This is a delete request to the tickets table. It is using the ticket_id as a parameter to delete a
 ticket. */
-app.delete("tickets/:id", async (req,res) => {
+app.delete("/tickets/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         const client = await pool.connect();
