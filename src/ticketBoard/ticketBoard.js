@@ -12,8 +12,7 @@ import SingleTicketModal from "./singleTicketModal";
 import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
-// import AdminRoles from "../adminRoles/AdminRoles";
-import AccountApproval from "../accountApproval/techAccounts";
+import AccountApproval from "../accountApproval/AccountApproval";
 
 
 export default function TicketBoard() {
