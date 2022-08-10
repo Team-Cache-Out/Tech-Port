@@ -98,7 +98,7 @@ Start the application
 
 - BCrypt Authentication
 
-- JWT User Persistence
+- Local Storage User Persistence
 
 - User Testing
 
