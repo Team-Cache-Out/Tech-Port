@@ -54,7 +54,7 @@ export default function TicketCreatePage() {
         <h2 className='Ticket-Header'>Create a ticket</h2>
         <form className='Ticket-Form' id='Ticket-Form'>
   
-          <div className="selections">
+          <div className="select">
           <div className="createSubject">
           <label>Subject:</label>
           <input className='Subject-Input' id='Subject-email' onChange={(e) => problem = e.target.value} >
