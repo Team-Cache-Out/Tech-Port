@@ -209,6 +209,19 @@ export default function SingleTicketModal({show}) {
         }
     }
 
+    const notes = () => {
+        if(singleTicket.note !== null) {
+            return (
+
+                singleTicket.note.split(',').map((elem) => {
+                    return (
+                        <div>{elem}</div>
+                        )
+                    })
+            ) 
+        } 
+    }
+
     return (
         <div>
         {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
@@ -225,11 +238,7 @@ export default function SingleTicketModal({show}) {
                     <h3>Problem: {singleTicket.problem} | Description: {singleTicket.description} | Priority: {singleTicket.priority} </h3>
                     <p>Notes: </p>
                     <div className='notes'>
-                        {singleTicket.note.split(',').map((elem) => {
-                        return (
-                            <div>{elem}</div>
-                            )
-                        })}
+                        {notes()}
                     </div>
                     <form className='TicketForm' id='TicketForm'>
                             <label>Add Note</label>
