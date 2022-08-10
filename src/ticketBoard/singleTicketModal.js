@@ -22,24 +22,25 @@ export default function SingleTicketModal({show}) {
     * PATCH request.
     */
     const noteSubmit = () => {
-        let data = {
-            notes: addNote
-        }
+        // let data = {
+        //     notes: addNote
+        // }
 
-        let fetchData ={
-            method: "PATCH",
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify(data)
-        }
+        // let fetchData ={
+        //     method: "PATCH",
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json'
+        //     }),
+        //     body: JSON.stringify(data)
+        // }
 
-        fetch(`https://worldwide-technical-foundation.herokuapp.com/notes/${singleTicket.ticket_id}`, fetchData)
-        .then(response => response.json())
-        .then(data => setSingleTicket(data))
-        .catch(error => {
-            console.error(error)
-        })
+        // fetch(`https://worldwide-technical-foundation.herokuapp.com/notes/${singleTicket.ticket_id}`, fetchData)
+        // .then(response => response.json())
+        // .then(data => setSingleTicket(data))
+        // .catch(error => {
+        //     console.error(error)
+        // })
+        console.log(singleTicket)
     }
 
 

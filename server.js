@@ -325,19 +325,27 @@ app.patch("/notes/:id", async (req,res) => {
         /* Connecting to the database. */
         let client = await pool.connect();
 
-        /* Destructuring the req.body. */
-        const {
-            notes
-        } = req.body;
+        // declaring id
+        let id = req.params.id
+        
+        // gets value of current notes in the database
+        let originalNote = await client.query(`SELECT note FROM tickets WHERE ticket_id = $1`, [id])
+        // declares newNotes with the vales of the body's notes prepended to the existing notes from the database
+        let newNotes = `${req.body.notes}, ${originalNote.rows[0].note}`
 
-        /* Updating the notes column in the tickets table. */
-        const data = await client.query("UPDATE tickets SET note =concat('$1,', note) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
-        res.json(data.rows[0]);
+        // reassigns the ticket's notes with the newNotes value
+        await client.query(`UPDATE tickets SET note = $1 WHERE ticket_id = $2`, [newNotes, id])
+        
+        // querys the updated ticket...
+        let data = await client.query(`SELECT * FROM tickets WHERE ticket_id = $1`, [id])
+
+        // ... and returns it
+        res.json(data.rows);
 
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
-        console.error(error)
+        console.error(error.message)
     }
 });
 
