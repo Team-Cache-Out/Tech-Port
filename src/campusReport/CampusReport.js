@@ -6,7 +6,7 @@ import Axiosfetch from "../axiosRequest/axiosfetch";
 export default function CampusReport() {
     const {currentUni, setCurrentUni} = useContext(SignInContext)
     const [camp , setCamp] = useState([])
-    const campus = Axiosfetch(`http://localhost:4000/campus/tickets/${currentUni}`,{ loading: true ,data: null})
+    const campus = Axiosfetch(`https://worldwide-technical-foundation.herokuapp.com/campus/tickets/${currentUni}`,{ loading: true ,data: null})
   
     useEffect(() => {
         setCamp(campus.data)
