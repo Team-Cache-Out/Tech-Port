@@ -40,6 +40,7 @@ export default function SingleTicketModal({show}) {
         .catch(error => {
             console.error(error)
         })
+        console.log(singleTicket)
     }
 
 
