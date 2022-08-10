@@ -44,7 +44,7 @@ app.get("/users", async (req,res) => {
 app.get("/users/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
-        let client = await pool.connect();
+        let client = await pool.connect();        
 
         const data = await client.query("SELECT * FROM users WHERE user_id=$1", [req.params.id]);
         res.json(data.rows);
@@ -125,7 +125,7 @@ app.post("/users/signup", async (req,res) => {
 
 /* This is a patch request to the users table. It is using the name, password, university_id, email,
 and role as parameters to update a user. */
-app.patch("users/:id", async (req,res) => {
+app.patch("/users/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -507,8 +507,7 @@ app.get("/universities/ticketstechs", async (req,res) => {
 
         const data = await client.query(`SELECT universities.name, universities.logo_url, 
         COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
-        GROUP BY universities.name, universities.logo_url ORDER BY ticket_num DESC;`)
-        console.log(data.rows)        
+        GROUP BY universities.name, universities.logo_url ORDER BY ticket_num DESC;`)    
         res.json(data.rows[0]);
         /* Releasing the client from the database. */
         client.release();

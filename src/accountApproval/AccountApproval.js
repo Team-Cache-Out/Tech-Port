@@ -4,9 +4,12 @@ import TechAccounts from './techAccounts'
 
 export default function AccountApproval() {
     return (
-        <div>                   
-            <TechAccounts/>
+        <>
+        <div className="AccountApprovalContainer"> 
+            <div className="AccountApprovalHeader">Account Approval</div>                
+                <TechAccounts/> 
         </div>
-        
+
+        </>
     )
 }
