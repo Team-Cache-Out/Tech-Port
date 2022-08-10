@@ -10,44 +10,64 @@ export default function MyTickets() {
   const { user, currentUni } = useContext(SignInContext);
 
   const {
-    HoustonOpenTickets,
+    HoustonWorkingTickets,
     HoustonCompleteTickets,
-    ArizonaOpenTickets,
+    ArizonaWorkingTickets,
     ArizonaCompleteTickets,
-    OregonOpenTickets,
+    OregonWorkingTickets,
     OregonCompleteTickets,
-    PepperdineOpenTickets,
+    PepperdineWorkingTickets,
     PepperdineCompleteTickets,
   } = useContext(CampusContext);
 
   const { activeComp, ticketModal } = useContext(CampusContext);
 
   const campus = [
-    [HoustonOpenTickets, HoustonCompleteTickets],
-    [ArizonaOpenTickets, ArizonaCompleteTickets],
-    [OregonOpenTickets, OregonCompleteTickets],
-    [PepperdineOpenTickets, PepperdineCompleteTickets],
+    [HoustonWorkingTickets, HoustonCompleteTickets],
+    [ArizonaWorkingTickets, ArizonaCompleteTickets],
+    [OregonWorkingTickets, OregonCompleteTickets],
+    [PepperdineWorkingTickets, PepperdineCompleteTickets],
   ];
 
   const currentCampus = () => {
     if (currentUni === 1) {
-      return campus[0];
+      console.log(user.user_id);
+      console.log(campus[1][0][0].assigned_tech);
+      return campus[1][0];
     }
     if (currentUni === 2) {
+      console.log(campus[1]);
       return campus[1];
     }
     if (currentUni === 3) {
-      return campus[2];
+      console.log(campus[3]);
+      console.log(user.user_id);
+      return campus[3];
     }
     if (currentUni === 4) {
+      console.log(campus[3]);
       return campus[3];
     }
   };
-  console.log(user.role);
-  let currentUniversity = currentCampus();
+
+  // const currentCampus = () => {
+  //   if (currentUni === 1) {
+  //     return campus[0];
+  //   }
+  //   if (currentUni === 2) {
+  //     return campus[1];
+  //   }
+  //   if (currentUni === 3) {
+  //     return campus[2];
+  //   }
+  //   if (currentUni === 4) {
+  //     return campus[3];
+  //   }
+  // };
+
   console.log(currentUni);
-  const { singleTicket } = useContext(CampusContext);
-  console.log(tickets.university_id);
+  let currentUniversity = currentCampus();
+  console.log(currentUniversity);
 
   if (activeComp === "myTickets") {
     return (
@@ -56,7 +76,7 @@ export default function MyTickets() {
           <h1 className="myTicketBoard-header">Ticket Board</h1>
           <div className="myBoardRowPosition">
             <div className="myBoardColumnHeader">
-              <h2 className="myBoardColumnH2">Open</h2>
+              <h2 className="myBoardColumnH2">Working</h2>
             </div>
             <div className="myBoardColumnHeader">
               <h2 className="myBoardColumnH2">Completed</h2>
@@ -64,9 +84,15 @@ export default function MyTickets() {
           </div>
           <div className="myBoardColumnContainer">
             <div className="myBoardColumn">
-              {currentUniversity.map((elem) => {
-                return <Ticket elem={elem} key={elem.university_id} />;
-              })}
+              {currentUniversity
+                ? currentUniversity
+                    .filter((elem) => {
+                      return <Ticket elem={elem} key={elem.ticket_id} />;
+                    })
+                    .map((elem) => {
+                      return <Ticket elem={elem} key={elem.ticket_id} />;
+                    })
+                : null}
             </div>
             <div className="myBoardColumn">
               {currentUniversity.map((elem) => {
