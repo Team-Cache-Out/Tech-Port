@@ -38,19 +38,27 @@ export default function TicketBoard() {
    */
   const currentCampus = () => {
     if(currentUni === 1) {
-      document.body.classList.replace('page-background-UH')
+      document.body.classList.replace('page-background-UA', 'page-background-UH')
+      document.body.classList.replace('page-background-OU', 'page-background-UH')
+      document.body.classList.replace('page-background-PU', 'page-background-UH')      
       return campus[0];
     }
     if(currentUni === 2) {
-      document.body.classList.replace('page-background-UA')
+      document.body.classList.replace('page-background-UH', 'page-background-UA')
+      document.body.classList.replace('page-background-OU', 'page-background-UA')
+      document.body.classList.replace('page-background-PU', 'page-background-UA')       
       return campus[1];
     }
     if(currentUni === 3) {
-      document.body.classList.replace('page-background-OU')
+      document.body.classList.replace('page-background-UH', 'page-background-OU')
+      document.body.classList.replace('page-background-UA', 'page-background-OU')
+      document.body.classList.replace('page-background-PU', 'page-background-OU')       
       return campus[2];
     }
     if(currentUni === 4) {
-      document.body.classList.replace('page-background-PU')
+      document.body.classList.replace('page-background-UH', 'page-background-PU')
+      document.body.classList.replace('page-background-UA', 'page-background-PU')
+      document.body.classList.replace('page-background-OU', 'page-background-PU')       
       return campus[3]
     }
   }
