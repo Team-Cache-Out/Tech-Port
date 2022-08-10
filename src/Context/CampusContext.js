@@ -25,6 +25,12 @@ export const CampusProvider = ({children}) => {
     const [PepperdineWorkingTickets, setPepperdineWorkingTickets] = useLocalStorage("PepperdineWorkingTickets", null)
     const [PepperdineCompleteTickets, setPepperCompleteTickets] = useLocalStorage("PepperdineCompleteTickets", null)
 
+    // Campus Techs
+    const [HoustonTechs, setHoustonTechs] = useLocalStorage("HoustonTechs", null)
+    const [ArizonaTechs, setArizonaTechs] = useLocalStorage("ArizonaTechs", null)
+    const [OregonTechs, setOregonTechs] = useLocalStorage("OregonTechs", null)
+    const [PepperdineTechs, setPepperdineTechs] = useLocalStorage("PepperdineTechs", null)
+
     // Ticket modal State
     const [ticketModal, setTicketModal] = useState(false)
     const [singleTicket, setSingleTicket] = useState({
@@ -78,7 +84,15 @@ export const CampusProvider = ({children}) => {
         singleTicket,
         setSingleTicket,
         activeComp,
-        setActiveComp
+        setActiveComp,
+        HoustonTechs,
+        setHoustonTechs,
+        ArizonaTechs,
+        setArizonaTechs,
+        OregonTechs,
+        setOregonTechs,
+        PepperdineTechs,
+        setPepperdineTechs
     }}>
         {children}
     </CampusContext.Provider>
