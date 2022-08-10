@@ -1,16 +1,17 @@
 import './ticketCreate.css'
 import SignInContext from '../Context/SignInContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 export default function TicketCreatePage() {
 
     const { currentUni } = useContext(SignInContext)
 
-    let problem = '';
-    let description = '';
-    let point_of_contact = '';
-    let location = '';
-    let priority = '';
+    const [problem, setProblem] = useState('')
+    const [description, setDescription] = useState('')
+    const [point_of_contact, setPoint_of_contact] = useState('')
+    const [location, setLocation] = useState('')
+    const [priority, setPriority] = useState('')
+
     let status = 'open';
     let university_id = currentUni;
 
@@ -34,20 +35,19 @@ export default function TicketCreatePage() {
             body: JSON.stringify(data)
         }
 
-        fetch('https://worldwide-technical-foundation.herokuapp.com/tickets', fetchData)
-        .then(response => console.log(response))
-        // .then(() => {
-        //     window.alert('Ticket Created!')
-        // })
+        fetch('http://localhost:4000/tickets', fetchData)
+        .then(() => {
+            window.alert('Ticket Created!')
+        })
         .catch(error => {
             console.error(error)
         })
 
-        problem = ''
-        description = '';
-        point_of_contact = '';
-        location = '';
-        priority = '';
+        setProblem('')
+        setPoint_of_contact('')
+        setDescription('')
+        setLocation('')
+        setPriority('')
     }
 
     return (
@@ -58,32 +58,33 @@ export default function TicketCreatePage() {
           <div className="select">
           <div className="createSubject">
           <label>Subject:</label>
-          <input className='Subject-Input' id='Subject-email' onChange={(e) => problem = e.target.value} >
+          <input className='Subject-Input' id='Subject-email' value={problem} onChange={(e) => setProblem(e.target.value)} >
           </input>
               </div>
          
               <div className="createLocation">
               <label>Location:</label>
-              <input className='Location-Input' onChange={(e) => location = e.target.value} ></input>
+              <input className='Location-Input' value={location} onChange={(e) => setLocation(e.target.value)} ></input>
               </div>
    
               <div className="CreateContactInfo">
                   <label>Contact Info:</label>
-                  <input className='Contact-Input' onChange={(e) => point_of_contact = e.target.value} > 
+                  <input className='Contact-Input' value={point_of_contact} onChange={(e) => setPoint_of_contact(e.target.value)} > 
                   </input>
                   </div>
                   
                   <div className="createPriority">
                   <label>Priority:</label>
-                  <select onChange={(e) => priority = e.target.value}>
-                  <option>Urgent</option>
-                  <option>Severe</option>
-                  <option>Routine</option>
+                  <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                  <option value={null}>Choose Priority</option>
+                  <option value={'Urgent'}>Urgent</option>
+                  <option value={'severe'}>Severe</option>
+                  <option value={'Routine'}>Routine</option>
                   </select>
                   </div>
                   </div>
               <label>Description</label>
-              <textarea className='descriptionText' rows = "10" cols = "60" name = "description" onChange={(e) => description = e.target.value} placeholder="Enter details here...">
+              <textarea className='descriptionText' rows = "10" cols = "60" name = "description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter details here...">
                   
               </textarea>
               <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit' onClick={create}>Submit
