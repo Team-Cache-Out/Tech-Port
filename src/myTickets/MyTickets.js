@@ -7,43 +7,52 @@ import SingleTicketModal from "../ticketBoard/singleTicketModal";
 import Ticket from "../ticketBoard/ticket";
 
 export default function MyTickets() {
-  const { currentUni } = useContext(SignInContext);
+  const { user, currentUni } = useContext(SignInContext);
 
   const {
-    HoustonOpenTickets,
+    HoustonWorkingTickets,
     HoustonCompleteTickets,
-    ArizonaOpenTickets,
+    ArizonaWorkingTickets,
     ArizonaCompleteTickets,
-    OregonOpenTickets,
+    OregonWorkingTickets,
     OregonCompleteTickets,
-    PepperdineOpenTickets,
+    PepperdineWorkingTickets,
     PepperdineCompleteTickets,
   } = useContext(CampusContext);
 
   const { activeComp, ticketModal } = useContext(CampusContext);
 
   const campus = [
-    [HoustonOpenTickets, HoustonCompleteTickets],
-    [ArizonaOpenTickets, ArizonaCompleteTickets],
-    [OregonOpenTickets, OregonCompleteTickets],
-    [PepperdineOpenTickets, PepperdineCompleteTickets],
+    [HoustonWorkingTickets, HoustonCompleteTickets],
+    [ArizonaWorkingTickets, ArizonaCompleteTickets],
+    [OregonWorkingTickets, OregonCompleteTickets],
+    [PepperdineWorkingTickets, PepperdineCompleteTickets],
   ];
 
   const currentCampus = () => {
     if (currentUni === 1) {
+      console.log(user.user_id);
+      console.log(campus[1]);
       return campus[0];
     }
     if (currentUni === 2) {
+      console.log(user.user_id);
+      console.log(campus[2]);
       return campus[1];
     }
     if (currentUni === 3) {
+      console.log(user.user_id);
+      console.log(campus[3]);
       return campus[2];
     }
     if (currentUni === 4) {
+      console.log(user.user_id);
+      console.log(campus[4]);
       return campus[3];
     }
   };
 
+  console.log(currentUni);
   let currentUniversity = currentCampus();
 
   if (activeComp === "myTickets") {
@@ -53,7 +62,7 @@ export default function MyTickets() {
           <h1 className="myTicketBoard-header">Ticket Board</h1>
           <div className="myBoardRowPosition">
             <div className="myBoardColumnHeader">
-              <h2 className="myBoardColumnH2">Open</h2>
+              <h2 className="myBoardColumnH2">Working</h2>
             </div>
             <div className="myBoardColumnHeader">
               <h2 className="myBoardColumnH2">Completed</h2>
@@ -61,14 +70,18 @@ export default function MyTickets() {
           </div>
           <div className="myBoardColumnContainer">
             <div className="myBoardColumn">
-              {currentUniversity[1].map((elem) => {
-                return <Ticket elem={elem} key={elem.ticket_id} />;
-              })}
+              {currentUniversity[0]
+                .filter((elem) => elem.assigned_tech === user.user_id)
+                .map((elem) => {
+                  return <Ticket elem={elem} key={elem.assigned_tech} />;
+                })}
             </div>
             <div className="myBoardColumn">
-              {currentUniversity[0].map((elem) => {
-                return <Ticket elem={elem} key={elem.ticket_id} />;
-              })}
+              {currentUniversity[1]
+                .filter((elem) => elem.assigned_tech === user.user_id)
+                .map((elem) => {
+                  return <Ticket elem={elem} key={elem.assigned_tech} />;
+                })}
             </div>
           </div>
         </div>
