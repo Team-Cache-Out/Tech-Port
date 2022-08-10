@@ -12,9 +12,10 @@ import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
 import AccountApproval from "../accountApproval/AccountApproval";
-
+import { useNavigate } from "react-router-dom";
 
 export default function TicketBoard() {
+  const navigate = useNavigate()
   /* Destructuring the currentUni from the SignInContext. */
   const { currentUni } = useContext(SignInContext)
   /* Destructuring the CampusContext and assigning the values to the variables. */
@@ -109,6 +110,8 @@ export default function TicketBoard() {
         <AccountApproval />
         </div>
     )
+  } else if(activeComp === 'adminLanding') {
+    navigate("/admin")
   } else {
       return (
           <div>

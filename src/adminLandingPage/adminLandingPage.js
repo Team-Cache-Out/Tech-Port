@@ -2,11 +2,13 @@ import {useState,useEffect,useContext} from 'react'
 import Axiosfetch from '../axiosRequest/axiosfetch'
 import "./adminlandingPage.css"
 import SignInContext from '../Context/SignInContext'
+import CampusContext from '../Context/CampusContext'
 import { useNavigate } from "react-router-dom";
 import Header from './header';
 
 export default function AdminLandingPage() {
   const navigate = useNavigate()
+  const { setActiveComp } = useContext(CampusContext)
   const {currentUni, setCurrentUni} = useContext(SignInContext)
   const {user, setUser} = useContext(SignInContext)
   const [houstonTickets , setHoustonTickets] = useState([])
@@ -31,6 +33,7 @@ export default function AdminLandingPage() {
     const nav = (e)=>{
         let id = e.target.id
         setCurrentUni(parseInt(id))
+        setActiveComp(null)
       navigate('/ticketBoard')
     }
 

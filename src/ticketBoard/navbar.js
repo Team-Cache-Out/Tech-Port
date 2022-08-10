@@ -39,6 +39,9 @@ export default function Navbar() {
                     <div className="navLinks" id='roles' onClick={handleClick}>
                     Admin Roles
                     </div>
+                    <div className="navLinks" id='adminLanding' onClick={handleClick}>
+                    Admin Page
+                    </div>
                 </div> 
             </nav>
         )
