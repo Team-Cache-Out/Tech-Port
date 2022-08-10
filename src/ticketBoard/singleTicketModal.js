@@ -51,7 +51,6 @@ export default function SingleTicketModal({show}) {
    /**
     * It takes the status of the ticket and updates it in the database.
     */
-
     const statusUpdate = () => {
         let data = {
             status
@@ -73,6 +72,13 @@ export default function SingleTicketModal({show}) {
         })
     }
 
+    /**
+     * If the currentUni is 1, return HoustonTechs. 
+     * If the currentUni is 2, return ArizonaTechs. 
+     * If the currentUni is 3, return OregonTechs. 
+     * If the currentUni is 4, return PepperdineTechs.
+     * @returns the value of the variable HoustonTechs, ArizonaTechs, OregonTechs, or PepperdineTechs.
+     */
     const currentTechs = () => {
         if(currentUni === 1) {
             return HoustonTechs;
@@ -88,6 +94,10 @@ export default function SingleTicketModal({show}) {
         }
     }
 
+    /**
+     * This function takes in the selected tech and assigns them to the ticket that is currently being rendered.
+     * Then it returns the data from that requests and updates the currently rendered ticket.
+     */
     const assign = () => {
         let data = {
             assigned_tech: tech
@@ -111,6 +121,10 @@ export default function SingleTicketModal({show}) {
         setTech('')
     }
 
+    /**
+     * It takes the ticket_id from the ticket that was clicked on and sends a PATCH request to the
+     * server with the user_id of the user who clicked the button.
+     */
     const claim = () => {
         let data = {
             assigned_tech: user.user_id
@@ -137,6 +151,12 @@ export default function SingleTicketModal({show}) {
     /* Setting the value of the variable status to the value of the singleTicket.status property. */
     let status = singleTicket.status
 
+    /**
+     * If the user is an admin and the ticket is open, display a dropdown menu of technicians to assign
+     * the ticket to. 
+     * If the user is a tech and the ticket is open, display a button to claim the ticket.
+     * @returns The return is a function that is being called in the render.
+     */
     const roleRights = () => {
         
         if(user.role === 'admin' && singleTicket.status === 'open') {
