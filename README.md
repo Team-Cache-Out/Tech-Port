@@ -76,10 +76,10 @@ Start the application
 
 ## Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
+- User Authentication
+- User Persistence
+- Admin Company Viewport
+- Campus Viewport
 
 
 ## Roadmap
