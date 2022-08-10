@@ -104,7 +104,7 @@
 
 .Password-Input{
     width: 250px;
-    height: 24px;
+    height: 30px;
     border-radius: 5px;
     border: solid #CAD6E2;
     font-size: 15px;
@@ -112,7 +112,7 @@
 
 .Email-Input{
     width: 250px;
-    height: 24px;
+    height: 30px;
     border-radius: 5px;
     font-size: 15px;
     border: solid #CAD6E2;
