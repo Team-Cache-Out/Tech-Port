@@ -4,11 +4,11 @@
     margin-left: 45px;
     margin-right: 45px;
     background-color: rgb(255, 255, 255, .9);
+    pointer-events: none;
 }
 
 .campusTechsHeader {
     margin-top: 20px;
-    margin-bottom: 30px;
     padding-right: 10px;
     padding-left: 10px;
     padding-bottom: 10px;
@@ -17,4 +17,25 @@
     font-size: 30px;
     text-align: center;
     border-bottom: solid lightgray 1px;
+}
+
+.tech {
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    box-shadow:3px 3px 3px gray;
+    margin: 10px;
+    pointer-events: none;
+    width: max-content;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #FFFFFF;
+}
+
+.techsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    justify-content: center;
 }

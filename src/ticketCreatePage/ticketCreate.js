@@ -14,7 +14,6 @@ export default function TicketCreatePage() {
     let status = 'open';
     let university_id = currentUni;
 
-    console.log(problem)
     const create = (e) => {
         e.preventDefault()
         const data = {
@@ -36,9 +35,10 @@ export default function TicketCreatePage() {
         }
 
         fetch('https://worldwide-technical-foundation.herokuapp.com/tickets', fetchData)
-        .then(() => {
-            window.alert('Ticket Created!')
-        })
+        .then(response => console.log(response))
+        // .then(() => {
+        //     window.alert('Ticket Created!')
+        // })
         .catch(error => {
             console.error(error)
         })
@@ -55,7 +55,7 @@ export default function TicketCreatePage() {
         <h2 className='Ticket-Header'>Create a ticket</h2>
         <form className='Ticket-Form' id='Ticket-Form'>
   
-          <div className="selections">
+          <div className="select">
           <div className="createSubject">
           <label>Subject:</label>
           <input className='Subject-Input' id='Subject-email' onChange={(e) => problem = e.target.value} >
@@ -83,7 +83,7 @@ export default function TicketCreatePage() {
                   </div>
                   </div>
               <label>Description</label>
-              <textarea rows = "10" cols = "60" name = "description" onChange={(e) => description = e.target.value} placeholder="Enter details here...">
+              <textarea className='descriptionText' rows = "10" cols = "60" name = "description" onChange={(e) => description = e.target.value} placeholder="Enter details here...">
                   
               </textarea>
               <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit' onClick={create}>Submit

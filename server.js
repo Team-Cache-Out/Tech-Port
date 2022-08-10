@@ -3,15 +3,14 @@ const path = require('path')
 const express = require("express");
 const app = express();
 const cors = require("cors");
-/* This is requiring the connection.js file in the backend folder. */
 const pool = require("./db/connection");
 const bcrypt = require("bcrypt");
 
-const PORT = process.env.PORT || 4500
+const PORT = process.env.PORT
 
 app.use(express.json());
 /* This is serving the build folder and is used for deployment purposes. */
-app.use(express.static("public"));
+app.use(express.static("build"));
 
 app.use(cors());
 
@@ -45,7 +44,7 @@ app.get("/users", async (req,res) => {
 app.get("/users/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
-        let client = await pool.connect();
+        let client = await pool.connect();        
 
         const data = await client.query("SELECT * FROM users WHERE user_id=$1", [req.params.id]);
         res.json(data.rows);
@@ -83,6 +82,8 @@ app.post("/users/login", async (req, res) => {
         //if db query returned a user and bcrypt compare says the passwords match then return the user
         if(data.rowCount > 0 && await bcrypt.compare(req.body.password, data.rows[0].password)){
             res.json(data.rows);
+            // const accessToken = jwt.sign(data.rows[0], process.env.ACCESS_TOKEN)
+            // res.json({ accessToken: accessToken });
         } else { //bcrypt compared password doesn't match stored password or no user returned from query due to no matching emails
             res.status(400).send('Login Failed')
         }
@@ -124,7 +125,7 @@ app.post("/users/signup", async (req,res) => {
 
 /* This is a patch request to the users table. It is using the name, password, university_id, email,
 and role as parameters to update a user. */
-app.patch("users/:id", async (req,res) => {
+app.patch("/users/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -165,7 +166,7 @@ app.patch("users/:id", async (req,res) => {
 });
 
 /* This is a delete request to the users table. It is using the user_id as a parameter to delete a user. */
-app.delete("users/:id", async (req,res) => {
+app.delete("/users/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         const client = await pool.connect();
@@ -241,8 +242,8 @@ app.post("/tickets", async (req,res) => {
          /* Connecting to the database. */
         let client = await pool.connect();
         
-        const data = client.query("INSERT INTO tickets(problem, description, point_of_contact, location, priority, status, university_id) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.problem, req.body.description, req.body.notes, req.body.point_of_contact, req.body.location, req.body.priority, req.body.status, req.body.university_id]);
-        res.send(req.body);
+        const data = client.query("INSERT INTO tickets (problem, description, point_of_contact, location, priority, status, university_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);", [req.body.problem, req.body.description, req.body.point_of_contact, req.body.location, req.body.priority, req.body.status, req.body.university_id]);
+        res.send(data.rows[0]);
 
         /* Releasing the client from the database. */
         client.release();
@@ -253,7 +254,7 @@ app.post("/tickets", async (req,res) => {
 
 /* This is a patch request to the tickets table. It is using the close date, open date, problem, description,
 notes, point of contact, location, priority, status, assigned tech, and university id as parameters to update a ticket. */
-app.patch("tickets/:id", async (req,res) => {
+app.patch("/tickets/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -319,7 +320,7 @@ app.patch("tickets/:id", async (req,res) => {
     }
 });
 
-app.patch("notes/:id", async (req,res) => {
+app.patch("/notes/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         let client = await pool.connect();
@@ -329,9 +330,8 @@ app.patch("notes/:id", async (req,res) => {
             notes
         } = req.body;
 
-        /* This is a get request to the users table. It is using the user_id as a parameter to get one
-        select user. */
-        const data = await client.query("UPDATE tickets SET notes =concat('$1,', notes) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
+        /* Updating the notes column in the tickets table. */
+        const data = await client.query("UPDATE tickets SET note =concat('$1,', note) WHERE ticket_id = $2", [`${notes}`, req.params.id]);
         res.json(data.rows[0]);
 
         /* Releasing the client from the database. */
@@ -341,9 +341,59 @@ app.patch("notes/:id", async (req,res) => {
     }
 });
 
+app.patch("/status/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        /* Destructuring the req.body. */
+        const {
+            status
+        } = req.body;
+
+        if(status === 'complete') {
+            /* Updating the status of a ticket in the database. */
+            const data = await client.query("UPDATE tickets SET status = $1, close_date = CURRENT_TIMESTAMP(0) WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            res.json(data.rows[0]);
+        } else {
+            /* Updating the status of a ticket in the database. */
+            const data = await client.query("UPDATE tickets SET status = $1 WHERE ticket_id = $2", [`${status}`, req.params.id]);
+            res.json(data.rows[0]);
+        }    
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
+
+
+/* The below code is updating the assigned_tech column in the tickets table. */
+app.patch("/assign/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        /* Destructuring the req.body. */
+        const {
+            assigned_tech
+        } = req.body;
+
+        const data = await client.query("UPDATE tickets SET assigned_tech = $1 WHERE ticket_id = $2", [`${assigned_tech}`, req.params.id]);
+        res.json(data.rows[0])
+
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+
 /* This is a delete request to the tickets table. It is using the ticket_id as a parameter to delete a
 ticket. */
-app.delete("tickets/:id", async (req,res) => {
+app.delete("/tickets/:id", async (req,res) => {
     try {
         /* Connecting to the database. */
         const client = await pool.connect();
@@ -423,18 +473,23 @@ let uni = {
     }
 });
 
-/* The below code is a GET request that is retrieving data from the database. It should return an array of 
-University objects with a count of tickets and techs pre sorted by the number of open tickets */
-app.get("/universities/ticketstechs", async (req,res) => {
+/* The below code is a route that is used to get the data for a specific campus. */
+app.get("/campus/tickets/:id", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
+        let university = await client.query(`SELECT * FROM universities WHERE university_id = $1`, [req.params.id])
+        let techs = await client.query(`SELECT COUNT (*) FROM users WHERE university_id = $1 AND role = 'tech'`, [req.params.id]);
+        const open = await client.query("SELECT COUNT (*) FROM tickets WHERE university_id=$1 AND status=$2", [req.params.id,'open']);
+        const working = await client.query("SELECT COUNT (*) FROM tickets WHERE university_id=$1 AND status=$2", [req.params.id,'working']);
+        let campus = {
+            logo: university.rows[0].logo_url,
+            techs: techs.rows[0].count,
+            open: open.rows[0].count,
+            working: working.rows[0].count
+        }
+        res.json(campus);
 
-        const data = await client.query(`SELECT universities.name, universities.logo_url, 
-        COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
-        GROUP BY universities.name, universities.logo_url ORDER BY ticket_num DESC;`)
-        console.log(data.rows)        
-        res.json(data.rows[0]);
         /* Releasing the client from the database. */
         client.release();
     } catch (error) {
@@ -442,6 +497,24 @@ app.get("/universities/ticketstechs", async (req,res) => {
     }
 });
 
+/* The below code is a GET request that is retrieving data from the database. It should return an array of 
+University objects with a count of tickets and techs pre sorted by the number of open tickets */
+app.get("/universities/ticketstechs", async (req,res) => {
+    try {
+         /* Connecting to the database. */
+        let client = await pool.connect();
+    
+
+        const data = await client.query(`SELECT universities.name, universities.logo_url, 
+        COUNT(tickets.ticket_id) AS ticket_num FROM universities INNER JOIN tickets ON universities.university_id = tickets.university_id 
+        GROUP BY universities.name, universities.logo_url ORDER BY ticket_num DESC;`)    
+        res.json(data.rows[0]);
+        /* Releasing the client from the database. */
+        client.release();
+    } catch (error) {
+        console.error(error)
+    }
+});
 
 
 //!--------------------------------------------------------------------------------------------------------
@@ -491,6 +564,22 @@ app.get("/campus/:id", async (req,res) => {
 
          /* Releasing the client from the database. */
         client.release();
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+/* The below code is a route that is used to get all the techs from a specific university. */
+app.get("/techs/:id", async (req,res) => {
+    try {
+        /* Connecting to the database. */
+        let client = await pool.connect();
+
+        const data = await client.query("SELECT * FROM users WHERE university_id = $1 AND role = $2;", [req.params.id, "tech"])
+        res.json(data.rows)
+
+         /* Releasing the client from the database. */
+         client.release();
     } catch (error) {
         console.error(error)
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import SignInContext from '../Context/SignInContext'
 import { Link, useNavigate } from "react-router-dom";
@@ -19,6 +19,7 @@ function SignIn(props) {
   const navigate = useNavigate()
 
   const submit = async (event) => {
+    window.localStorage.clear();
     event.preventDefault()
     fetch(`https://worldwide-technical-foundation.herokuapp.com/users/login`, {
       method: 'POST',
@@ -35,7 +36,7 @@ function SignIn(props) {
       if(data.length !== 0) {
         setUser(data[0])
         setCurrentUni(data[0].university_id)
-        window.alert("You have logged in!")
+        // window.alert("You have logged in!")
         setLoading(false)
         if (data[0].role === 'admin') {
           navigate('/admin')
@@ -53,7 +54,16 @@ function SignIn(props) {
   const handleSignUp = () => {
     props.setmodalIsOpen(true);
   }
-
+useEffect(()=>{
+  if (user != null) {
+    if (user.role === "tech") {
+      navigate("/ticketboard");
+    }
+    else {
+      navigate("/admin");
+    }
+    }
+})
   return (
     <div className='SignIn-Container'>
       <h2 className='signIn-Header'>SIGN IN</h2>
@@ -76,6 +86,8 @@ function SignIn(props) {
       </form>      
     </div>    
   )
+
+
 }
 
 export default SignIn

@@ -1,10 +1,13 @@
 import React from 'react';
-import logo from './logo.png';
-
+import logo from './croppedlogo.png';
+import './login.css';
 
 function Logo() {
   return (
-   <img className="Logo-Img" src={logo} alt="Logo" />
+    <div className='title-container'>
+      <img className="Login-Logo-Img" src={logo} alt="Logo" />
+      <h1 className='login-title'>Worldwide Technical Foundation</h1>    
+    </div>    
   )
 }
 

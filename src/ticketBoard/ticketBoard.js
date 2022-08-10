@@ -11,11 +11,13 @@ import SingleTicketModal from "./singleTicketModal";
 import MyTickets from "../myTickets/MyTickets";
 import CampusReport from "../campusReport/CampusReport";
 import CampusTechs from "../campusTechs/campusTechs";
+import AccountApproval from "../accountApproval/AccountApproval";
+import { useNavigate } from "react-router-dom";
 
 export default function TicketBoard() {
+  const navigate = useNavigate()
   /* Destructuring the currentUni from the SignInContext. */
   const { currentUni } = useContext(SignInContext)
-
   /* Destructuring the CampusContext and assigning the values to the variables. */
   const { HoustonOpenTickets, HoustonWorkingTickets, HoustonCompleteTickets, ArizonaOpenTickets, ArizonaWorkingTickets, ArizonaCompleteTickets, OregonOpenTickets, OregonWorkingTickets, OregonCompleteTickets, PepperdineOpenTickets,
   PepperdineWorkingTickets, PepperdineCompleteTickets } = useContext(CampusContext);
@@ -37,15 +39,27 @@ export default function TicketBoard() {
    */
   const currentCampus = () => {
     if(currentUni === 1) {
+      document.body.classList.replace('page-background-UA', 'page-background-UH')
+      document.body.classList.replace('page-background-OU', 'page-background-UH')
+      document.body.classList.replace('page-background-PU', 'page-background-UH')      
       return campus[0];
     }
     if(currentUni === 2) {
+      document.body.classList.replace('page-background-UH', 'page-background-UA')
+      document.body.classList.replace('page-background-OU', 'page-background-UA')
+      document.body.classList.replace('page-background-PU', 'page-background-UA')       
       return campus[1];
     }
     if(currentUni === 3) {
+      document.body.classList.replace('page-background-UH', 'page-background-OU')
+      document.body.classList.replace('page-background-UA', 'page-background-OU')
+      document.body.classList.replace('page-background-PU', 'page-background-OU')       
       return campus[2];
     }
     if(currentUni === 4) {
+      document.body.classList.replace('page-background-UH', 'page-background-PU')
+      document.body.classList.replace('page-background-UA', 'page-background-PU')
+      document.body.classList.replace('page-background-OU', 'page-background-PU')       
       return campus[3]
     }
   }
@@ -88,12 +102,21 @@ export default function TicketBoard() {
           <MyTickets />
           </div>
       )
+  } else if(activeComp === 'roles') {
+    return (
+        <div>
+        <Header />
+        <Navbar />
+        <AccountApproval />
+        </div>
+    )
+  } else if(activeComp === 'adminLanding') {
+    navigate("/admin")
   } else {
       return (
           <div>
             <Header />
-            <Navbar />
-    
+            <Navbar />    
             <div className="ticketBoardContainer">
               <h1 className="ticketBoard-header">Ticket Board</h1>
               <div className="boardRowPosition">
