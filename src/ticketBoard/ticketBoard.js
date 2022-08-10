@@ -3,7 +3,6 @@ import "./ticketBoard.css";
 import Header from './header'
 import Navbar from './navbar'
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom";
 import CampusContext from "../Context/CampusContext";
 import Ticket from "./ticket";
 import TicketCreatePage from '../ticketCreatePage/ticketCreate'
@@ -18,7 +17,6 @@ import AccountApproval from "../accountApproval/AccountApproval";
 export default function TicketBoard() {
   /* Destructuring the currentUni from the SignInContext. */
   const { currentUni } = useContext(SignInContext)
-  const navigate = useNavigate()
   /* Destructuring the CampusContext and assigning the values to the variables. */
   const { HoustonOpenTickets, HoustonWorkingTickets, HoustonCompleteTickets, ArizonaOpenTickets, ArizonaWorkingTickets, ArizonaCompleteTickets, OregonOpenTickets, OregonWorkingTickets, OregonCompleteTickets, PepperdineOpenTickets,
   PepperdineWorkingTickets, PepperdineCompleteTickets } = useContext(CampusContext);
@@ -40,15 +38,19 @@ export default function TicketBoard() {
    */
   const currentCampus = () => {
     if(currentUni === 1) {
+      document.body.classList.replace('page-background-UH')
       return campus[0];
     }
     if(currentUni === 2) {
+      document.body.classList.replace('page-background-UA')
       return campus[1];
     }
     if(currentUni === 3) {
+      document.body.classList.replace('page-background-OU')
       return campus[2];
     }
     if(currentUni === 4) {
+      document.body.classList.replace('page-background-PU')
       return campus[3]
     }
   }
