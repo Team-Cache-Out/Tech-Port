@@ -65,7 +65,7 @@ Start the server
 
 Start the application
 ```bash
-  npm start
+  npm startdev
 ```
 
 
@@ -76,10 +76,10 @@ Start the application
 
 ## Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
+- User Authentication
+- User Persistence
+- Admin Company Viewport
+- Campus Viewport
 
 
 ## Roadmap
@@ -98,7 +98,7 @@ Start the application
 
 - BCrypt Authentication
 
-- JWT User Persistence
+- Local Storage User Persistence
 
 - User Testing
 
