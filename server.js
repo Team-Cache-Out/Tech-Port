@@ -388,7 +388,7 @@ app.patch("/assign/:id", async (req,res) => {
             assigned_tech
         } = req.body;
 
-        const data = await client.query("UPDATE tickets SET assigned_tech = $1 WHERE ticket_id = $2", [`${assigned_tech}`, req.params.id]);
+        const data = await client.query("UPDATE tickets SET assigned_tech = $1, status = $2 WHERE ticket_id = $3", [`${assigned_tech}`, 'working', req.params.id]);
         res.json(data.rows[0])
 
         /* Releasing the client from the database. */
