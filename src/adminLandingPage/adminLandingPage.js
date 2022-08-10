@@ -3,6 +3,7 @@ import Axiosfetch from '../axiosRequest/axiosfetch'
 import "./adminlandingPage.css"
 import SignInContext from '../Context/SignInContext'
 import { useNavigate } from "react-router-dom";
+import Header from './header';
 
 export default function AdminLandingPage() {
   const navigate = useNavigate()
@@ -33,28 +34,14 @@ export default function AdminLandingPage() {
       navigate('/ticketBoard')
     }
 
-function logout () {
-  window.localStorage.clear()
-}
 if (user.role === 'tech') {
   navigate('/ticketBoard')
 }
 
-
+// console.log(arruni[0].techs)
   return (
     <div>
-    <nav className='adminLPage'>
-        <ul>
-            <li><p>{user.role}</p></li>
-        </ul>
-        <h2>WorldWide Technical Foundation</h2>
-        <ul>
-            <li>
-              <p>Welcome, {user.name.split(" ")[0]} <a href="/"> <button className="adminLogout" onClick={logout}>Logout</button>
-              </a></p>
-            </li>
-        </ul>
-    </nav>
+    <Header />
     {arruni.length > 3 &&                  
     <section className='universities'>
         {arruni.sort((a,b) => {return b.tickets - a.tickets}).map((uni) => { 
