@@ -30,6 +30,6 @@
 .campusReportContainer img{
     display: block;
     margin: auto;
-    width: 70%;
-    
+    max-width: 70%;
+    height: 90%;
 }
