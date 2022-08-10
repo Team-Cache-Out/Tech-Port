@@ -65,7 +65,7 @@ Start the server
 
 Start the application
 ```bash
-  npm start
+  npm startdev
 ```
 
 
