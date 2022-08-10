@@ -141,7 +141,7 @@ export default function SingleTicketModal({show}) {
         
         if(user.role === 'admin' && singleTicket.status === 'open') {
             return (
-                <div>
+                <div className='assign'>
                 <form>
                     <label>Assign Ticket:</label>
                     <select value={tech} onChange={(e) => setTech(e.target.value)} >
@@ -158,19 +158,31 @@ export default function SingleTicketModal({show}) {
             )
         } else if(user.role === 'tech' && singleTicket.status === 'open') {
             return  (
-                <div>
-                <form>
-                    <label>Claim Ticket</label>
-                </form>
-                <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={claim}>Claim</button>
+                <div className='assign'>
+                    <form>
+                        <label>Claim Ticket</label>
+                    </form>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={claim}>Claim</button>
                 </div>
             )
         }
     }
 
+    const statusChange = () => {
+        if(singleTicket.status === 'working') {
+            return (
+                <div className='update'>
+                    <form> 
+                        <label>Complete Ticket</label>
+                    </form>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
+                </div>
+            )
+        }
+    }
 
     return (
-        <>
+        <div>
         {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
         {show ?
             /* The div container that gives the page a transparent look. */
@@ -187,7 +199,7 @@ export default function SingleTicketModal({show}) {
                     <div className='notes'>
                         {singleTicket.note.split(',').map((elem) => {
                         return (
-                            <div>- {elem}</div>
+                            <div>{elem}</div>
                             )
                         })}
                     </div>
@@ -198,31 +210,17 @@ export default function SingleTicketModal({show}) {
                     </form>
                     <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
 
-
                     <div className='selections'>
-                        <div className='assign'>
-                            {roleRights()}
-                        </div>
+                        
+                        {roleRights()}
 
-                        <div className='update'>
-                            <form> 
-                                <label>Update Status:</label>
-                                <select defaultValue={status} onChange={(e) => status = e.target.value}>
-                                <option value={null} disabled>Choose status</option>
-                                <option value="open">Open</option>
-                                <option value="working">Working</option>
-                                <option value="complete">Completed</option>
-                                </select>
-                            </form>
-                            <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
-                        </div>
-
+                        {statusChange()}
 
                     </div>
                 </div>
 
             </div>
       : null}
-      </>
+      </div>
     )
 }
