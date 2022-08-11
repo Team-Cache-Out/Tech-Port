@@ -1,6 +1,7 @@
 import './ticketCreate.css'
 import SignInContext from '../Context/SignInContext'
 import { useContext, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 
 export default function TicketCreatePage() {
 
@@ -48,6 +49,7 @@ export default function TicketCreatePage() {
         setDescription('')
         setLocation('')
         setPriority('')
+        Navigate('/ticketboard')
     }
 
     return (
