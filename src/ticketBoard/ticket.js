@@ -5,7 +5,7 @@ import CampusContext from '../Context/CampusContext'
 export default function Ticket(prop) {
 
     /* Destructuring the CampusContext object and assigning the values to the variables. */
-    const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
+    const { setTicketModal, setSingleTicket } = useContext(CampusContext)
     
     /**
      * When a user clicks on a ticket, the ticket's information is fetched from the database and stored
@@ -16,9 +16,12 @@ export default function Ticket(prop) {
         fetch(`https://worldwide-technical-foundation.herokuapp.com/tickets/${e.target.id}`)
         .then(response => response.json())
         .then(data => setSingleTicket(data))
-        if(singleTicket !== null) {
+        .then(() => {
             setTicketModal(true)
-        }
+        })
+        // if(singleTicket !== null) {
+        //     setTicketModal(true)
+        // }
     }
 
     /**
