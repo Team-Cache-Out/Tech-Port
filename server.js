@@ -242,9 +242,10 @@ app.post("/create", async (req,res) => {
          /* Connecting to the database. */
         let client = await pool.connect();
         
-        res.send(req.body)
-        // const data = client.query("INSERT INTO tickets (problem, description, point_of_contact, notes, location, priority, status, university_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);", [req.body.problem, req.body.description, req.body.point_of_contact, 'Ticket Created', req.body.location, req.body.priority, req.body.status, req.body.university_id]);
-        // res.json(data.rows[0]).send('Created Ticket');
+        const { description, location, point_of_contact, priority, problem, status, university_id} = req.body
+
+        const data = client.query(`INSERT INTO tickets (problem, description, point_of_contact, notes, location, priority, status, university_id) VALUES ($1, $2, $3, $4, $5, $6, $7), [${problem}, ${description}, ${point_of_contact}, ${'Created Ticket'}, ${location}, ${priority}, ${status}, ${university_id}];`);
+        res.json(data.rows[0]).send('Created Ticket');
 
         /* Releasing the client from the database. */
         client.release();
