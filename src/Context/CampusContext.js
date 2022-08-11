@@ -33,7 +33,7 @@ export const CampusProvider = ({children}) => {
 
     // Ticket modal State
     const [ticketModal, setTicketModal] = useState(false)
-    const [singleTicket, setSingleTicket] = useState({
+    const [singleTicket, setSingleTicket] = useLocalStorage("singleTicket", {
         "ticket_id": 1,
         "open_date": "",
         "close_date": null,
