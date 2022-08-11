@@ -49,7 +49,6 @@ export default function TicketCreatePage() {
         setDescription('')
         setLocation('')
         setPriority('')
-        Navigate('/ticketboard')
     }
 
     return (
