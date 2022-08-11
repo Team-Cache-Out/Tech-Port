@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CampusContext from '../Context/CampusContext'
 import SignInContext from '../Context/SignInContext'
 import './ticketModal.css'
@@ -17,6 +17,14 @@ export default function SingleTicketModal() {
     /* Setting the value of the variable tech to null. */
     const [tech, setTech] = useState('')
     const [addnote, setAddNote] = useState('')
+
+    /* Setting the value of the variable ticket to an empty string. */
+    const [ticket, setTicket] = useState('')
+
+    /* Setting the value of the variable ticket to the value of the variable singleTicket. */
+    useEffect(() => {
+        setTicket(singleTicket)
+    }, [])
 
     /**
      * When the user clicks the close button, the ticket modal will close.
@@ -44,10 +52,14 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
         // console.log(singleTicket.ticket_id)
-        fetch(`https://worldwide-technical-foundation.herokuapp.com/notes/${singleTicket.ticket_id}`, fetchData)
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/notes/${ticket.ticket_id}`, fetchData)
         .then(response => response.json())
-        .then(data => setSingleTicket(data))
-        .then(() => {setTicketModal(false)})
+        .then(data => {
+            setSingleTicket(data)
+            setTicket(data)
+        })
+        .then(() => {console.log(ticket)})
+        // .then(() => {setTicketModal(false)})
         .catch(error => {
             console.error(error)
         })
@@ -71,7 +83,7 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
 
-        fetch(`https://worldwide-technical-foundation.herokuapp.com/status/${singleTicket.ticket_id}`, fetchData)
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/status/${ticket.ticket_id}`, fetchData)
         .then(() => {handleClose()})
     }
 
@@ -115,7 +127,7 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
 
-        fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${singleTicket.ticket_id}`, fetchData)
+        fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${ticket.ticket_id}`, fetchData)
         .then(() => {handleClose()})
         .catch(error => {
             console.error(error)
@@ -149,10 +161,6 @@ export default function SingleTicketModal() {
         })
     }
 
-    /* Setting the value of the variable status to the value of the singleTicket.status property. */
-    let status = singleTicket.status
-
-
     /**
      * If the user is an admin and the ticket is open, display a dropdown menu of technicians to assign
      * the ticket to. 
@@ -161,7 +169,7 @@ export default function SingleTicketModal() {
      */
     const roleRights = () => {
         
-        if(user.role === 'admin' && singleTicket.status === 'open') {
+        if(user.role === 'admin' && ticket.status === 'open') {
             return (
                 <div className='assign'>
                 <form>
@@ -178,7 +186,7 @@ export default function SingleTicketModal() {
                 <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={assign}>Update</button>
                 </div>
             )
-        } else if(user.role === 'tech' && singleTicket.status === 'open') {
+        } else if(user.role === 'tech' && ticket.status === 'open') {
             return  (
                 <div className='assign'>
                     <form>
@@ -196,7 +204,7 @@ export default function SingleTicketModal() {
      * @returns The statusChange function is returning a div with a form and a button.
      */
     const statusChange = () => {
-        if(singleTicket.status === 'working') {
+        if(ticket.status === 'working') {
             return (
                 <div className='update'>
                     <form> 
@@ -213,10 +221,10 @@ export default function SingleTicketModal() {
      * @returns The date the ticket was closed.
      */
     const complete = () => {
-        if(singleTicket.close_date === undefined || singleTicket.close_date === null) {
+        if(ticket.close_date === undefined || ticket.close_date === null) {
             return 'Not Complete';
         } else {
-            return singleTicket.close_date.split('T')[0]
+            return ticket.close_date.split('T')[0]
         }
     }
 
@@ -226,10 +234,10 @@ export default function SingleTicketModal() {
      * @returns The date in the format of YYYY-MM-DD
      */
     const open = () => {
-        if(singleTicket.open_date === undefined || singleTicket.open_date === null) {
+        if(ticket.open_date === undefined || ticket.open_date === null) {
             return '';
         } else {
-            return singleTicket.open_date.split('T')[0]
+            return ticket.open_date.split('T')[0]
         }
     }
 
@@ -239,10 +247,10 @@ export default function SingleTicketModal() {
     * @returns The value of the status property of the singleTicket object.
     */
     const current = () => {
-        if(singleTicket.status === undefined || singleTicket.status === null) {
+        if(ticket.status === undefined || ticket.status === null) {
             return '';
         } else {
-            return singleTicket.status.toUpperCase();
+            return ticket.status.toUpperCase();
         }
     }
 
@@ -252,10 +260,10 @@ export default function SingleTicketModal() {
      * @returns An array of divs.
      */
     const notes = () => {
-        if(singleTicket.note !== undefined) {
+        if(ticket.note !== undefined) {
             return (
 
-                singleTicket.note.split(',').map((elem) => {
+                ticket.note.split(',').map((elem) => {
                     return (
                         <div>- {elem}</div>
                         )
@@ -277,8 +285,8 @@ export default function SingleTicketModal() {
                     <button className='closeButton' onClick={handleClose}>X</button>
                     <h2 className='TicketHeader'>Ticket Information</h2>
                     <h3>Open Date: {open()} | Complete Date: {complete()} | Status: {current()}</h3>
-                    <h3>Tech Assigned: {singleTicket.assigned_tech ? 'Yes' : 'No'} | Location: {singleTicket.location} | POC: {singleTicket.point_of_contact}</h3>
-                    <h3>Problem: {singleTicket.problem} | Description: {singleTicket.description} | Priority: {singleTicket.priority} </h3>
+                    <h3>Tech Assigned: {ticket.assigned_tech ? 'Yes' : 'No'} | Location: {ticket.location} | POC: {ticket.point_of_contact}</h3>
+                    <h3>Problem: {ticket.problem} | Description: {ticket.description} | Priority: {ticket.priority} </h3>
                     <p>Notes: </p>
                     <div className='notes'>
                         {notes()}
