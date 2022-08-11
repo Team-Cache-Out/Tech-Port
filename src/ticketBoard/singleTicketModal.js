@@ -8,11 +8,14 @@ export default function SingleTicketModal({show}) {
     /* Destructuring the CampusContext object */
     const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
 
+    /* Destructuring the CampusContext object. */
     const { HoustonTechs, ArizonaTechs, OregonTechs, PepperdineTechs } = useContext(CampusContext)
 
+    /* Destructuring the SignInContext object. */
     const { user, currentUni } = useContext(SignInContext)
 
-    const [tech, setTech] = useState(null)
+    /* Setting the value of the variable tech to null. */
+    const [tech, setTech] = useState('')
 
     /**
      * When the user clicks the close button, the ticket modal will close.
@@ -65,11 +68,7 @@ export default function SingleTicketModal({show}) {
         }
 
         fetch(`https://worldwide-technical-foundation.herokuapp.com/status/${singleTicket.ticket_id}`, fetchData)
-        .then(response => response.json())
-        .then(data => setSingleTicket(data))
-        .catch(error => {
-            console.error(error)
-        })
+        .then(() => {handleClose()})
     }
 
     /**
@@ -112,8 +111,7 @@ export default function SingleTicketModal({show}) {
         }
 
         fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${singleTicket.ticket_id}`, fetchData)
-        .then(response => response.json())
-        .then(data => setSingleTicket(data))
+        .then(() => {handleClose()})
         .catch(error => {
             console.error(error)
         })
@@ -139,8 +137,7 @@ export default function SingleTicketModal({show}) {
         }
 
         fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${singleTicket.ticket_id}`, fetchData)
-        .then(response => response.json())
-        .then(data => setSingleTicket(data))
+        .then(() => {handleClose()})
         .catch(error => {
             console.error(error)
         })
@@ -188,6 +185,11 @@ export default function SingleTicketModal({show}) {
         }
     }
 
+    /**
+     * If the status of the ticket is 'working', then return a form with a button that will update the
+     * status of the ticket to 'complete'.
+     * @returns The statusChange function is returning a div with a form and a button.
+     */
     const statusChange = () => {
         if(singleTicket.status === 'working') {
             return (
@@ -195,27 +197,62 @@ export default function SingleTicketModal({show}) {
                     <form> 
                         <label>Complete Ticket</label>
                     </form>
-                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Update</button>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Submit</button>
                 </div>
             )
         }
     }
 
+    /**
+     * If the close_date is not null, return the date, otherwise return 'Not Complete'
+     * @returns The date the ticket was closed.
+     */
     const complete = () => {
-        if(singleTicket.close_date !== null) {
-            return singleTicket.close_date.split('T')[0]
+        if(singleTicket.close_date === undefined || singleTicket.close_date === null) {
+            return 'Not Complete';
         } else {
-            return 'Not Complete'
+            return singleTicket.close_date.split('T')[0]
         }
     }
 
+    /**
+     * If the open_date is undefined or null, return an empty string. Otherwise, return the open_date
+     * split at the 'T' character.
+     * @returns The date in the format of YYYY-MM-DD
+     */
+    const open = () => {
+        if(singleTicket.open_date === undefined || singleTicket.open_date === null) {
+            return '';
+        } else {
+            return singleTicket.open_date.split('T')[0]
+        }
+    }
+
+   /**
+    * If the status is undefined or null, return an empty string, otherwise return the status in
+    * uppercase.
+    * @returns The value of the status property of the singleTicket object.
+    */
+    const current = () => {
+        if(singleTicket.status === undefined || singleTicket.status === null) {
+            return '';
+        } else {
+            return singleTicket.status.toUpperCase();
+        }
+    }
+
+    /**
+     * If the note property of the singleTicket object is not an empty string, then split the note
+     * property by commas and map over the resulting array, returning a div for each element.
+     * @returns An array of divs.
+     */
     const notes = () => {
         if(singleTicket.note !== '') {
             return (
 
                 singleTicket.note.split(',').map((elem) => {
                     return (
-                        <div>{elem}</div>
+                        <div>- {elem}</div>
                         )
                     })
             ) 
@@ -233,7 +270,7 @@ export default function SingleTicketModal({show}) {
                 <div className='TicketContainer'>
                     <button className='closeButton' onClick={handleClose}>X</button>
                     <h2 className='TicketHeader'>Ticket Information</h2>
-                    <h3>Open Date: {singleTicket.open_date.split('T')[0]} | Complete Date: {complete()} | Status: {singleTicket.status.toUpperCase()}</h3>
+                    <h3>Open Date: {open()} | Complete Date: {complete()} | Status: {current()}</h3>
                     <h3>Tech Assigned: {singleTicket.assigned_tech ? 'Yes' : 'No'} | Location: {singleTicket.location} | POC: {singleTicket.point_of_contact}</h3>
                     <h3>Problem: {singleTicket.problem} | Description: {singleTicket.description} | Priority: {singleTicket.priority} </h3>
                     <p>Notes: </p>
