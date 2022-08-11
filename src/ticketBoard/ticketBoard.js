@@ -154,7 +154,7 @@ export default function TicketBoard() {
                 </div>
               </div>
             </div>
-            <SingleTicketModal show={ticketModal} />
+            {ticketModal ? <SingleTicketModal /> : null}
           </div>
       );
   }
