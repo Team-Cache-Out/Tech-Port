@@ -3,7 +3,7 @@ import CampusContext from '../Context/CampusContext'
 import SignInContext from '../Context/SignInContext'
 import './ticketModal.css'
 
-export default function SingleTicketModal({show}) {
+export default function SingleTicketModal() {
 
     /* Destructuring the CampusContext object */
     const { setTicketModal, singleTicket, setSingleTicket } = useContext(CampusContext)
@@ -29,7 +29,8 @@ export default function SingleTicketModal({show}) {
     * It takes the value of the input field, adds it to an object, then sends it to the server via a
     * PATCH request.
     */
-    const noteSubmit = () => {
+    const noteSubmit = (e) => {
+        e.preventDefault();
         console.log(addnote)
         let data = {
             notes: addnote
@@ -42,23 +43,24 @@ export default function SingleTicketModal({show}) {
             }),
             body: JSON.stringify(data)
         }
-
+        // console.log(singleTicket.ticket_id)
         fetch(`https://worldwide-technical-foundation.herokuapp.com/notes/${singleTicket.ticket_id}`, fetchData)
         .then(response => response.json())
         .then(data => setSingleTicket(data))
+        .then(() => {setTicketModal(false)})
         .catch(error => {
             console.error(error)
         })
-        console.log(singleTicket)
     }
 
 
    /**
     * It takes the status of the ticket and updates it in the database.
     */
-    const statusUpdate = () => {
+    const statusUpdate = (e) => {
+        e.preventDefault();
         let data = {
-            status
+            status: 'complete'
         }
 
         let fetchData ={
@@ -99,7 +101,8 @@ export default function SingleTicketModal({show}) {
      * This function takes in the selected tech and assigns them to the ticket that is currently being rendered.
      * Then it returns the data from that requests and updates the currently rendered ticket.
      */
-    const assign = () => {
+    const assign = (e) => {
+        e.preventDefault();
         let data = {
             assigned_tech: tech
         }
@@ -125,7 +128,8 @@ export default function SingleTicketModal({show}) {
      * It takes the ticket_id from the ticket that was clicked on and sends a PATCH request to the
      * server with the user_id of the user who clicked the button.
      */
-    const claim = () => {
+    const claim = (e) => {
+        e.preventDefault();
         let data = {
             assigned_tech: user.user_id
         }
@@ -147,6 +151,7 @@ export default function SingleTicketModal({show}) {
 
     /* Setting the value of the variable status to the value of the singleTicket.status property. */
     let status = singleTicket.status
+
 
     /**
      * If the user is an admin and the ticket is open, display a dropdown menu of technicians to assign
@@ -264,8 +269,7 @@ export default function SingleTicketModal({show}) {
     return (
         <div>
         {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
-        {show ?
-            /* The div container that gives the page a transparent look. */
+            {/* The div container that gives the page a transparent look. */}
             <div className='singleTicketContainer'>
 
                 {/* A div that contains the ticket information. This is the actual modal that is being rendered on the screen. */}
@@ -279,11 +283,11 @@ export default function SingleTicketModal({show}) {
                     <div className='notes'>
                         {notes()}
                     </div>
-                    <form className='TicketForm' id='TicketForm'>
+                    <div className='TicketForm' id='TicketForm'>
                             <label>Add Note</label>
                             <textarea rows = "10" cols = "80" name = "note" onChange={(e) => setAddNote(e.target.value)} placeholder="Enter details here...">
                             </textarea>
-                    </form>
+                    </div>
                     <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
 
                     <div className='selections'>
@@ -296,7 +300,6 @@ export default function SingleTicketModal({show}) {
                 </div>
 
             </div>
-      : null}
       </div>
     )
 }
