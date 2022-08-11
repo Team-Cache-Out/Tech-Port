@@ -33,20 +33,20 @@ export const CampusProvider = ({children}) => {
 
     // Ticket modal State
     const [ticketModal, setTicketModal] = useState(false)
-    const [singleTicket, setSingleTicket] = useLocalStorage("singleTicket", {
-        "ticket_id": 1,
-        "open_date": "",
-        "close_date": null,
-        "problem": "",
-        "description": "",
-        "note": "",
-        "point_of_contact": "",
-        "location": "",
-        "priority": "",
-        "status": "",
-        "university_id": 0,
-        "assigned_tech": 0
-    })
+    const [singleTicket, setSingleTicket] = useLocalStorage("singleTicket", null)
+    //     "ticket_id": 1,
+    //     "open_date": "",
+    //     "close_date": null,
+    //     "problem": "",
+    //     "description": "",
+    //     "note": "",
+    //     "point_of_contact": "",
+    //     "location": "",
+    //     "priority": "",
+    //     "status": "",
+    //     "university_id": 0,
+    //     "assigned_tech": 0
+    // })
 
     // Current Navbar Component State
     const [activeComp, setActiveComp] = useState('ticketBoard')
