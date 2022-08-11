@@ -246,7 +246,7 @@ app.post("/create", async (req,res) => {
         const { description, location, point_of_contact, priority, problem, status, university_id} = req.body
 
         const data = client.query(`INSERT INTO tickets (problem, description, point_of_contact, notes, location, priority, status, university_id) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [problem, description, point_of_contact, message, location, priority, status, university_id]);
-        res.json(data.rows[0]).send('Created Ticket');
+        res.json(data.rows[0]);
 
         /* Releasing the client from the database. */
         client.release();
