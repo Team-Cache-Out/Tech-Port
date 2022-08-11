@@ -39,8 +39,7 @@ function App() {
         oregon()
         pepperdine()
         tech()
-        console.log('update')
-      }, 5000)
+      }, 500)
       return () => clearInterval(interval)
     }
   }, [])
