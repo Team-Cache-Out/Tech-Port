@@ -39,7 +39,7 @@ export default function SingleTicketModal() {
     */
     const noteSubmit = (e) => {
         e.preventDefault();
-        console.log(addnote)
+        // console.log(addnote)
         let data = {
             notes: addnote
         }
@@ -56,10 +56,8 @@ export default function SingleTicketModal() {
         .then(response => response.json())
         .then(data => {
             setSingleTicket(data)
-            setTicket(data)
         })
-        .then(() => {console.log(ticket)})
-        // .then(() => {setTicketModal(false)})
+        .then(() => {setTicketModal(false)})
         .catch(error => {
             console.error(error)
         })
