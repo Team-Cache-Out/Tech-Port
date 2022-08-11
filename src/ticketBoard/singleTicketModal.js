@@ -16,6 +16,7 @@ export default function SingleTicketModal({show}) {
 
     /* Setting the value of the variable tech to null. */
     const [tech, setTech] = useState('')
+    const [addnote, setAddNote] = useState('')
 
     /**
      * When the user clicks the close button, the ticket modal will close.
@@ -29,8 +30,9 @@ export default function SingleTicketModal({show}) {
     * PATCH request.
     */
     const noteSubmit = () => {
+        console.log(addnote)
         let data = {
-            notes: addNote
+            notes: addnote
         }
 
         let fetchData ={
@@ -143,8 +145,6 @@ export default function SingleTicketModal({show}) {
         })
     }
 
-    /* Setting the value of the variable addNote to an empty string. */
-    let addNote = ''
     /* Setting the value of the variable status to the value of the singleTicket.status property. */
     let status = singleTicket.status
 
@@ -247,7 +247,7 @@ export default function SingleTicketModal({show}) {
      * @returns An array of divs.
      */
     const notes = () => {
-        if(singleTicket.note !== '') {
+        if(singleTicket.note !== undefined) {
             return (
 
                 singleTicket.note.split(',').map((elem) => {
@@ -256,7 +256,9 @@ export default function SingleTicketModal({show}) {
                         )
                     })
             ) 
-        } 
+        } else {
+            return '';
+        }
     }
 
     return (
@@ -279,7 +281,7 @@ export default function SingleTicketModal({show}) {
                     </div>
                     <form className='TicketForm' id='TicketForm'>
                             <label>Add Note</label>
-                            <textarea rows = "10" cols = "80" name = "note" onChange={(e) => addNote = e.target.value} placeholder="Enter details here...">
+                            <textarea rows = "10" cols = "80" name = "note" onChange={(e) => setAddNote(e.target.value)} placeholder="Enter details here...">
                             </textarea>
                     </form>
                     <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
