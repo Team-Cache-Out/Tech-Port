@@ -237,7 +237,7 @@ app.get("/university/tickets/:id", async (req,res) => {
 /* This is a post request to the tickets table. It is using the close_date, open_date, problem,
 description, notes, point_of_contact, location, priority, status, assigned_tech, and university_id
 as parameters to insert a new ticket. */
-app.post("/tickets", async (req,res) => {
+app.post("/create", async (req,res) => {
     try {
          /* Connecting to the database. */
         let client = await pool.connect();
