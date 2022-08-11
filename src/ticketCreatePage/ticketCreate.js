@@ -35,7 +35,7 @@ export default function TicketCreatePage() {
             body: JSON.stringify(data)
         }
 
-        fetch('https://worldwide-technical-foundation.herokuapp.com/tickets', fetchData)
+        fetch('https://worldwide-technical-foundation.herokuapp.com/create', fetchData)
         .then(() => {
             window.alert('Ticket Created!')
         })
