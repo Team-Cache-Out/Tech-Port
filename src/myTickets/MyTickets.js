@@ -85,7 +85,7 @@ export default function MyTickets() {
             </div>
           </div>
         </div>
-        <SingleTicketModal />
+        {ticketModal ? <SingleTicketModal /> : null}
       </div>
     );
   }
