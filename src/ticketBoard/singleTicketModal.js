@@ -232,7 +232,11 @@ export default function SingleTicketModal() {
      * @returns The date in the format of YYYY-MM-DD
      */
     const open = () => {
+        if(ticket.open_date !== undefined) {
             return ticket.open_date.split('T')[0]
+        } else {
+            return '';
+        }
     }
 
    /**
