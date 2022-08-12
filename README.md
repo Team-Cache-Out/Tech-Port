@@ -27,9 +27,7 @@ It also gives each technician a portal in which they can see the campus tickets 
 
 ## Demo
 
-Insert gif or link to demo
-
-demo password: password
+![demo_video](https://d7vte2v9l4dqd.cloudfront.net/Tech%20Port%20TIcket%20Management%20System.mp4)
 
 ## Run Locally
 
