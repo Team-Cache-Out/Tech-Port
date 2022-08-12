@@ -233,7 +233,7 @@ export default function SingleTicketModal() {
      */
     const open = () => {
         if(ticket.open_date !== undefined || ticket.open_date !== null) {
-            return ticket.open_date.split('T')[0]
+            return ticket.open_date
         } else {
             return '';
         }
