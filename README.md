@@ -27,7 +27,8 @@ It also gives each technician a portal in which they can see the campus tickets 
 
 ## Demo
 
-![demo_video](https://d7vte2v9l4dqd.cloudfront.net/Tech%20Port%20TIcket%20Management%20System.mp4)
+The below link is a demo of the Ticket Management System.
+https://youtu.be/rZuSjBzPCew
 
 ## Run Locally
 
