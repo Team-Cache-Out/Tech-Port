@@ -71,7 +71,7 @@ Start the application
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+[Documentation](https://docs.google.com/document/d/1fMazPf-sTm5Im3LjvUhipUCVooq-1PdlrbdKPTo2G9Q/edit?usp=sharing)
 
 
 ## Features
