@@ -1,6 +1,4 @@
-<p align="left">
 ![Logo](https://d7vte2v9l4dqd.cloudfront.net/croppedlogo.png)
-</p>
 
 # Tech Port
 
