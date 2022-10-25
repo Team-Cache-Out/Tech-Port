@@ -22,7 +22,7 @@ It also gives each technician a portal in which they can see the campus tickets 
 
 **Server:** Node, Express, Cors, Dotenv
 
-**Database:** <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/postgresql-colored.svg" width="36" height="36" alt="PostgreSQL" /></a>
+**Database:** [PostgreSQL](https://www.postgresql.org/)
 
 
 ## Demo
