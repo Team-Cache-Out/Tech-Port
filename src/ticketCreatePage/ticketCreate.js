@@ -36,13 +36,13 @@ export default function TicketCreatePage() {
         }
 
         fetch('https://worldwide-technical-foundation.herokuapp.com/create', fetchData)
-        .then(response => response.json())
-        .then(() => {
-            window.alert("Created Ticket")
-        })
-        .catch(error => {
-            console.error(error)
-        })
+            .then(response => response.json())
+            .then(() => {
+                window.alert("Created Ticket")
+            })
+            .catch(error => {
+                console.error(error)
+            })
 
         setProblem('')
         setPoint_of_contact('')
@@ -53,47 +53,47 @@ export default function TicketCreatePage() {
 
     return (
         <div className='Ticket-Container'>
-        <h2 className='Ticket-Header'>Create a ticket</h2>
-        <form className='Ticket-Form' id='Ticket-Form'>
-  
-          <div className="select">
-          <div className="createSubject">
-          <label>Subject:</label>
-          <input className='Subject-Input' id='Subject-email' value={problem} onChange={(e) => setProblem(e.target.value)} >
-          </input>
-              </div>
-         
-              <div className="createLocation">
-              <label>Location:</label>
-              <input className='Location-Input' value={location} onChange={(e) => setLocation(e.target.value)} ></input>
-              </div>
-   
-              <div className="CreateContactInfo">
-                  <label>Contact Info:</label>
-                  <input className='Contact-Input' value={point_of_contact} onChange={(e) => setPoint_of_contact(e.target.value)} > 
-                  </input>
-                  </div>
-                  
-                  <div className="createPriority">
-                  <label>Priority:</label>
-                  <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                  <option value={null}>Choose Priority</option>
-                  <option value={'Urgent'}>Urgent</option>
-                  <option value={'severe'}>Severe</option>
-                  <option value={'Routine'}>Routine</option>
-                  </select>
-                  </div>
-                  </div>
-              <label>Description</label>
-              <textarea className='descriptionText' rows = "10" cols = "60" name = "description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter details here...">
-                  
-              </textarea>
-              <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit' onClick={create}>Submit
-              </button>
-  
-            
-        </form>
-        
-      </div>
+            <h2 className='Ticket-Header'>Create a ticket</h2>
+            <form className='Ticket-Form' id='Ticket-Form'>
+
+                <div className="select">
+                    <div className="createSubject">
+                        <label>Subject:</label>
+                        <input className='Subject-Input' id='Subject-email' value={problem} onChange={(e) => setProblem(e.target.value)} disabled>
+                        </input>
+                    </div>
+
+                    <div className="createLocation">
+                        <label>Location:</label>
+                        <input className='Location-Input' value={location} onChange={(e) => setLocation(e.target.value)} disabled></input>
+                    </div>
+
+                    <div className="CreateContactInfo">
+                        <label>Contact Info:</label>
+                        <input className='Contact-Input' value={point_of_contact} onChange={(e) => setPoint_of_contact(e.target.value)} disabled>
+                        </input>
+                    </div>
+
+                    <div className="createPriority">
+                        <label>Priority:</label>
+                        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                            <option value={null}>Choose Priority</option>
+                            <option value={'Urgent'}>Urgent</option>
+                            <option value={'severe'}>Severe</option>
+                            <option value={'Routine'}>Routine</option>
+                        </select>
+                    </div>
+                </div>
+                <label>Description</label>
+                <textarea className='descriptionText' rows="10" cols="60" name="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter details here..." disabled>
+
+                </textarea>
+                <button className='SubmitTicket-Button' id="SubmitTicket-Button" type='submit' onClick={create} disabled>Submit
+                </button>
+
+
+            </form>
+
+        </div>
     )
 };

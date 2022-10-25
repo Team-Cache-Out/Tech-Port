@@ -33,10 +33,10 @@ export default function SingleTicketModal() {
         setTicketModal(false)
     }
 
-   /**
-    * It takes the value of the input field, adds it to an object, then sends it to the server via a
-    * PATCH request.
-    */
+    /**
+     * It takes the value of the input field, adds it to an object, then sends it to the server via a
+     * PATCH request.
+     */
     const noteSubmit = (e) => {
         e.preventDefault();
         // console.log(addnote)
@@ -44,7 +44,7 @@ export default function SingleTicketModal() {
             notes: addnote
         }
 
-        let fetchData ={
+        let fetchData = {
             method: "PATCH",
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -53,27 +53,27 @@ export default function SingleTicketModal() {
         }
         // console.log(singleTicket.ticket_id)
         fetch(`https://worldwide-technical-foundation.herokuapp.com/notes/${ticket.ticket_id}`, fetchData)
-        .then(response => response.json())
-        .then(data => {
-            setSingleTicket(data)
-        })
-        .then(() => {setTicketModal(false)})
-        .catch(error => {
-            console.error(error)
-        })
+            .then(response => response.json())
+            .then(data => {
+                setSingleTicket(data)
+            })
+            .then(() => { setTicketModal(false) })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
 
-   /**
-    * It takes the status of the ticket and updates it in the database.
-    */
+    /**
+     * It takes the status of the ticket and updates it in the database.
+     */
     const statusUpdate = (e) => {
         e.preventDefault();
         let data = {
             status: 'complete'
         }
 
-        let fetchData ={
+        let fetchData = {
             method: "PATCH",
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ export default function SingleTicketModal() {
         }
 
         fetch(`https://worldwide-technical-foundation.herokuapp.com/status/${ticket.ticket_id}`, fetchData)
-        .then(() => {handleClose()})
+            .then(() => { handleClose() })
     }
 
     /**
@@ -93,16 +93,16 @@ export default function SingleTicketModal() {
      * @returns the value of the variable HoustonTechs, ArizonaTechs, OregonTechs, or PepperdineTechs.
      */
     const currentTechs = () => {
-        if(currentUni === 1) {
+        if (currentUni === 1) {
             return HoustonTechs;
         }
-        if(currentUni === 2) {
+        if (currentUni === 2) {
             return ArizonaTechs;
         }
-        if(currentUni === 3) {
+        if (currentUni === 3) {
             return OregonTechs;
         }
-        if(currentUni === 4) {
+        if (currentUni === 4) {
             return PepperdineTechs;
         }
     }
@@ -117,7 +117,7 @@ export default function SingleTicketModal() {
             assigned_tech: tech
         }
 
-        let fetchData ={
+        let fetchData = {
             method: "PATCH",
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -126,10 +126,10 @@ export default function SingleTicketModal() {
         }
 
         fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${ticket.ticket_id}`, fetchData)
-        .then(() => {handleClose()})
-        .catch(error => {
-            console.error(error)
-        })
+            .then(() => { handleClose() })
+            .catch(error => {
+                console.error(error)
+            })
 
         setTech('')
     }
@@ -144,7 +144,7 @@ export default function SingleTicketModal() {
             assigned_tech: user.user_id
         }
 
-        let fetchData ={
+        let fetchData = {
             method: "PATCH",
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -153,10 +153,10 @@ export default function SingleTicketModal() {
         }
 
         fetch(`https://worldwide-technical-foundation.herokuapp.com/assign/${singleTicket.ticket_id}`, fetchData)
-        .then(() => {handleClose()})
-        .catch(error => {
-            console.error(error)
-        })
+            .then(() => { handleClose() })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
     /**
@@ -166,31 +166,31 @@ export default function SingleTicketModal() {
      * @returns The return is a function that is being called in the render.
      */
     const roleRights = () => {
-        
-        if(user.role === 'admin' && ticket.status === 'open') {
+
+        if (user.role === 'admin' && ticket.status === 'open') {
             return (
                 <div className='assign'>
-                <form>
-                    <label>Assign Ticket:</label>
-                    <select value={tech} onChange={(e) => setTech(e.target.value)} >
-                    <option value={null}>Choose Technician</option>
-                        {currentTechs().map((elem) => {
-                            return (
-                                <option value={elem.user_id}>{elem.name}</option>
-                            )
-                        })}
-                    </select>
-                </form>
-                <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={assign}>Update</button>
+                    <form>
+                        <label>Assign Ticket:</label>
+                        <select value={tech} onChange={(e) => setTech(e.target.value)} >
+                            <option value={null}>Choose Technician</option>
+                            {currentTechs().map((elem) => {
+                                return (
+                                    <option value={elem.user_id}>{elem.name}</option>
+                                )
+                            })}
+                        </select>
+                    </form>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={assign} disabled>Update</button>
                 </div>
             )
-        } else if(user.role === 'tech' && ticket.status === 'open') {
-            return  (
+        } else if (user.role === 'tech' && ticket.status === 'open') {
+            return (
                 <div className='assign'>
                     <form>
                         <label>Claim Ticket</label>
                     </form>
-                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={claim}>Claim</button>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={claim} disabled>Claim</button>
                 </div>
             )
         }
@@ -202,13 +202,13 @@ export default function SingleTicketModal() {
      * @returns The statusChange function is returning a div with a form and a button.
      */
     const statusChange = () => {
-        if(ticket.status === 'working') {
+        if (ticket.status === 'working') {
             return (
                 <div className='update'>
-                    <form> 
+                    <form>
                         <label>Complete Ticket</label>
                     </form>
-                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate}>Submit</button>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={statusUpdate} disabled>Submit</button>
                 </div>
             )
         }
@@ -219,7 +219,7 @@ export default function SingleTicketModal() {
      * @returns The date the ticket was closed.
      */
     const complete = () => {
-        if(ticket.close_date === undefined || ticket.close_date === null) {
+        if (ticket.close_date === undefined || ticket.close_date === null) {
             return 'Not Complete';
         } else {
             return ticket.close_date.split('T')[0]
@@ -232,20 +232,20 @@ export default function SingleTicketModal() {
      * @returns The date in the format of YYYY-MM-DD
      */
     const open = () => {
-        if(ticket.open_date !== undefined || ticket.open_date !== null) {
+        if (ticket.open_date !== undefined || ticket.open_date !== null) {
             return ticket.open_date
         } else {
             return '';
         }
     }
 
-   /**
-    * If the status is undefined or null, return an empty string, otherwise return the status in
-    * uppercase.
-    * @returns The value of the status property of the singleTicket object.
-    */
+    /**
+     * If the status is undefined or null, return an empty string, otherwise return the status in
+     * uppercase.
+     * @returns The value of the status property of the singleTicket object.
+     */
     const current = () => {
-        if(ticket.status === undefined || ticket.status === null) {
+        if (ticket.status === undefined || ticket.status === null) {
             return '';
         } else {
             return ticket.status.toUpperCase();
@@ -258,15 +258,15 @@ export default function SingleTicketModal() {
      * @returns An array of divs.
      */
     const notes = () => {
-        if(ticket.note !== undefined) {
+        if (ticket.note !== undefined) {
             return (
 
                 ticket.note.split(',').map((elem) => {
                     return (
                         <div>- {elem}</div>
-                        )
-                    })
-            ) 
+                    )
+                })
+            )
         } else {
             return '';
         }
@@ -274,7 +274,7 @@ export default function SingleTicketModal() {
 
     return (
         <div>
-        {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
+            {/* A ternary operator that checks the current value of the show property and renders the appropriate elements */}
             {/* The div container that gives the page a transparent look. */}
             <div className='singleTicketContainer'>
 
@@ -290,14 +290,14 @@ export default function SingleTicketModal() {
                         {notes()}
                     </div>
                     <div className='TicketForm' id='TicketForm'>
-                            <label>Add Note</label>
-                            <textarea rows = "10" cols = "80" name = "note" onChange={(e) => setAddNote(e.target.value)} placeholder="Enter details here...">
-                            </textarea>
+                        <label>Add Note</label>
+                        <textarea rows="10" cols="80" name="note" onChange={(e) => setAddNote(e.target.value)} placeholder="Enter details here..." disabled>
+                        </textarea>
                     </div>
-                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit}>Submit Note</button>
+                    <button className='SubmitNote-Button' id="SubmitTicket-Button" type='submit' onClick={noteSubmit} disabled>Submit Note</button>
 
                     <div className='selections'>
-                        
+
                         {roleRights()}
 
                         {statusChange()}
@@ -306,6 +306,6 @@ export default function SingleTicketModal() {
                 </div>
 
             </div>
-      </div>
+        </div>
     )
 }
