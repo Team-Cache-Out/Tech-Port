@@ -35,7 +35,7 @@ export default function TicketCreatePage() {
             body: JSON.stringify(data)
         }
 
-        fetch('https://techport.onrender.com/create', fetchData)
+        fetch('https://techport-m8h0.onrender.com/create', fetchData)
             .then(response => response.json())
             .then(() => {
                 window.alert("Created Ticket")

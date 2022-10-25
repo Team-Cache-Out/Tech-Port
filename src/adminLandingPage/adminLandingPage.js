@@ -16,10 +16,10 @@ export default function AdminLandingPage() {
   const [osTickets, setosTickets] = useState([])
   const [penTickets, setpenTickets] = useState([])
   const [loadState, setLoadState] = useState(false)
-  const houston = Axiosfetch('https://techport.onrender.com/university/1', { loading: true, data: null })
-  const az = Axiosfetch('https://techport.onrender.com/university/2', { loading: true, data: null })
-  const os = Axiosfetch('https://techport.onrender.com/university/3', { loading: true, data: null })
-  const pen = Axiosfetch('https://techport.onrender.com/university/4', { loading: true, data: null })
+  const houston = Axiosfetch('https://techport-m8h0.onrender.com/university/1', { loading: true, data: null })
+  const az = Axiosfetch('https://techport-m8h0.onrender.com/university/2', { loading: true, data: null })
+  const os = Axiosfetch('https://techport-m8h0.onrender.com/university/3', { loading: true, data: null })
+  const pen = Axiosfetch('https://techport-m8h0.onrender.com/university/4', { loading: true, data: null })
   const arruni = [houstonTickets, azTickets, osTickets, penTickets]
 
 

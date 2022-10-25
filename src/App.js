@@ -46,30 +46,30 @@ function App() {
 
   // University of Houston Tickets
   const houston = () => {
-    fetch(`https://techport.onrender.com/campusTickets/1/open`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/1/open`)
       .then(response => response.json())
       .then(data => setHoustonOpenTickets(data))
 
-    fetch(`https://techport.onrender.com/campusTickets/1/working`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/1/working`)
       .then(response => response.json())
       .then(data => setHoustonWorkingTickets(data))
 
-    fetch(`https://techport.onrender.com/campusLog/1`)
+    fetch(`https://techport-m8h0.onrender.com/campusLog/1`)
       .then(response => response.json())
       .then(data => setHoustonCompleteTickets(data))
   }
 
   // University of Arizona Tickets
   const arizona = () => {
-    fetch(`https://techport.onrender.com/campusTickets/2/open`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/2/open`)
       .then(response => response.json())
       .then(data => setArizonaOpenTickets(data))
 
-    fetch(`https://techport.onrender.com/campusTickets/2/working`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/2/working`)
       .then(response => response.json())
       .then(data => setArizonaWorkingTickets(data))
 
-    fetch(`https://techport.onrender.com/campusLog/2`)
+    fetch(`https://techport-m8h0.onrender.com/campusLog/2`)
       .then(response => response.json())
       .then(data => setArizonaCompleteTickets(data))
   }
@@ -77,49 +77,49 @@ function App() {
 
   // University of Oregon Tickets
   const oregon = () => {
-    fetch(`https://techport.onrender.com/campusTickets/3/open`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/3/open`)
       .then(response => response.json())
       .then(data => setOregonOpentTickets(data))
 
-    fetch(`https://techport.onrender.com/campusTickets/3/working`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/3/working`)
       .then(response => response.json())
       .then(data => setOregonWorkingTickets(data))
 
-    fetch(`https://techport.onrender.com/campusLog/3`)
+    fetch(`https://techport-m8h0.onrender.com/campusLog/3`)
       .then(response => response.json())
       .then(data => setOregonCompleteTickets(data))
   }
 
   // Pepperdine University Tickets
   const pepperdine = () => {
-    fetch(`https://techport.onrender.com/campusTickets/4/open`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/4/open`)
       .then(response => response.json())
       .then(data => setPepperdineOpenTickets(data))
 
-    fetch(`https://techport.onrender.com/campusTickets/4/working`)
+    fetch(`https://techport-m8h0.onrender.com/campusTickets/4/working`)
       .then(response => response.json())
       .then(data => setPepperdineWorkingTickets(data))
 
-    fetch(`https://techport.onrender.com/campusLog/4`)
+    fetch(`https://techport-m8h0.onrender.com/campusLog/4`)
       .then(response => response.json())
       .then(data => setPepperCompleteTickets(data))
   }
 
   // University Techs
   const tech = () => {
-    fetch(`https://techport.onrender.com/techs/1`)
+    fetch(`https://techport-m8h0.onrender.com/techs/1`)
       .then(response => response.json())
       .then(data => setHoustonTechs(data))
 
-    fetch(`https://techport.onrender.com/techs/2`)
+    fetch(`https://techport-m8h0.onrender.com/techs/2`)
       .then(response => response.json())
       .then(data => setArizonaTechs(data))
 
-    fetch(`https://techport.onrender.com/techs/3`)
+    fetch(`https://techport-m8h0.onrender.com/techs/3`)
       .then(response => response.json())
       .then(data => setOregonTechs(data))
 
-    fetch(`https://techport.onrender.com/techs/4`)
+    fetch(`https://techport-m8h0.onrender.com/techs/4`)
       .then(response => response.json())
       .then(data => setPepperdineTechs(data))
   }

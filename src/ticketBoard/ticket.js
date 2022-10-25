@@ -13,7 +13,7 @@ export default function Ticket(prop) {
      * @param e - the event object
      */
     const handleClick = (e) => {
-        fetch(`https://techport.onrender.com/tickets/${e.target.id}`)
+        fetch(`https://techport-m8h0.onrender.com/tickets/${e.target.id}`)
             .then(response => response.json())
             .then(data => setSingleTicket(data))
             .then(() => {

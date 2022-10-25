@@ -18,7 +18,7 @@ export default function TechAccounts() {
         campus = "Pepperdine University"
     }
     useEffect(() => {
-        fetch(`https://techport.onrender.com/techs/${currentUni}`, {
+        fetch(`https://techport-m8h0.onrender.com/techs/${currentUni}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'

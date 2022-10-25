@@ -52,7 +52,7 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
         // console.log(singleTicket.ticket_id)
-        fetch(`https://techport.onrender.com/notes/${ticket.ticket_id}`, fetchData)
+        fetch(`https://techport-m8h0.onrender.com/notes/${ticket.ticket_id}`, fetchData)
             .then(response => response.json())
             .then(data => {
                 setSingleTicket(data)
@@ -81,7 +81,7 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
 
-        fetch(`https://techport.onrender.com/status/${ticket.ticket_id}`, fetchData)
+        fetch(`https://techport-m8h0.onrender.com/status/${ticket.ticket_id}`, fetchData)
             .then(() => { handleClose() })
     }
 
@@ -125,7 +125,7 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
 
-        fetch(`https://techport.onrender.com/assign/${ticket.ticket_id}`, fetchData)
+        fetch(`https://techport-m8h0.onrender.com/assign/${ticket.ticket_id}`, fetchData)
             .then(() => { handleClose() })
             .catch(error => {
                 console.error(error)
@@ -152,7 +152,7 @@ export default function SingleTicketModal() {
             body: JSON.stringify(data)
         }
 
-        fetch(`https://techport.onrender.com/assign/${singleTicket.ticket_id}`, fetchData)
+        fetch(`https://techport-m8h0.onrender.com/assign/${singleTicket.ticket_id}`, fetchData)
             .then(() => { handleClose() })
             .catch(error => {
                 console.error(error)
