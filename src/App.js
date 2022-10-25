@@ -12,7 +12,7 @@ function App() {
   /* This is a React Hook that is used to set the state of the modalIsOpen variable. The modalIsOpen
   variable is used to determine if the modal is open or not. */
   const [modalIsOpen, setmodalIsOpen] = useState(true);
-  
+
   /* Destructuring the currentUni variable from the SignInContext.js file. */
   const { currentUni } = useContext(SignInContext)
 
@@ -26,7 +26,7 @@ function App() {
   /* This is a React Hook that is called when the component is mounted. It is calling the functions
   that are fetching the data from the API. */
   useEffect(() => {
-    if(currentUni === null) {
+    if (currentUni === null) {
       houston()
       arizona()
       oregon()
@@ -46,113 +46,113 @@ function App() {
 
   // University of Houston Tickets
   const houston = () => {
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/open`)
-    .then(response => response.json())
-    .then(data => setHoustonOpenTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/1/open`)
+      .then(response => response.json())
+      .then(data => setHoustonOpenTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/1/working`)
-    .then(response => response.json())
-    .then(data => setHoustonWorkingTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/1/working`)
+      .then(response => response.json())
+      .then(data => setHoustonWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/1`)
-    .then(response => response.json())
-    .then(data => setHoustonCompleteTickets(data))
+    fetch(`https://techport.onrender.com/campusLog/1`)
+      .then(response => response.json())
+      .then(data => setHoustonCompleteTickets(data))
   }
 
   // University of Arizona Tickets
   const arizona = () => {
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/open`)
-    .then(response => response.json())
-    .then(data => setArizonaOpenTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/2/open`)
+      .then(response => response.json())
+      .then(data => setArizonaOpenTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/2/working`)
-    .then(response => response.json())
-    .then(data => setArizonaWorkingTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/2/working`)
+      .then(response => response.json())
+      .then(data => setArizonaWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/2`)
-    .then(response => response.json())
-    .then(data => setArizonaCompleteTickets(data))
+    fetch(`https://techport.onrender.com/campusLog/2`)
+      .then(response => response.json())
+      .then(data => setArizonaCompleteTickets(data))
   }
 
 
   // University of Oregon Tickets
   const oregon = () => {
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/open`)
-    .then(response => response.json())
-    .then(data => setOregonOpentTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/3/open`)
+      .then(response => response.json())
+      .then(data => setOregonOpentTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/3/working`)
-    .then(response => response.json())
-    .then(data => setOregonWorkingTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/3/working`)
+      .then(response => response.json())
+      .then(data => setOregonWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/3`)
-    .then(response => response.json())
-    .then(data => setOregonCompleteTickets(data))
+    fetch(`https://techport.onrender.com/campusLog/3`)
+      .then(response => response.json())
+      .then(data => setOregonCompleteTickets(data))
   }
 
   // Pepperdine University Tickets
   const pepperdine = () => {
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/open`)
-    .then(response => response.json())
-    .then(data => setPepperdineOpenTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/4/open`)
+      .then(response => response.json())
+      .then(data => setPepperdineOpenTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusTickets/4/working`)
-    .then(response => response.json())
-    .then(data => setPepperdineWorkingTickets(data))
+    fetch(`https://techport.onrender.com/campusTickets/4/working`)
+      .then(response => response.json())
+      .then(data => setPepperdineWorkingTickets(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/campusLog/4`)
-    .then(response => response.json())
-    .then(data => setPepperCompleteTickets(data))
+    fetch(`https://techport.onrender.com/campusLog/4`)
+      .then(response => response.json())
+      .then(data => setPepperCompleteTickets(data))
   }
 
   // University Techs
   const tech = () => {
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/techs/1`)
-    .then(response => response.json())
-    .then(data => setHoustonTechs(data))
+    fetch(`https://techport.onrender.com/techs/1`)
+      .then(response => response.json())
+      .then(data => setHoustonTechs(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/techs/2`)
-    .then(response => response.json())
-    .then(data => setArizonaTechs(data))
+    fetch(`https://techport.onrender.com/techs/2`)
+      .then(response => response.json())
+      .then(data => setArizonaTechs(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/techs/3`)
-    .then(response => response.json())
-    .then(data => setOregonTechs(data))
+    fetch(`https://techport.onrender.com/techs/3`)
+      .then(response => response.json())
+      .then(data => setOregonTechs(data))
 
-    fetch(`https://worldwide-technical-foundation.herokuapp.com/techs/4`)
-    .then(response => response.json())
-    .then(data => setPepperdineTechs(data))
+    fetch(`https://techport.onrender.com/techs/4`)
+      .then(response => response.json())
+      .then(data => setPepperdineTechs(data))
   }
 
   return (
-  <Router>
-    <Routes>
-      <Route exact path='/' element={
-        <>
-        <LogIn></LogIn>
-        </>
-      }></Route>
-      <Route exact path='/signup' element={
-        <>
-        <LogIn></LogIn>
-        <SignUp modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignUp>
-        </>
-      }></Route>
-      <Route exact path='/signin' element={
-        <>
-        <SignIn modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignIn>
-        </>
-      }></Route>
-      <Route exact path='/admin' element={
-        <AdminLandingPage />
-      }></Route>
-      <Route exact path='/ticketBoard' element={
-        <>
-        <TicketBoard />
-        </>
-      }></Route>      
-    </Routes>
-  </Router>   
+    <Router>
+      <Routes>
+        <Route exact path='/' element={
+          <>
+            <LogIn></LogIn>
+          </>
+        }></Route>
+        <Route exact path='/signup' element={
+          <>
+            <LogIn></LogIn>
+            <SignUp modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignUp>
+          </>
+        }></Route>
+        <Route exact path='/signin' element={
+          <>
+            <SignIn modalIsOpen={modalIsOpen} setmodalIsOpen={setmodalIsOpen}></SignIn>
+          </>
+        }></Route>
+        <Route exact path='/admin' element={
+          <AdminLandingPage />
+        }></Route>
+        <Route exact path='/ticketBoard' element={
+          <>
+            <TicketBoard />
+          </>
+        }></Route>
+      </Routes>
+    </Router>
   );
 }
 

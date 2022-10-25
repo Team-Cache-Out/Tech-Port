@@ -6,7 +6,7 @@ export default function Tech(props) {
     const { setActiveComp } = useContext(CampusContext)
     const handleAdminClick = (e) => {
         let id = parseInt(e.target.id)
-        fetch(`https://worldwide-technical-foundation.herokuapp.com/users/${id}`, {
+        fetch(`https://techport.onrender.com/users/${id}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 'role': 'admin'
