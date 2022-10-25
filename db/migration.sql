@@ -40,7 +40,7 @@ CREATE TABLE tickets(
 );
 
 
--- \i db/seed.sql
+\i db/seed.sql
 
 
 -- SELECT * FROM users;
