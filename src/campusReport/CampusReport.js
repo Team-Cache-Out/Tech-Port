@@ -6,7 +6,7 @@ import Axiosfetch from "../axiosRequest/axiosfetch";
 export default function CampusReport() {
     const { currentUni, setCurrentUni } = useContext(SignInContext)
     const [camp, setCamp] = useState([])
-    const campus = Axiosfetch(`https://techport-m8h0.onrender.com/tickets/${currentUni}`, { loading: true, data: null })
+    const campus = Axiosfetch(`https://techport-m8h0.onrender.com/campus/tickets/${currentUni}`, { loading: true, data: null })
 
     useEffect(() => {
         setCamp(campus.data)
