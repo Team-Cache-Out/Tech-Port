@@ -18,9 +18,9 @@ It also gives each technician a portal in which they can see the campus tickets 
 
 ## Tech Stack
 
-**Client:** React, React-Router-Dom, React-Modal
+**Client:** [React](https://reactjs.org/), [React-Router-Dom](https://www.npmjs.com/package/react-router-dom), [React-Modal](https://www.npmjs.com/package/react-modal)
 
-**Server:** Node, Express, Cors, Dotenv
+**Server:** [Node](https://nodejs.org/en/), [Express](https://expressjs.com/), [Cors](https://www.npmjs.com/package/cors), [Dotenv](https://www.npmjs.com/package/dotenv)
 
 **Database:** [PostgreSQL](https://www.postgresql.org/)
 
